@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://xpnabp5j1vwx"]
 
+[ext_resource type="FontFile" uid="uid://cnsb8x0uqwhab" path="res://assets/shop assets/monogram.ttf" id="1_3x3e5"]
+
 [node name="ShopButtons" type="Control" unique_id=114534445]
 layout_mode = 3
 anchors_preset = 15
@@ -40,6 +42,8 @@ anchor_right = 1.0
 offset_top = 13.0
 offset_bottom = 36.0
 grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_3x3e5")
+theme_override_font_sizes/font_size = 28
 horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="Button" unique_id=1144028901]
@@ -52,4 +56,6 @@ offset_top = -54.0
 offset_bottom = -31.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_3x3e5")
+theme_override_font_sizes/font_size = 28
 horizontal_alignment = 1
