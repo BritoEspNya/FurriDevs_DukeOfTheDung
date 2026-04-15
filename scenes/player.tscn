@@ -35,3 +35,6 @@ position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 
 [node name="InputSynchronizer" parent="." unique_id=1727808175 instance=ExtResource("3_qhqgy")]
+
+[node name="SyncTimer" type="Timer" parent="." unique_id=612484499]
+autostart = true
