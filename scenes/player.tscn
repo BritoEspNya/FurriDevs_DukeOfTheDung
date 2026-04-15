@@ -2,14 +2,10 @@
 
 [ext_resource type="Script" uid="uid://bx3d78qgetgp5" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://tw8t38ns0seh" path="res://icon.svg" id="2_qhqgy"]
+[ext_resource type="PackedScene" uid="uid://kyo5ugj565rn" path="res://scenes/input_synchronizer.tscn" id="3_qhqgy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_su8me"]
 size = Vector2(99, 110)
-
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_g2els"]
-properties/0/path = NodePath(".:position")
-properties/0/spawn = true
-properties/0/replication_mode = 1
 
 [node name="Player" type="CharacterBody2D" unique_id=1237076710]
 motion_mode = 1
@@ -38,5 +34,4 @@ process_callback = 0
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=168388660]
-replication_config = SubResource("SceneReplicationConfig_g2els")
+[node name="InputSynchronizer" parent="." unique_id=1727808175 instance=ExtResource("3_qhqgy")]
