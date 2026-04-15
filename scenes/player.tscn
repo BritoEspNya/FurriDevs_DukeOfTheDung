@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://d2ijtieumyhof"]
+
+[ext_resource type="Script" uid="uid://bx3d78qgetgp5" path="res://scripts/player.gd" id="1_g2els"]
+[ext_resource type="Texture2D" uid="uid://tw8t38ns0seh" path="res://icon.svg" id="2_qhqgy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_su8me"]
+size = Vector2(99, 110)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_g2els"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
+[node name="Player" type="CharacterBody2D" unique_id=1237076710]
+motion_mode = 1
+script = ExtResource("1_g2els")
+speed = 500
+acceleration = 700.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=437642803]
+y_sort_enabled = true
+texture = ExtResource("2_qhqgy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=144742241]
+shape = SubResource("RectangleShape2D_su8me")
+disabled = true
+
+[node name="Label" type="Label" parent="." unique_id=596661302]
+offset_left = -22.0
+offset_top = -95.0
+offset_right = 22.0
+offset_bottom = -72.0
+text = "name"
+metadata/_edit_group_ = true
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1981350142]
+process_callback = 0
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=168388660]
+replication_config = SubResource("SceneReplicationConfig_g2els")
