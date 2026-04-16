@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bqajfumhk3xyk"]
+
+[ext_resource type="Script" uid="uid://c7n03uj5h7sx8" path="res://autoloads/main.gd" id="1_2w88n"]
+[ext_resource type="PackedScene" uid="uid://fj33jfqlneof" path="res://scenes/player/player.tscn" id="2_lq5pd"]
+[ext_resource type="PackedScene" uid="uid://fja3u8rkhq8s" path="res://bullets/bullet.tscn" id="3_lq5pd"]
+
+[node name="Main" type="Node2D" unique_id=1748223112]
+script = ExtResource("1_2w88n")
+player_scene = ExtResource("2_lq5pd")
+
+[node name="Spawnpoints" type="Node2D" parent="." unique_id=1684547511]
+
+[node name="Marker2D" type="Marker2D" parent="Spawnpoints" unique_id=230157857]
+position = Vector2(153, 52)
+
+[node name="Marker2D2" type="Marker2D" parent="Spawnpoints" unique_id=169111572]
+position = Vector2(61, 52)
+
+[node name="Players" type="Node2D" parent="." unique_id=487101040]
+
+[node name="Bullet" parent="." unique_id=1349324402 instance=ExtResource("3_lq5pd")]
+position = Vector2(97.00001, 109)
+rotation = 0.7766715

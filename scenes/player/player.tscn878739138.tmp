@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://fj33jfqlneof"]
+
+[ext_resource type="Script" uid="uid://c2htkp0ohmhmr" path="res://scenes/player/player.gd" id="1_dovo2"]
+[ext_resource type="Script" uid="uid://d0ssffnqid5lp" path="res://components/hurtbox_component.gd" id="2_gmlin"]
+
+[node name="Player" type="CharacterBody2D" unique_id=211722567]
+script = ExtResource("1_dovo2")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1853621247]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1473728450]
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1109572815]
+script = ExtResource("2_gmlin")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=899407253]
