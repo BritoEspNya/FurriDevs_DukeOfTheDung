@@ -11,6 +11,7 @@ var _data: Statics.PlayerData
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var input_synchronizer: InputSyncronizer = $InputSynchronizer
 @onready var sync_timer: Timer = $SyncTimer
+@onready var dung_recolected: int = 0
 
 func _ready() -> void:
 	sync_timer.timeout.connect(_on_sync_timeout)

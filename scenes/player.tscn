@@ -19,7 +19,6 @@ texture = ExtResource("2_qhqgy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=144742241]
 shape = SubResource("RectangleShape2D_su8me")
-disabled = true
 
 [node name="Label" type="Label" parent="." unique_id=596661302]
 offset_left = -22.0
