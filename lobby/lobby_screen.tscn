@@ -13,8 +13,8 @@ grow_vertical = 2
 theme = ExtResource("1_0ce57")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=300437505]
-position = Vector2(639.5, 360)
-scale = Vector2(2.2170138, 2.2037036)
+position = Vector2(641.00006, 359.5)
+scale = Vector2(2.2395833, 2.2438269)
 texture = ExtResource("2_684nl")
 
 [node name="MarginContainer2" type="MarginContainer" parent="." unique_id=2068073055]

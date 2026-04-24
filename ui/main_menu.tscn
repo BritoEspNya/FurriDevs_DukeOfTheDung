@@ -17,8 +17,8 @@ theme = ExtResource("1_3qnx1")
 script = ExtResource("2_p6ygj")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=710484021]
-position = Vector2(639.5, 360)
-scale = Vector2(2.2170138, 2.2037036)
+position = Vector2(642.5, 358.5)
+scale = Vector2(2.2447913, 2.25)
 texture = ExtResource("3_rmr83")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=2109258779]
