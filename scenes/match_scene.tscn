@@ -46,6 +46,13 @@ position = Vector2(2589, 1506)
 
 [node name="ShopScreen" parent="UI" unique_id=1658476554 instance=ExtResource("5_gpudj")]
 
+[node name="TimerLabel" type="Label" parent="UI" unique_id=84982122]
+offset_right = 40.0
+offset_bottom = 23.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+horizontal_alignment = 2
+
 [node name="Timers" type="Node" parent="." unique_id=770002393]
 
 [node name="RoundTimer" type="Timer" parent="Timers" unique_id=954822435]

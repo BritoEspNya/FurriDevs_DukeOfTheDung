@@ -13,6 +13,7 @@ enum MatchState {
 @onready var shop_screen: Control = $"../UI/ShopScreen"
 @onready var round_timer: Timer = $"../Timers/RoundTimer"
 @onready var shop_timer: Timer = $"../Timers/ShopTimer"
+@onready var timer_label: Label = $"../UI/TimerLabel"
 
 var current_state: MatchState = MatchState.GAME_STARTING
 
@@ -78,3 +79,20 @@ func _on_round_timer_timeout() -> void:
 
 func _on_shop_timer_timeout() -> void:
 	exit_shop()
+
+func _process(delta: float) -> void:
+	update_timer_label()
+	
+func update_timer_label() -> void:
+	match current_state:
+		MatchState.GAME_PLAYING:
+			timer_label.text = "Round Timer: " + str(int(round(round_timer.time_left)))
+
+		MatchState.GAME_SHOP:
+			timer_label.text = "Shop Timer: " + str(int(round(shop_timer.time_left)))
+
+		MatchState.GAME_STARTING:
+			timer_label.text = "Starting..."
+
+		MatchState.GAME_ENDING:
+			timer_label.text = "Game Over"
