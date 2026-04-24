@@ -14,7 +14,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 [application]
 
-config/name="Dunk of the Dung"
+config/name="Duke of the Dung"
 run/main_scene="res://ui/main_menu.tscn"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="uid://b3rtcjkhitfq0"
