@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://bwgdrcgopd0s1" path="res://lobby/lobby_theme.tres" id="1_3qnx1"]
 [ext_resource type="Script" uid="uid://cnbk17iq1x68f" path="res://ui/main_menu.gd" id="2_p6ygj"]
-[ext_resource type="Texture2D" uid="uid://tw8t38ns0seh" path="res://icon.svg" id="2_xllby"]
+[ext_resource type="Texture2D" uid="uid://br64ccwuru1mm" path="res://assets/orig.png" id="3_rmr83"]
 [ext_resource type="FontFile" uid="uid://cnsb8x0uqwhab" path="res://assets/shop assets/monogram.ttf" id="4_rmr83"]
 
 [node name="MainMenu" type="Control" unique_id=582390036]
@@ -14,6 +14,11 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_3qnx1")
 script = ExtResource("2_p6ygj")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=710484021]
+position = Vector2(639.5, 360)
+scale = Vector2(2.2170138, 2.2037036)
+texture = ExtResource("3_rmr83")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=2109258779]
 layout_mode = 1
@@ -71,25 +76,18 @@ grow_vertical = 2
 [node name="TextureRect" type="TextureRect" parent="MarginContainer2" unique_id=2127826636]
 custom_minimum_size = Vector2(256, 256)
 layout_mode = 2
-texture = ExtResource("2_xllby")
 
 [node name="MarginContainer3" type="MarginContainer" parent="." unique_id=1014861602]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -417.5
-offset_top = -360.0
-offset_right = 417.5
-offset_bottom = -112.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 681.0
+offset_bottom = 207.0
 
 [node name="Label" type="Label" parent="MarginContainer3" unique_id=275688849]
 layout_mode = 2
+size_flags_horizontal = 0
 theme_type_variation = &"Title"
+theme_override_colors/font_color = Color(0.51169735, 0.3043323, 0.028128143, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_rmr83")
 theme_override_font_sizes/font_size = 92
 text = "Duke of the dung"
