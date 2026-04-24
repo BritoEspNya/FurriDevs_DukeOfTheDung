@@ -56,11 +56,11 @@ horizontal_alignment = 2
 [node name="Timers" type="Node" parent="." unique_id=770002393]
 
 [node name="RoundTimer" type="Timer" parent="Timers" unique_id=954822435]
-wait_time = 10.0
+wait_time = 60.0
 one_shot = true
 
 [node name="ShopTimer" type="Timer" parent="Timers" unique_id=1704158372]
-wait_time = 2.0
+wait_time = 30.0
 one_shot = true
 
 [node name="MatchController" type="Node" parent="." unique_id=1530699601]
