@@ -14,7 +14,7 @@ var items = [
 	{
 		"name": "Crossbow",
 		"cost": 12,
-		"texture": "res://assets/shop assets/Crossbow.png",
+		"texture": "res://assets/shop assets/7.png",
 		"tooltip": "20 damage"
 	},
 	{

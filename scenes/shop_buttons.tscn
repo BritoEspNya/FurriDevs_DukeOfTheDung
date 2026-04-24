@@ -32,6 +32,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TextureRect" type="TextureRect" parent="Button/MarginContainer" unique_id=65465870]
+texture_filter = 1
 layout_mode = 2
 expand_mode = 1
 
