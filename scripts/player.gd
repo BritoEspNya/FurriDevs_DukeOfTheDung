@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var flight_speed: int = 500
 @export var acceleration: float = 400
 @export var rotation_speed: float = 5
+@export var projectile_scene: PackedScene 
 
 var _data: Statics.PlayerData
 var _speed: int = walk_speed
@@ -15,9 +16,14 @@ var _speed: int = walk_speed
 @onready var input_synchronizer: InputSyncronizer = $InputSynchronizer
 @onready var sync_timer: Timer = $SyncTimer
 @onready var dung_recolected: int = 0
+@onready var projectile_spawner: MultiplayerSpawner = $ProjectileSpawner
+@onready var projectile_spawn_marker: Marker2D = $ProjectileSpawnMarker
+
 
 func _ready() -> void:
 	sync_timer.timeout.connect(_on_sync_timeout)
+	if projectile_scene:
+		projectile_spawner.add_spawnable_scene(projectile_scene.resource_path)
 
 func _physics_process(delta: float) -> void:
 	var move_input: Vector2 = input_synchronizer.move_input
@@ -32,6 +38,11 @@ func _physics_process(delta: float) -> void:
 		rotation += move_input.x * rotation_speed * delta
 		var forward_direction = Vector2.UP.rotated(rotation)
 		velocity = velocity.move_toward(forward_direction * _speed * move_input.y, acceleration * delta)
+	if is_multiplayer_authority():
+		if Input.is_action_just_pressed("fire_main_weapon"):
+			Debug.log("FIRE FIRE FIREE")
+			var direction: Vector2 = projectile_spawn_marker.global_position.direction_to(get_global_mouse_position())
+			fire_main_weapon.rpc_id(1, direction)
 	move_and_slide()
 
 func setup(data: Statics.PlayerData) -> void:
@@ -47,6 +58,17 @@ func setup(data: Statics.PlayerData) -> void:
 @rpc("authority", "call_remote", "unreliable_ordered")
 func send_position(pos: Vector2) -> void:
 	global_position = lerp(global_position, pos, 0.5)
+	
+@rpc("authority", "call_local")
+func fire_main_weapon(direction: Vector2) -> void:
+	if not projectile_scene:
+		return
+	var projectile_ins = projectile_scene.instantiate()
+	projectile_ins.global_position = projectile_spawn_marker.global_position
+	projectile_ins.global_rotation = direction.angle()
+	projectile_spawner.add_child(projectile_ins, true)
+	 
 
 func _on_sync_timeout() -> void:
 	send_position.rpc(global_position)
+	
