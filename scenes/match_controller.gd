@@ -38,24 +38,26 @@ func start_match() -> void:
 func start_round() -> void:
 	change_state(MatchState.GAME_PLAYING)
 	shop_screen.hide()
-	_set_gameplay_enabled(true)
+	#_set_gameplay_enabled(true)
 	round_timer.start()
 
 func enter_shop() -> void:
 	change_state(MatchState.GAME_SHOP)
-	_set_gameplay_enabled(false)
+	#_set_gameplay_enabled(false)
 	shop_screen.show()
 	#if shop_screen.has_method("refresh_shop"):
 	#	shop_screen.refresh_shop()
 	shop_timer.start()
+	get_tree().paused = true
 
 func exit_shop() -> void:
 	shop_screen.hide()
+	get_tree().paused = false
 	start_round()
 
 func end_match() -> void:
 	change_state(MatchState.GAME_ENDING)
-	_set_gameplay_enabled(false)
+	#_set_gameplay_enabled(false)
 
 func change_state(new_state: MatchState) -> void:
 	if current_state == new_state:
