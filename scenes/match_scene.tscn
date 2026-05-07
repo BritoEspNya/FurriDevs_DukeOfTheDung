@@ -13,10 +13,13 @@ player_scene = ExtResource("2_xr2dr")
 ball_scene = ExtResource("3_nk4te")
 
 [node name="World" type="Node2D" parent="." unique_id=1056030059]
+y_sort_enabled = true
 
 [node name="Map" parent="World" unique_id=778570579 instance=ExtResource("2_jr368")]
+y_sort_enabled = true
 
 [node name="Players" type="Node2D" parent="." unique_id=30488549]
+y_sort_enabled = true
 
 [node name="Balls" type="Node2D" parent="." unique_id=1140088959]
 
