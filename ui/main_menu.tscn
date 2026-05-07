@@ -18,6 +18,17 @@ size_flags_vertical = 3
 theme = ExtResource("1_3qnx1")
 script = ExtResource("2_p6ygj")
 
+[node name="TextureRect" type="TextureRect" parent="." unique_id=2012180044]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_rmr83")
+expand_mode = 1
+stretch_mode = 6
+
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=2109258779]
 layout_mode = 1
 anchors_preset = 8
@@ -31,11 +42,6 @@ offset_right = 257.0
 offset_bottom = 378.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Sprite2D" type="Sprite2D" parent="MarginContainer" unique_id=710484021]
-position = Vector2(245.5, 0.5)
-scale = Vector2(2.2447913, 2.25)
-texture = ExtResource("3_rmr83")
 
 [node name="Logo" type="Sprite2D" parent="MarginContainer" unique_id=1030626923]
 position = Vector2(247, -151)
