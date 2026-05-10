@@ -385,4 +385,22 @@ position = Vector2(618, 1838)
 position = Vector2(291, 1081)
 
 [node name="Tree" parent="." unique_id=1532459446 instance=ExtResource("5_2klcf")]
-position = Vector2(544, 315)
+position = Vector2(620, 487)
+
+[node name="Tree2" parent="." unique_id=1199881037 instance=ExtResource("5_2klcf")]
+position = Vector2(2086, 1088)
+
+[node name="Tree3" parent="." unique_id=1946298402 instance=ExtResource("5_2klcf")]
+position = Vector2(808, 2393)
+
+[node name="Tree4" parent="." unique_id=1390610838 instance=ExtResource("5_2klcf")]
+position = Vector2(2362, 2708)
+
+[node name="Tree5" parent="." unique_id=1359667398 instance=ExtResource("5_2klcf")]
+position = Vector2(5050, 677)
+
+[node name="Tree6" parent="." unique_id=1940562773 instance=ExtResource("5_2klcf")]
+position = Vector2(4020, 1345)
+
+[node name="Tree7" parent="." unique_id=129916682 instance=ExtResource("5_2klcf")]
+position = Vector2(4530, 2384)
