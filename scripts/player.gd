@@ -15,6 +15,8 @@ var _speed: int = walk_speed
 @onready var input_synchronizer: InputSyncronizer = $InputSynchronizer
 @onready var sync_timer: Timer = $SyncTimer
 @onready var dung_recolected: int = 0
+@onready var animation_tree: AnimationTree = $AnimationTree
+@onready var playback: AnimationNodeStateMachinePlayback = animation_tree["parameters/playback"]
 
 func _ready() -> void:
 	sync_timer.timeout.connect(_on_sync_timeout)
@@ -33,6 +35,11 @@ func _physics_process(delta: float) -> void:
 		var forward_direction = Vector2.UP.rotated(rotation)
 		velocity = velocity.move_toward(forward_direction * _speed * move_input.y, acceleration * delta)
 	move_and_slide()
+	
+	if input_synchronizer.move_input:
+		playback.travel("walk")
+	else:
+		playback.travel("RESET")
 
 func setup(data: Statics.PlayerData) -> void:
 	_data = data
