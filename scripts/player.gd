@@ -30,6 +30,9 @@ func _physics_process(delta: float) -> void:
 	if input_synchronizer.mode_input:
 		velocity.x = move_toward(velocity.x, move_input.x * _speed, acceleration * delta)
 		velocity.y = move_toward(velocity.y, move_input.y * _speed, acceleration * delta)
+		if velocity.length() > 0:
+			var angle = velocity.angle() + PI/2
+			rotation = lerp_angle(rotation, angle, rotation_speed * delta)
 	else:
 		rotation += move_input.x * rotation_speed * delta
 		var forward_direction = Vector2.UP.rotated(rotation)
