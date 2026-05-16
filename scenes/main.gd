@@ -2,7 +2,7 @@ extends Node2D
 
 @export var player_scene: PackedScene
 @export var ball_scene: PackedScene
-@onready var players: Node2D = $Players
+@onready var players: Node2D = $World/Players
 @onready var balls: Node2D = $Balls
 @onready var spawn_points: Node2D = $PlayerSpawnPoints
 @onready var ball_spawn_points: Node2D = $BallSpawnPoints
