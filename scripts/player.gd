@@ -40,9 +40,7 @@ func _physics_process(delta: float) -> void:
 		velocity = velocity.move_toward(forward_direction * _speed * move_input.y, acceleration * delta)
 	if is_multiplayer_authority():
 		if Input.is_action_just_pressed("fire_main_weapon"):
-			Debug.log("FIRE FIRE FIREE")
-			var direction: Vector2 = projectile_spawn_marker.global_position.direction_to(get_global_mouse_position())
-			fire_main_weapon.rpc_id(1, direction)
+			fire()
 	move_and_slide()
 
 func setup(data: Statics.PlayerData) -> void:
@@ -54,7 +52,14 @@ func setup(data: Statics.PlayerData) -> void:
 	camera_2d.enabled = is_multiplayer_authority()
 	if is_multiplayer_authority():
 		sync_timer.start()
-		
+
+func fire() -> void:
+	if not is_multiplayer_authority():
+		return
+	Debug.log("FIRE FIRE FIREE")
+	var direction: Vector2 = projectile_spawn_marker.global_position.direction_to(get_global_mouse_position())
+	fire_main_weapon.rpc_id(1, direction)
+
 @rpc("authority", "call_remote", "unreliable_ordered")
 func send_position(pos: Vector2) -> void:
 	global_position = lerp(global_position, pos, 0.5)
@@ -67,7 +72,10 @@ func fire_main_weapon(direction: Vector2) -> void:
 	projectile_ins.global_position = projectile_spawn_marker.global_position
 	projectile_ins.global_rotation = direction.angle()
 	projectile_spawner.add_child(projectile_ins, true)
-	 
+
+func fire_one_shot(one_shot_name: String) -> void:
+	#animation_tree["parameters/%s/request" % one_shot_name] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+	pass
 
 func _on_sync_timeout() -> void:
 	send_position.rpc(global_position)

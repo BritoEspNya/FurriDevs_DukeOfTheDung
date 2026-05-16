@@ -9,8 +9,11 @@ height = 24.0
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ns54y"]
 properties/0/path = NodePath(".:position")
-properties/0/spawn = false
+properties/0/spawn = true
 properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
 
 [node name="Spear" type="Area2D" unique_id=1349324402]
 scale = Vector2(3, 3)
@@ -25,5 +28,5 @@ texture_filter = 1
 rotation = 0.7853982
 texture = ExtResource("2_dg5sn")
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=304005535]
+[node name="ProjectileSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=304005535]
 replication_config = SubResource("SceneReplicationConfig_ns54y")
