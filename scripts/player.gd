@@ -5,7 +5,7 @@ extends CharacterBody2D
 @export var flight_speed: int = 500
 @export var acceleration: float = 400
 @export var rotation_speed: float = 5
-@export var projectile_scene: PackedScene 
+@export var projectile_scene: PackedScene
 
 var _data: Statics.PlayerData
 var _speed: int = walk_speed
@@ -19,6 +19,8 @@ var _speed: int = walk_speed
 @onready var projectile_spawner: MultiplayerSpawner = $ProjectileSpawner
 @onready var projectile_spawn_marker: Marker2D = $ProjectileSpawnMarker
 
+@onready var animation_tree: AnimationTree = $AnimationTree
+@onready var playback: AnimationNodeStateMachinePlayback = animation_tree["parameters/playback"]
 
 func _ready() -> void:
 	sync_timer.timeout.connect(_on_sync_timeout)
@@ -34,6 +36,9 @@ func _physics_process(delta: float) -> void:
 	if input_synchronizer.mode_input:
 		velocity.x = move_toward(velocity.x, move_input.x * _speed, acceleration * delta)
 		velocity.y = move_toward(velocity.y, move_input.y * _speed, acceleration * delta)
+		if velocity.length() > 0:
+			var angle = velocity.angle() + PI / 2
+			rotation = lerp_angle(rotation, angle, rotation_speed * delta)
 	else:
 		rotation += move_input.x * rotation_speed * delta
 		var forward_direction = Vector2.UP.rotated(rotation)
@@ -42,6 +47,11 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("fire_main_weapon"):
 			fire()
 	move_and_slide()
+	
+	if input_synchronizer.move_input:
+		playback.travel("walk")
+	else:
+		playback.travel("RESET")
 
 func setup(data: Statics.PlayerData) -> void:
 	_data = data
@@ -79,4 +89,3 @@ func fire_one_shot(one_shot_name: String) -> void:
 
 func _on_sync_timeout() -> void:
 	send_position.rpc(global_position)
-	

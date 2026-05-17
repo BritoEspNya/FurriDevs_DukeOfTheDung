@@ -4,17 +4,34 @@
 [ext_resource type="Texture2D" uid="uid://b5ho53dtufwi5" path="res://assets/map assets/ball.png" id="2_cxlvu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cxlvu"]
-radius = 90.0
+radius = 200.0
 
-[node name="Ball" type="RigidBody2D" unique_id=45394561]
-y_sort_enabled = true
-gravity_scale = 0.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_f7cbr"]
+radius = 100.0
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_cxlvu"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
+[node name="Dung_Ball" type="AnimatableBody2D" unique_id=2079618351]
 script = ExtResource("1_cxlvu")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1556091869]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1302526253]
+y_sort_enabled = true
+texture_filter = 1
+scale = Vector2(8, 8)
+texture = ExtResource("2_cxlvu")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=871529693]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=891151119]
 shape = SubResource("CircleShape2D_cxlvu")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=634972322]
-texture_filter = 1
-scale = Vector2(5.802, 5.8)
-texture = ExtResource("2_cxlvu")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1098988610]
+shape = SubResource("CircleShape2D_f7cbr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=733379433]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=38171601]
+replication_config = SubResource("SceneReplicationConfig_cxlvu")

@@ -25,6 +25,7 @@ func _spawn_match_entities() -> void:
 		var player_spawn_point = spawn_points.get_child(i)
 		player_instance.global_position = player_spawn_point.global_position
 		player_instance.setup(player_data)
+		player_data.scene = player_instance
 		
 		var ball_instance = ball_scene.instantiate()
 		balls.add_child(ball_instance, true)
