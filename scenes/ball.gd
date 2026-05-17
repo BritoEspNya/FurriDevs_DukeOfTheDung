@@ -49,10 +49,8 @@ func detach(player_path: NodePath) -> void:
 	player.input_synchronizer.mode_input = true
 
 func _on_body_entered(body: Node2D) -> void:
-	Debug.log("Player entered ball space")
 	var player = body as Player
 	_near_players.push_back(player)
 
 func _on_body_exit(body: Node2D) -> void:
-	Debug.log("Player exit ball space")
 	_near_players.erase(body)
