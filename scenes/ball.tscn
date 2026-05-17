@@ -18,6 +18,7 @@ properties/0/replication_mode = 1
 script = ExtResource("1_cxlvu")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1302526253]
+y_sort_enabled = true
 texture_filter = 1
 scale = Vector2(8, 8)
 texture = ExtResource("2_cxlvu")

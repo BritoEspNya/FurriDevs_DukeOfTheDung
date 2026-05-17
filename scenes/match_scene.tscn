@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://ba07fntbvwu7m" path="res://scenes/match_controller.gd" id="6_k0j1d"]
 
 [node name="MatchScene" type="Node2D" unique_id=1397281341]
+y_sort_enabled = true
 script = ExtResource("1_dscic")
 player_scene = ExtResource("2_xr2dr")
 ball_scene = ExtResource("3_nk4te")
@@ -17,8 +18,10 @@ ball_scene = ExtResource("3_nk4te")
 [node name="Map" parent="World" unique_id=778570579 instance=ExtResource("2_jr368")]
 
 [node name="Players" type="Node2D" parent="." unique_id=30488549]
+y_sort_enabled = true
 
 [node name="Balls" type="Node2D" parent="." unique_id=1140088959]
+y_sort_enabled = true
 
 [node name="PlayerSpawnPoints" type="Node2D" parent="." unique_id=1077289756]
 
