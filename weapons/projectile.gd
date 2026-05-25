@@ -1,6 +1,8 @@
+class_name Projectile
 extends Area2D
 
 @export var speed: int = 500
+
 
 func _ready() -> void:
 	await get_tree().create_timer(2).timeout
