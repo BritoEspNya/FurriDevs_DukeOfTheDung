@@ -1,18 +1,18 @@
 class_name HealthComponent
-extends Node
+extends MultiplayerSynchronizer
 
-signal health_changed(current: int, max_health: int)
+signal health_changed(value: int, max_health: int)
 signal damaged(data: DamageDataResource)
 signal healed(amount: int)
 signal died(data: DamageDataResource)
 
+@export var max_health: int = 100
 @export var health: int = 100:
 	set(value):
 		health = clamp(value, 0, max_health)
-		if health == 0:
+		if health <= 0:
 			died.emit()
 			
-@export var max_health: int = 100
 var current_health: int
 
 func _ready() -> void:
