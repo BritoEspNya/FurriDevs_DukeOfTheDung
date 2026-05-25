@@ -1,7 +1,7 @@
 class_name HitboxComponent
 extends Area2D
 
-@export var damage_amount: int = 10
+@export var damage: int = 10
 @export var damage_type: StringName = &"default"
 @export var one_shot_per_target: bool = true
 
@@ -21,7 +21,7 @@ func _on_area_entered(area: Area2D) -> void:
 		return
 
 	var data := DamageDataResource.new()
-	data.amount = damage_amount
+	data.amount = damage
 	data.source_peer_id = source_peer_id
 	data.source_node_path = get_path()
 	data.damage_type = damage_type

@@ -16,7 +16,7 @@ func _ready() -> void:
 func _on_area_entered(area: Area2D) -> void:
 	var hitbox: HitboxComponent = area as HitboxComponent
 	if hitbox and health_component:
-		health_component.take_damage(null)
+		health_component.take_damage(null)	
 func receive_hit(data: DamageDataResource) -> void:
 	if not is_enabled:
 		return

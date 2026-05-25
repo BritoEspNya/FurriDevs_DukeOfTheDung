@@ -1,20 +1,32 @@
 [gd_scene format=3 uid="uid://d2ijtieumyhof"]
 
 [ext_resource type="Script" uid="uid://bx3d78qgetgp5" path="res://scripts/player.gd" id="1_g2els"]
-[ext_resource type="PackedScene" uid="uid://fja3u8rkhq8s" path="res://bullets/Spear.tscn" id="2_dqkch"]
-[ext_resource type="Texture2D" uid="uid://tw8t38ns0seh" path="res://icon.svg" id="2_qhqgy"]
+[ext_resource type="PackedScene" uid="uid://fja3u8rkhq8s" path="res://weapons/SpearProjectile.tscn" id="2_dqkch"]
 [ext_resource type="Texture2D" uid="uid://ogom7y53uhmw" path="res://assets/player asset/beetle-walk-spritesheet.png" id="2_qhqgy"]
 [ext_resource type="PackedScene" uid="uid://kyo5ugj565rn" path="res://scenes/input_synchronizer.tscn" id="3_qhqgy"]
+[ext_resource type="Script" uid="uid://bdhvqyy2d5ivq" path="res://components/hitbox_component.gd" id="4_fjrip"]
+[ext_resource type="PackedScene" uid="uid://ddd1jtgth5ca0" path="res://components/health_component.tscn.tscn" id="5_qlg0r"]
+[ext_resource type="Script" uid="uid://d0ssffnqid5lp" path="res://components/hurtbox_component.gd" id="6_tuyoq"]
+[ext_resource type="PackedScene" uid="uid://cha2lg2lxo46g" path="res://weapons/spear.tscn" id="8_smehm"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fjrip"]
+radius = 70.0
+height = 232.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_su8me"]
 size = Vector2(99, 122)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_smehm"]
+properties/0/path = NodePath("WeaponPivot:rotation")
+properties/0/spawn = true
+properties/0/replication_mode = 1
 
 [sub_resource type="Animation" id="Animation_dqkch"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/path = NodePath("Pivot/Sprite2D:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -26,7 +38,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/path = NodePath("Pivot/Sprite2D:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -38,7 +50,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/path = NodePath("Pivot/Sprite2D:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -55,7 +67,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/path = NodePath("Pivot/Sprite2D:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -67,7 +79,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/path = NodePath("Pivot/Sprite2D:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -79,7 +91,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/path = NodePath("Pivot/Sprite2D:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -122,24 +134,50 @@ script = ExtResource("1_g2els")
 acceleration = 700.0
 projectile_scene = ExtResource("2_dqkch")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=437642803]
+[node name="Label" type="Label" parent="." unique_id=596661302]
+offset_left = -22.0
+offset_top = -149.0
+offset_right = 22.0
+offset_bottom = -126.0
+text = "name"
+horizontal_alignment = 1
+metadata/_edit_group_ = true
+
+[node name="Pivot" type="Node2D" parent="." unique_id=1595429681]
+
+[node name="ProjectileSpawnMarker" type="Marker2D" parent="Pivot" unique_id=1171435953]
+visible = false
+position = Vector2(0, -60)
+scale = Vector2(1.0000001, 1)
+
+[node name="HitboxComponent" type="Area2D" parent="Pivot" unique_id=419975491]
+script = ExtResource("4_fjrip")
+metadata/_custom_type_script = "uid://bdhvqyy2d5ivq"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/HitboxComponent" unique_id=696312883]
+position = Vector2(-3, -85)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_fjrip")
+
+[node name="Sprite2D" type="Sprite2D" parent="Pivot" unique_id=437642803]
 y_sort_enabled = true
 texture_filter = 1
 scale = Vector2(4, 4)
 texture = ExtResource("2_qhqgy")
 hframes = 4
 
+[node name="HurtboxComponent" type="Area2D" parent="Pivot" unique_id=68457694]
+script = ExtResource("6_tuyoq")
+health_component_path = NodePath("../../HealthComponent")
+metadata/_custom_type_script = "uid://d0ssffnqid5lp"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/HurtboxComponent" unique_id=2020686360]
+position = Vector2(1, -21)
+shape = SubResource("CapsuleShape2D_fjrip")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=144742241]
 scale = Vector2(1, 1.1)
 shape = SubResource("RectangleShape2D_su8me")
-
-[node name="Label" type="Label" parent="." unique_id=596661302]
-offset_left = -22.0
-offset_top = -95.0
-offset_right = 22.0
-offset_bottom = -72.0
-text = "name"
-metadata/_edit_group_ = true
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1981350142]
 process_callback = 0
@@ -151,13 +189,28 @@ position_smoothing_speed = 10.0
 [node name="SyncTimer" type="Timer" parent="." unique_id=612484499]
 autostart = true
 
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=717306847]
+replication_config = SubResource("SceneReplicationConfig_smehm")
+
 [node name="ProjectileSpawner" type="MultiplayerSpawner" parent="." unique_id=1232346897]
 spawn_path = NodePath(".")
 
-[node name="ProjectileSpawnMarker" type="Marker2D" parent="." unique_id=1171435953]
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=731913897]
 libraries/ = SubResource("AnimationLibrary_tuyoq")
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=1899243449]
 tree_root = SubResource("AnimationNodeStateMachine_smehm")
 anim_player = NodePath("../AnimationPlayer")
+
+[node name="HealthComponent" parent="." unique_id=653011971 instance=ExtResource("5_qlg0r")]
+
+[node name="WeaponPivot" type="Node2D" parent="." unique_id=1442164285]
+position = Vector2(1, -75)
+
+[node name="Weapons" type="Node2D" parent="WeaponPivot" unique_id=867513081]
+
+[node name="Spear" parent="WeaponPivot/Weapons" unique_id=71827757 instance=ExtResource("8_smehm")]
+position = Vector2(66, 0)
+projectile_scene = ExtResource("2_dqkch")
+
+[node name="WeaponSpawnPoint" type="Marker2D" parent="WeaponPivot" unique_id=1947074105]

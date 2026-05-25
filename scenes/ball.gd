@@ -15,7 +15,7 @@ func _ready() -> void:
 		
 func _physics_process(delta: float) -> void:
 	if is_attached:
-		var player_forward = Vector2.RIGHT.rotated(attached_player.global_rotation + PI/2)
+		var player_forward = Vector2.RIGHT.rotated(attached_player.pivot.rotation + PI/2)
 		var target_pos = attached_player.global_position + (player_forward * distance)
 		global_position = global_position.lerp(target_pos, follow_speed * delta)
 		
