@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://cb3cw5riphjx7"]
+
+[ext_resource type="Script" uid="uid://yequ288wxolc" path="res://items/item_data.gd" id="1_bblky"]
+
+[resource]
+script = ExtResource("1_bblky")
+display_name = "Spear"
+description = "Charge and throw the spear through "
+metadata/_custom_type_script = "uid://yequ288wxolc"
