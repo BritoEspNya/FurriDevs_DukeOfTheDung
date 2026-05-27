@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://bikog6ra2oipn"]
+
+[ext_resource type="Texture2D" uid="uid://bq04qnpsexewh" path="res://assets/shop assets/sprite 3.png" id="1_74khd"]
+[ext_resource type="Script" uid="uid://dbyecwbfuftuy" path="res://items/item_data.gd" id="1_oa0ns"]
+
+[resource]
+script = ExtResource("1_oa0ns")
+display_name = "Bee perk"
+description = "+ 10% damage"
+image = ExtResource("1_74khd")
+price = 15
+metadata/_custom_type_script = "uid://dbyecwbfuftuy"

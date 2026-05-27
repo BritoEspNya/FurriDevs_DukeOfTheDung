@@ -89,3 +89,6 @@ func fire_one_shot(one_shot_name: String) -> void:
 
 func _on_sync_timeout() -> void:
 	send_position.rpc(global_position)
+	
+func get_id() -> int:
+	return _data.id

@@ -28,6 +28,9 @@ static func get_role_name(role: Role) -> String:
 
 
 class PlayerData:
+	
+	signal dung_changed(value:int)
+	
 	var id: int
 	var name: String
 	# Position relative to other players
@@ -35,6 +38,10 @@ class PlayerData:
 	var role: Role
 	var vote: bool = false
 	var scene: Player
+	var dung: int = 0:
+		set(value):
+			dung = value
+			dung_changed.emit(dung)
 	
 	func _init(new_id: int, new_name: String, new_index: int = -1, new_role: Role = Role.NONE) -> void:
 		id = new_id

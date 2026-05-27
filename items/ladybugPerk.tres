@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://blueioml5nfol"]
+
+[ext_resource type="Texture2D" uid="uid://2ltbk72w7l3b" path="res://assets/shop assets/sprite 2.png" id="1_powpv"]
+[ext_resource type="Script" uid="uid://dbyecwbfuftuy" path="res://items/item_data.gd" id="1_vdqt6"]
+
+[resource]
+script = ExtResource("1_vdqt6")
+display_name = "Ladybug perk"
+description = "+ 10% life"
+image = ExtResource("1_powpv")
+price = 8
+metadata/_custom_type_script = "uid://dbyecwbfuftuy"
