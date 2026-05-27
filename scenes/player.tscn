@@ -155,7 +155,7 @@ script = ExtResource("4_fjrip")
 metadata/_custom_type_script = "uid://bdhvqyy2d5ivq"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/HitboxComponent" unique_id=696312883]
-position = Vector2(-3, -85)
+position = Vector2(0, -85)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_fjrip")
 
@@ -172,7 +172,7 @@ health_component_path = NodePath("../../HealthComponent")
 metadata/_custom_type_script = "uid://d0ssffnqid5lp"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/HurtboxComponent" unique_id=2020686360]
-position = Vector2(1, -21)
+position = Vector2(0, -21)
 shape = SubResource("CapsuleShape2D_fjrip")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=144742241]
@@ -205,7 +205,6 @@ anim_player = NodePath("../AnimationPlayer")
 [node name="HealthComponent" parent="." unique_id=653011971 instance=ExtResource("5_qlg0r")]
 
 [node name="WeaponPivot" type="Node2D" parent="." unique_id=1442164285]
-position = Vector2(1, -75)
 
 [node name="Weapons" type="Node2D" parent="WeaponPivot" unique_id=867513081]
 
