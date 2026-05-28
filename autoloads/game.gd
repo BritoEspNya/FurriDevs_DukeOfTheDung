@@ -182,7 +182,10 @@ func _handle_node_added(node: Node) -> void:
 
 
 func set_player_dung(id:int,value:int) -> void:
-	multicast_set_player_coins(id,value)
+	multicast_set_player_coins.rpc(id,value)
+	
+func set_current_player_dung(value:int) -> void:
+	multicast_set_player_coins.rpc(get_current_player().id,value)
 
 @rpc("any_peer","call_local", "reliable")
 func multicast_set_player_coins(id: int, value:int) -> void:
@@ -191,3 +194,6 @@ func multicast_set_player_coins(id: int, value:int) -> void:
 
 func get_player_dung(id:int) -> int:
 	return get_player(id).dung
+
+func get_current_player_dung() -> int:
+	return get_current_player().dung

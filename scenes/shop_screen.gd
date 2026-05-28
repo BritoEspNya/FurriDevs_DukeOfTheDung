@@ -3,14 +3,16 @@ extends Control
 @export var item_card_scene: PackedScene
 @export var item_data_array: Array[ItemData]
 @onready var item_card_container: HBoxContainer = %ItemCardContainer
-@onready var item_card_1: PanelContainer = %ItemCard1
-@onready var item_card_2: PanelContainer = %ItemCard2
-@onready var item_card_3: PanelContainer = %ItemCard3
+@onready var item_card_1: ItemCard = %ItemCard1
+@onready var item_card_2: ItemCard = %ItemCard2
+@onready var item_card_3: ItemCard = %ItemCard3
 
 
 func _ready() -> void:
 	generate_cards()
-	
+	item_card_1.bought.connect(_on_bought.bind(item_card_1))
+	item_card_2.bought.connect(_on_bought.bind(item_card_2))
+	item_card_3.bought.connect(_on_bought.bind(item_card_3))
 
 func generate_cards() -> void:
 	if not item_card_scene:
@@ -25,3 +27,6 @@ func generate_cards() -> void:
 		item_card.item_data = random_item
 		
 		available_items.erase(random_item)
+
+func _on_bought(item_card: ItemCard) -> void:
+	item_card.item_data = item_data_array.pick_random()

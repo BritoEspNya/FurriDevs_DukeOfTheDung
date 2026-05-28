@@ -22,6 +22,8 @@ var _speed: int = walk_speed
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var playback: AnimationNodeStateMachinePlayback = animation_tree["parameters/playback"]
 
+@onready var hud: CanvasLayer = $HUD
+
 func _ready() -> void:
 	sync_timer.timeout.connect(_on_sync_timeout)
 	if projectile_scene:
@@ -62,7 +64,7 @@ func setup(data: Statics.PlayerData) -> void:
 	camera_2d.enabled = is_multiplayer_authority()
 	if is_multiplayer_authority():
 		sync_timer.start()
-
+	hud.visible = is_multiplayer_authority()
 func fire() -> void:
 	if not is_multiplayer_authority():
 		return
@@ -92,3 +94,6 @@ func _on_sync_timeout() -> void:
 	
 func get_id() -> int:
 	return _data.id
+	
+func increase_max_healt(value:int) -> void:
+	pass

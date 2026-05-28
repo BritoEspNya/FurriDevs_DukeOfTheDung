@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://blueioml5nfol"]
+[gd_resource type="Resource" format=3 uid="uid://blueioml5nfol"]
 
 [ext_resource type="Texture2D" uid="uid://2ltbk72w7l3b" path="res://assets/shop assets/sprite 2.png" id="1_powpv"]
-[ext_resource type="Script" uid="uid://dbyecwbfuftuy" path="res://items/item_data.gd" id="1_vdqt6"]
+[ext_resource type="Script" uid="uid://c2t00sjrd4ug1" path="res://items/ladybug.gd" id="2_powpv"]
 
 [resource]
-script = ExtResource("1_vdqt6")
+script = ExtResource("2_powpv")
 display_name = "Ladybug perk"
 description = "+ 10% life"
 image = ExtResource("1_powpv")
