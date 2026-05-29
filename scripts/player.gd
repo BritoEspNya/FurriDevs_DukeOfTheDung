@@ -1,6 +1,9 @@
 class_name Player
 extends CharacterBody2D
 
+signal respawned
+signal died
+
 @export var walk_speed: int = 200
 @export var flight_speed: int = 500
 @export var acceleration: float = 400
@@ -10,7 +13,7 @@ extends CharacterBody2D
 var _data: Statics.PlayerData
 var _speed: int = walk_speed
 
-@onready var label: Label = $Label
+@onready var label: Label = $Pivot/Label
 @onready var multiplayer_synchronizer: MultiplayerSynchronizer = $MultiplayerSynchronizer
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var input_synchronizer: InputSyncronizer = $InputSynchronizer
@@ -21,6 +24,9 @@ var _speed: int = walk_speed
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var hb: HB = $HB
 @onready var health_bar: ProgressBar = $HealthBar
+@onready var hud: CanvasLayer = $HUD
+@onready var respawn_timer: Timer = $RespawnTimer
+
 
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var hurtbox_component: HurtboxComponent = $HurtboxComponent
@@ -43,6 +49,7 @@ func _ready() -> void:
 	hb.health_bar.max_value = health_component.max_health
 	hb.health_bar.value = health_component.health
 	health_bar.max_value = health_component.max_health
+	respawn_timer.timeout.connect(_on_respawn_timeout)
 	health_bar.value = health_component.health
 func _physics_process(delta: float) -> void:
 	var move_input: Vector2 = input_synchronizer.move_input
@@ -117,26 +124,46 @@ func _on_health_changed(value: int, max_value: int) -> void:
 
 func _on_died() -> void:
 	var deb: String = str("Player died visually: ", name)
+	Debug.log(deb)
 	_apply_dead_state(true)
+	died.emit()
 
 	if multiplayer.is_server():
 		#_handle_server_death_logic()
-		pass
+		respawn_timer.start()
+		
+		
 func _on_revived() -> void:
+	respawned.emit()
+	await get_tree().create_timer(0.5).timeout
 	_apply_dead_state(false)
 	
 func _apply_dead_state(dead: bool) -> void:
-	visible = not dead
+	#visible = not dead
 	set_physics_process(not dead)
+	
+	if is_multiplayer_authority():
+		if dead:
+			sync_timer.stop()
+		elif sync_timer.is_stopped():
+			sync_timer.start()
 
 	if hurtbox_component:
 		hurtbox_component.is_enabled = not dead
-
 	if collision_shape_2d:
 		collision_shape_2d.set_deferred("disabled", dead)
-
-	velocity = Vector2.ZERO
+	if weapon_pivot:
+		weapon_pivot.visible = not dead
+	pivot.visible = not dead
 	
+	health_bar.visible = not dead and not is_multiplayer_authority()
+	hud.visible = is_multiplayer_authority()
+	velocity = Vector2.ZERO
+
+func apply_respawn_position(spawn_position: Vector2) -> void:
+	global_position = spawn_position
+	velocity = Vector2.ZERO
+
 func get_id() -> int:
 	return _data.id
 	
@@ -145,4 +172,8 @@ func increase_max_healt(value:int) -> void:
 
 func increase_velocity(value:int) -> void:
 	walk_speed = walk_speed*value
+
+func _on_respawn_timeout() -> void:
+	health_component.revive_full()
+	
 	

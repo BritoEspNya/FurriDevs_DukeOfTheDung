@@ -138,7 +138,9 @@ script = ExtResource("1_g2els")
 acceleration = 700.0
 projectile_scene = ExtResource("2_dqkch")
 
-[node name="Label" type="Label" parent="." unique_id=596661302]
+[node name="Pivot" type="Node2D" parent="." unique_id=1595429681]
+
+[node name="Label" type="Label" parent="Pivot" unique_id=596661302]
 offset_left = -22.0
 offset_top = -149.0
 offset_right = 22.0
@@ -146,8 +148,6 @@ offset_bottom = -126.0
 text = "name"
 horizontal_alignment = 1
 metadata/_edit_group_ = true
-
-[node name="Pivot" type="Node2D" parent="." unique_id=1595429681]
 
 [node name="Sprite2D" type="Sprite2D" parent="Pivot" unique_id=437642803]
 y_sort_enabled = true
@@ -217,7 +217,7 @@ anim_player = NodePath("../AnimationPlayer")
 [node name="Weapons" type="Node2D" parent="WeaponPivot" unique_id=867513081]
 
 [node name="Spear" parent="WeaponPivot/Weapons" unique_id=71827757 instance=ExtResource("8_smehm")]
-position = Vector2(66, 0)
+position = Vector2(100, 0)
 
 [node name="WeaponSpawnPoint" type="Marker2D" parent="WeaponPivot" unique_id=1947074105]
 
@@ -233,3 +233,7 @@ theme_type_variation = &"HealthBar"
 show_percentage = false
 
 [node name="HUD" parent="." unique_id=2000280290 instance=ExtResource("11_d2wvv")]
+
+[node name="RespawnTimer" type="Timer" parent="." unique_id=1302644998]
+wait_time = 2.0
+one_shot = true

@@ -54,7 +54,7 @@ func _connect_player_death_signals() -> void:
 		var health_component: HealthComponent = player.get_node_or_null("HealthComponent")
 		if health_component == null:
 			continue
-
+		# Es necesario? Las señales siempre deberían estar conectadas previamente
 		if not health_component.died.is_connected(_on_player_died):
 			health_component.died.connect(_on_player_died.bind(player))
 
@@ -131,7 +131,7 @@ func update_timer_label() -> void:
 		MatchState.GAME_ENDING:
 			timer_label.text = "Game Over"
 			
-func _on_player_died(player: Node) -> void:
+func _on_player_died(player: Player) -> void:
 	if not multiplayer.is_server():
 		return
 

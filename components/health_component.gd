@@ -37,7 +37,8 @@ func _ready() -> void:
 func take_damage(damage: int) -> void:
 	#if data == null or current_health < 0 or data.amount <= 0:
 		#return
-
+	if not multiplayer.is_server() or damage <= 0 or is_dead:
+		return
 	#current_health = max(current_health - data.amount, 0)
 	health = max(health - damage, 0)
 	if health <= 0:
@@ -51,9 +52,7 @@ func die() -> void:
 	is_dead = true
 	
 func heal(amount: int) -> void:
-	if amount <= 0:
-		return
-	if health <= 0:
+	if amount <= 0 or health <= 0:
 		return
 
 	health = min(health + amount, max_health)
