@@ -6,18 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://d0udwekt8pmqj" path="res://scenes/ball.tscn" id="3_nk4te"]
 [ext_resource type="PackedScene" uid="uid://dwnxodiquq63m" path="res://gameplay/big_resource.tscn" id="4_on7a6"]
 [ext_resource type="PackedScene" uid="uid://b3olmi8rsmadn" path="res://scenes/ShopScreen.tscn" id="5_gpudj"]
-[ext_resource type="Script" uid="uid://dbyecwbfuftuy" path="res://items/item_data.gd" id="6_cxo77"]
 [ext_resource type="PackedScene" uid="uid://cmelluavc7yg6" path="res://scenes/end_screen.tscn" id="6_hid0r"]
 [ext_resource type="Script" uid="uid://ba07fntbvwu7m" path="res://scenes/match_controller.gd" id="6_k0j1d"]
-[ext_resource type="Resource" uid="uid://34p1i82q4iwu" path="res://items/crossbow.tres" id="7_fixra"]
 [ext_resource type="Script" uid="uid://dndd6xwc8o8m4" path="res://scenes/end_screen.gd" id="7_on7a6"]
-[ext_resource type="Resource" uid="uid://cb3cw5riphjx7" path="res://items/Spear.tres" id="8_htw1b"]
-[ext_resource type="Resource" uid="uid://bikog6ra2oipn" path="res://items/beePerk.tres" id="9_empie"]
-[ext_resource type="Resource" uid="uid://blueioml5nfol" path="res://items/ladybugPerk.tres" id="10_q1j6k"]
-[ext_resource type="Resource" uid="uid://dckkdatinmnxt" path="res://items/dragonflyPerk.tres" id="11_qtidi"]
-[ext_resource type="Resource" uid="uid://cskisnb8ahv2l" path="res://items/lightHelmet.tres" id="12_de6sy"]
-[ext_resource type="Resource" uid="uid://pnokseyy5xod" path="res://items/mediumHelmet.tres" id="13_k1nq6"]
-[ext_resource type="Resource" uid="uid://m06ix6j1cfsh" path="res://items/heavyHelmet.tres" id="14_0oyvj"]
 
 [node name="MatchScene" type="Node2D" unique_id=1397281341]
 y_sort_enabled = true
@@ -68,7 +59,6 @@ process_mode = 3
 
 [node name="ShopScreen" parent="UI" unique_id=1658476554 instance=ExtResource("5_gpudj")]
 process_mode = 3
-item_data_array = Array[ExtResource("6_cxo77")]([ExtResource("7_fixra"), ExtResource("8_htw1b"), ExtResource("9_empie"), ExtResource("10_q1j6k"), ExtResource("11_qtidi"), ExtResource("12_de6sy"), ExtResource("13_k1nq6"), ExtResource("14_0oyvj")])
 
 [node name="TimerLabel" type="Label" parent="UI" unique_id=84982122]
 process_mode = 3
@@ -89,16 +79,16 @@ script = ExtResource("7_on7a6")
 [node name="Timers" type="Node" parent="." unique_id=770002393]
 
 [node name="RoundTimer" type="Timer" parent="Timers" unique_id=954822435]
-wait_time = 30.0
+wait_time = 60.0
 one_shot = true
 
 [node name="ShopTimer" type="Timer" parent="Timers" unique_id=1704158372]
 process_mode = 2
-wait_time = 5.0
+wait_time = 20.0
 one_shot = true
 
 [node name="MatchTimer" type="Timer" parent="Timers" unique_id=1978069221]
-wait_time = 60.0
+wait_time = 219.0
 one_shot = true
 
 [node name="MatchController" type="Node" parent="." unique_id=1530699601]
