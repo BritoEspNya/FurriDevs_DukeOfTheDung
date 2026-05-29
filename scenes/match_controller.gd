@@ -10,6 +10,9 @@ enum MatchState {
 	GAME_ENDING
 }
 
+@export var respawn_delay: float = 10.0
+@export_range(0.0, 1.0, 0.05) var death_drop_ratio: float = 0.25
+@export_range(0.0, 1.0, 0.05) var death_keep_ratio: float = 0.25
 @onready var shop_screen: Control = $"../UI/ShopScreen"
 @onready var round_timer: Timer = $"../Timers/RoundTimer"
 @onready var shop_timer: Timer = $"../Timers/ShopTimer"
@@ -19,10 +22,18 @@ var current_state: MatchState = MatchState.GAME_STARTING
 
 var players: Array[Node] = []
 var balls: Array[Node] = []
+var spawn_points: Node2D
 
-func setup(match_players: Array[Node], match_balls: Array[Node]) -> void:
+var _respawn_timers: Dictionary = {}
+var _pending_respawn_players: Array[Node] = []
+
+func setup(match_players: Array[Node], match_balls: Array[Node], match_spawn_points: Node2D) -> void:
 	players = match_players
 	balls = match_balls
+	spawn_points = match_spawn_points
+
+	if multiplayer.is_server():
+		_connect_player_death_signals()
 
 func _ready() -> void:
 	shop_screen.hide()
@@ -30,6 +41,18 @@ func _ready() -> void:
 	shop_timer.timeout.connect(_on_shop_timer_timeout)
 	# OJO se debe haber ejecutado setup()
 	start_match()
+	
+func _connect_player_death_signals() -> void:
+	for player in players:
+		if not is_instance_valid(player):
+			continue
+
+		var health_component: HealthComponent = player.get_node_or_null("HealthComponent")
+		if health_component == null:
+			continue
+
+		if not health_component.died.is_connected(_on_player_died):
+			health_component.died.connect(_on_player_died.bind(player))
 
 func start_match() -> void:
 	change_state(MatchState.GAME_STARTING)
@@ -98,3 +121,15 @@ func update_timer_label() -> void:
 
 		MatchState.GAME_ENDING:
 			timer_label.text = "Game Over"
+			
+func _on_player_died(player: Node) -> void:
+	if not multiplayer.is_server():
+		return
+
+	if not is_instance_valid(player):
+		return
+
+	#_apply_death_resource_penalty(player)
+	#_drop_player_death_resources(player)
+
+	#_queue_respawn(player)

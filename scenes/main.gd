@@ -13,6 +13,7 @@ var ball_instances: Array[Node] = []
 
 func _ready() -> void:
 	_spawn_match_entities()
+	_setup_match_controller()
 
 func _spawn_match_entities() -> void:
 	for i in Game.players.size():
@@ -36,7 +37,7 @@ func _spawn_match_entities() -> void:
 		ball_instance.global_position = ball_spawn_point.global_position
 
 func _setup_match_controller() -> void:
-	match_controller.setup(player_instances, ball_instances)
+	match_controller.setup(player_instances, ball_instances, spawn_points)
 
 func _process(delta: float) -> void:
 	pass
