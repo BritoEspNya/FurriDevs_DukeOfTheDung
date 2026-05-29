@@ -8,11 +8,13 @@ var distance: float = 150
 var follow_speed: float = 8.0
 
 @onready var area_2d: Area2D = $Area2D
+@onready var barrier: Area2D = $Barrier
+
 
 func _ready() -> void:
 		area_2d.body_entered.connect(_on_body_entered)
 		area_2d.body_exited.connect(_on_body_exit)
-		
+		barrier.area_entered.connect(_on_area_entered)
 func _physics_process(delta: float) -> void:
 	if is_attached:
 		var player_forward = Vector2.RIGHT.rotated(attached_player.pivot.rotation + PI/2)
@@ -50,7 +52,17 @@ func detach(player_path: NodePath) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	var player = body as Player
-	_near_players.push_back(player)
+	if player:
+		_near_players.push_back(player)
+
+func _on_area_entered(area: Area2D) -> void:
+	var projectile: Projectile = area as Projectile
+	Debug.log("xao")
+	if projectile:
+		Debug.log("xao")
+		if is_multiplayer_authority():
+			#await get_tree().create_timer(0.05).timeout
+			projectile.queue_free()
 
 func _on_body_exit(body: Node2D) -> void:
 	_near_players.erase(body)
