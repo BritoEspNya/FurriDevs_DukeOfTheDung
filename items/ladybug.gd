@@ -1,4 +1,3 @@
-
 extends ItemData
 
 @export var life: int = 10

@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("2_powpv")
 display_name = "Ladybug perk"
-description = "+ 10% life"
+description = "Ladybug luck keeps your shell together. +10% max health."
 image = ExtResource("1_powpv")
 price = 8
 metadata/_custom_type_script = "uid://dbyecwbfuftuy"

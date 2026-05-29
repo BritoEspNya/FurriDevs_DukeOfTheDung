@@ -29,4 +29,7 @@ func generate_cards() -> void:
 		available_items.erase(random_item)
 
 func _on_bought(item_card: ItemCard) -> void:
-	item_card.item_data = item_data_array.pick_random()
+	var available_items = item_data_array.duplicate()
+	available_items.erase(item_card)
+	item_card.item_data = available_items.pick_random()
+	

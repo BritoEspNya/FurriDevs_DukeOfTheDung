@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_1i01h")
 display_name = "Light helmet"
-description = "2 defense"
+description = "Protects your head without ruining your speed. +2 defense."
 image = ExtResource("1_nc3en")
 price = 5
 metadata/_custom_type_script = "uid://dbyecwbfuftuy"

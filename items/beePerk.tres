@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_oa0ns")
 display_name = "Bee perk"
-description = "+ 10% damage"
+description = "Your beetle body hums with aggressive bee energy. +10 damage."
 image = ExtResource("1_74khd")
 price = 15
 metadata/_custom_type_script = "uid://dbyecwbfuftuy"

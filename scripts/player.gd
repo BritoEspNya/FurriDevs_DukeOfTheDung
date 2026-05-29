@@ -97,3 +97,6 @@ func get_id() -> int:
 	
 func increase_max_healt(value:int) -> void:
 	pass
+
+func increase_velocity(value:int) -> void:
+	walk_speed = walk_speed*value

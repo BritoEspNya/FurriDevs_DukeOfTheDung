@@ -6,6 +6,6 @@
 [resource]
 script = ExtResource("1_5hxqp")
 display_name = "Crossbow"
-description = "Deals 10 damage"
+description = "Shoot first. Roll dung later. +10 damage."
 image = ExtResource("1_exp30")
 metadata/_custom_type_script = "uid://dbyecwbfuftuy"

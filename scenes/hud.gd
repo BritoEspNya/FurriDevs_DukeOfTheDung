@@ -9,6 +9,5 @@ func _ready() -> void:
 	current_player_data.dung_changed.connect(_on_dung_changed)
 
 func _on_dung_changed(value:int) -> void:
-	Debug.log(value)
 	dung.text = str(value)
 	
