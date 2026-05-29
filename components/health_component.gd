@@ -1,52 +1,71 @@
 class_name HealthComponent
 extends MultiplayerSynchronizer
 
-signal health_changed(value: int, max_health: int)
-signal damaged(data: DamageDataResource)
+signal died
+signal revived
+signal health_changed(value: int, max_value: int)
+#signal damaged(data: DamageDataResource)
 signal healed(amount: int)
-signal died(data: DamageDataResource)
 
 @export var max_health: int = 100
 @export var health: int = 100:
 	set(value):
-		health = clamp(value, 0, max_health)
-		if health <= 0:
-			died.emit()
+		var new_health = clamp(value, 0, max_health)
+		if health == new_health:
+			return
+
+		health = new_health
+		health_changed.emit(health, max_health)
 			
-var current_health: int
+@export var is_dead: bool = false:
+	set(value):
+		if is_dead == value:
+			return
+		is_dead = value
+		if is_dead:
+			died.emit()
+		else:
+			revived.emit()
 
 func _ready() -> void:
-	current_health = max_health
-	health_changed.emit(current_health, max_health)
+	if is_multiplayer_authority(): #multiplayer.is_server():
+		health = max_health
+		is_dead = false
+		
+	health_changed.emit(health, max_health)
 
-func take_damage(data: DamageDataResource) -> void:
-	if data == null:
+func take_damage(damage: int) -> void:
+	#if data == null or current_health < 0 or data.amount <= 0:
+		#return
+
+	#current_health = max(current_health - data.amount, 0)
+	health = max(health - damage, 0)
+	if health <= 0:
+		die()
+	#damaged.emit(data)
+	#health_changed.emit(health, max_health)
+
+func die() -> void:
+	if is_dead:
 		return
-	if current_health < 0:
-		return
-	if data.amount <= 0:
-		return
-
-	current_health = max(current_health - data.amount, 0)
-	damaged.emit(data)
-	health_changed.emit(current_health, max_health)
-
-	if current_health <= 0:
-		died.emit(data)
-
+	is_dead = true
+	
 func heal(amount: int) -> void:
 	if amount <= 0:
 		return
-	if current_health <= 0:
+	if health <= 0:
 		return
 
-	current_health = min(current_health + amount, max_health)
+	health = min(health + amount, max_health)
 	healed.emit(amount)
-	health_changed.emit(current_health, max_health)
+
+func revive_full() -> void:
+	if not multiplayer.is_server():
+		return
+
+	health = max_health
+	is_dead = false
 
 func reset_health() -> void:
-	current_health = max_health
-	health_changed.emit(current_health, max_health)
-
-func is_dead() -> bool:
-	return current_health <= 0
+	health = max_health
+	health_changed.emit(health, max_health)

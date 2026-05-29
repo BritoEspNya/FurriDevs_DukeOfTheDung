@@ -18,7 +18,12 @@ var _speed: int = walk_speed
 @onready var dung_recolected: int = 0
 @onready var projectile_spawner: MultiplayerSpawner = $ProjectileSpawner
 @onready var projectile_spawn_marker: Marker2D = $Pivot/ProjectileSpawnMarker
+@onready var health_component: HealthComponent = $HealthComponent
+@onready var hud: HUD = $HUD
+@onready var health_bar: ProgressBar = $HealthBar
 
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+@onready var hurtbox_component: HurtboxComponent = $HurtboxComponent
 
 @onready var pivot: Node2D = $Pivot
 @onready var weapon_pivot: Node2D = $WeaponPivot
@@ -28,10 +33,17 @@ var _speed: int = walk_speed
 @onready var playback: AnimationNodeStateMachinePlayback = animation_tree["parameters/playback"]
 
 func _ready() -> void:
+	health_component.health_changed.connect(_on_health_changed)
+	health_component.died.connect(_on_died)
+	health_component.revived.connect(_on_revived)
 	sync_timer.timeout.connect(_on_sync_timeout)
-	if projectile_scene:
+	if projectile_scene: # Para proyectiles propios del player
 		projectile_spawner.add_spawnable_scene(projectile_scene.resource_path)
-
+ 	
+	hud.health_bar.max_value = health_component.max_health
+	hud.health_bar.value = health_component.health
+	health_bar.max_value = health_component.max_health
+	health_bar.value = health_component.health
 func _physics_process(delta: float) -> void:
 	var move_input: Vector2 = input_synchronizer.move_input
 	if input_synchronizer.flight_input:
@@ -66,36 +78,22 @@ func setup(data: Statics.PlayerData) -> void:
 	name = str(data.id)
 	label.text = data.name
 	set_multiplayer_authority(data.id, false)
-	input_synchronizer.set_multiplayer_authority(data.id, false)
 	multiplayer_synchronizer.set_multiplayer_authority(data.id, false)
+	input_synchronizer.set_multiplayer_authority(data.id, false)
+	#health_component.set_multiplayer_authority(1, false)
 	camera_2d.enabled = is_multiplayer_authority()
+	hud.visible = is_multiplayer_authority()
+	health_bar.visible = not is_multiplayer_authority()
+	#pivot.set_multiplayer_authority(data.id, false)
 	if is_multiplayer_authority():
 		sync_timer.start()
-
-#func fire() -> void:
-	#if not is_multiplayer_authority():
-		#return
-	#Debug.log("FIRE FIRE FIREE")
-	#var direction: Vector2 = projectile_spawn_marker.global_position.direction_to(get_global_mouse_position())
-	#fire_server.rpc_id(1, direction)
-	#
-#func apply_knockback() -> void:
-	#velocity *= Vector2.from_angle(pivot.global_rotation + PI ) * 10
 
 
 @rpc("authority", "call_remote", "unreliable_ordered")
 func send_position(pos: Vector2) -> void:
 	global_position = lerp(global_position, pos, 0.5)
 	
-#@rpc("authority", "call_local")
-#func fire_server(direction: Vector2) -> void:
-	#if not projectile_scene:
-		#return
-	#var projectile_ins = projectile_scene.instantiate()
-	#projectile_ins.global_position = projectile_spawn_marker.global_position
-	#projectile_ins.global_rotation = projectile_spawn_marker.global_rotation
-	#projectile_spawner.add_child(projectile_ins, true)
-	#
+
 ## Not used for now, but it should get used later when the shoot animation have got implemented
 #func fire_one_shot(one_shot_name: String) -> void:
 	##animation_tree["parameters/%s/request" % one_shot_name] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
@@ -105,3 +103,34 @@ func send_position(pos: Vector2) -> void:
 func _on_sync_timeout() -> void:
 	if is_multiplayer_authority(): # HOTFIX
 		send_position.rpc(global_position)
+		
+func _on_health_changed(value: int, max_value: int) -> void:
+	var deb: String = str("HP: ", value, "/", max_value)
+	Debug.log(deb)
+	hud.health_bar.value = value
+	health_bar.value = value
+	# UI local, barra de vida, efectos visuales simples.
+
+func _on_died() -> void:
+	var deb: String = str("Player died visually: ", name)
+	_apply_dead_state(true)
+
+	if multiplayer.is_server():
+		#_handle_server_death_logic()
+		pass
+func _on_revived() -> void:
+	_apply_dead_state(false)
+	
+func _apply_dead_state(dead: bool) -> void:
+	visible = not dead
+	set_physics_process(not dead)
+
+	if hurtbox_component:
+		hurtbox_component.is_enabled = not dead
+
+	if collision_shape_2d:
+		collision_shape_2d.set_deferred("disabled", dead)
+
+	velocity = Vector2.ZERO
+	
+	
