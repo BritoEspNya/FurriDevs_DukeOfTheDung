@@ -8,13 +8,13 @@
 [ext_resource type="PackedScene" uid="uid://ddd1jtgth5ca0" path="res://components/health_component.tscn" id="5_qlg0r"]
 [ext_resource type="Script" uid="uid://d0ssffnqid5lp" path="res://components/hurtbox_component.gd" id="6_tuyoq"]
 [ext_resource type="PackedScene" uid="uid://cha2lg2lxo46g" path="res://weapons/spear.tscn" id="8_smehm"]
-[ext_resource type="PackedScene" uid="uid://ohcpyqgt3d10" path="res://ui/hud.tscn" id="9_ur7pv"]
+[ext_resource type="PackedScene" uid="uid://ohcpyqgt3d10" path="res://ui/hb.tscn" id="9_ur7pv"]
 [ext_resource type="Theme" uid="uid://86edik8i4neo" path="res://resources/theme.tres" id="10_y4r1p"]
+[ext_resource type="PackedScene" uid="uid://bpb4vmxbltgdi" path="res://scenes/hud.tscn" id="11_d2wvv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fjrip"]
 radius = 70.0
 height = 232.0
-[ext_resource type="PackedScene" uid="uid://bpb4vmxbltgdi" path="res://scenes/hud.tscn" id="5_qlg0r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_su8me"]
 size = Vector2(99, 122)
@@ -220,7 +220,7 @@ position = Vector2(66, 0)
 
 [node name="WeaponSpawnPoint" type="Marker2D" parent="WeaponPivot" unique_id=1947074105]
 
-[node name="HUD_p" parent="." unique_id=2067490662 instance=ExtResource("9_ur7pv")]
+[node name="HB" parent="." unique_id=2067490662 instance=ExtResource("9_ur7pv")]
 
 [node name="HealthBar" type="ProgressBar" parent="." unique_id=36352460]
 offset_left = -75.0
@@ -230,4 +230,5 @@ offset_bottom = -135.0
 theme = ExtResource("10_y4r1p")
 theme_type_variation = &"HealthBar"
 show_percentage = false
-[node name="HUD" parent="." unique_id=2000280290 instance=ExtResource("5_qlg0r")]
+
+[node name="HUD" parent="." unique_id=2000280290 instance=ExtResource("11_d2wvv")]

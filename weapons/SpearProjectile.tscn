@@ -1,9 +1,8 @@
 [gd_scene format=3 uid="uid://fja3u8rkhq8s"]
 
 [ext_resource type="Script" uid="uid://betdjv44g2qtq" path="res://weapons/projectile.gd" id="1_enfed"]
-[ext_resource type="Texture2D" uid="uid://brmdvyfdggcrh" path="res://assets/shop assets/spear.png" id="2_dg5sn"]
+[ext_resource type="Texture2D" uid="uid://brmdvyfdggcrh" path="res://assets/shop assets/53.png" id="2_dh47r"]
 [ext_resource type="Script" uid="uid://bdhvqyy2d5ivq" path="res://components/hitbox_component.gd" id="3_6r1td"]
-
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xuifw"]
 radius = 2.8284273

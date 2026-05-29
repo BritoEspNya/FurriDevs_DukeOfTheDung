@@ -19,7 +19,7 @@ var _speed: int = walk_speed
 @onready var projectile_spawner: MultiplayerSpawner = $ProjectileSpawner
 @onready var projectile_spawn_marker: Marker2D = $Pivot/ProjectileSpawnMarker
 @onready var health_component: HealthComponent = $HealthComponent
-@onready var hud: HUD = $HUD
+@onready var hb: HB = $HB
 @onready var health_bar: ProgressBar = $HealthBar
 
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
@@ -32,8 +32,6 @@ var _speed: int = walk_speed
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var playback: AnimationNodeStateMachinePlayback = animation_tree["parameters/playback"]
 
-@onready var hud: CanvasLayer = $HUD
-
 func _ready() -> void:
 	health_component.health_changed.connect(_on_health_changed)
 	health_component.died.connect(_on_died)
@@ -42,8 +40,8 @@ func _ready() -> void:
 	if projectile_scene: # Para proyectiles propios del player
 		projectile_spawner.add_spawnable_scene(projectile_scene.resource_path)
  	
-	hud.health_bar.max_value = health_component.max_health
-	hud.health_bar.value = health_component.health
+	hb.health_bar.max_value = health_component.max_health
+	hb.health_bar.value = health_component.health
 	health_bar.max_value = health_component.max_health
 	health_bar.value = health_component.health
 func _physics_process(delta: float) -> void:
@@ -84,11 +82,12 @@ func setup(data: Statics.PlayerData) -> void:
 	input_synchronizer.set_multiplayer_authority(data.id, false)
 	#health_component.set_multiplayer_authority(1, false)
 	camera_2d.enabled = is_multiplayer_authority()
-	hud.visible = is_multiplayer_authority()
+	hb.visible = is_multiplayer_authority()
 	health_bar.visible = not is_multiplayer_authority()
 	#pivot.set_multiplayer_authority(data.id, false)
 	if is_multiplayer_authority():
 		sync_timer.start()
+
 
 @rpc("authority", "call_remote", "unreliable_ordered")
 func send_position(pos: Vector2) -> void:
@@ -108,7 +107,7 @@ func _on_sync_timeout() -> void:
 func _on_health_changed(value: int, max_value: int) -> void:
 	var deb: String = str("HP: ", value, "/", max_value)
 	Debug.log(deb)
-	hud.health_bar.value = value
+	hb.health_bar.value = value
 	health_bar.value = value
 	# UI local, barra de vida, efectos visuales simples.
 
@@ -134,12 +133,12 @@ func _apply_dead_state(dead: bool) -> void:
 
 	velocity = Vector2.ZERO
 	
-	
 func get_id() -> int:
 	return _data.id
 	
-func increase_max_healt(value: int) -> void:
+func increase_max_healt(value:int) -> void:
 	pass
 
-func increase_velocity(value: int) -> void:
-	walk_speed = walk_speed * value
+func increase_velocity(value:int) -> void:
+	walk_speed = walk_speed*value
+	
