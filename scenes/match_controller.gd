@@ -84,6 +84,7 @@ func exit_shop() -> void:
 	start_round()
 
 func end_match() -> void:
+	end_screen.show_results()
 	end_screen.show()
 	change_state(MatchState.GAME_ENDING)
 	_set_gameplay_enabled(false)
