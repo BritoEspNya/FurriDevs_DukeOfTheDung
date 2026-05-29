@@ -32,6 +32,8 @@ var _speed: int = walk_speed
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var playback: AnimationNodeStateMachinePlayback = animation_tree["parameters/playback"]
 
+@onready var hud: CanvasLayer = $HUD
+
 func _ready() -> void:
 	health_component.health_changed.connect(_on_health_changed)
 	health_component.died.connect(_on_died)
@@ -88,7 +90,6 @@ func setup(data: Statics.PlayerData) -> void:
 	if is_multiplayer_authority():
 		sync_timer.start()
 
-
 @rpc("authority", "call_remote", "unreliable_ordered")
 func send_position(pos: Vector2) -> void:
 	global_position = lerp(global_position, pos, 0.5)
@@ -134,3 +135,11 @@ func _apply_dead_state(dead: bool) -> void:
 	velocity = Vector2.ZERO
 	
 	
+func get_id() -> int:
+	return _data.id
+	
+func increase_max_healt(value: int) -> void:
+	pass
+
+func increase_velocity(value: int) -> void:
+	walk_speed = walk_speed * value

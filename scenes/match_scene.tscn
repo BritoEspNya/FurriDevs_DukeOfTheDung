@@ -20,6 +20,10 @@ y_sort_enabled = true
 y_sort_enabled = true
 
 [node name="Map" parent="World" unique_id=778570579 instance=ExtResource("2_jr368")]
+y_sort_enabled = true
+
+[node name="Players" type="Node2D" parent="." unique_id=121598]
+y_sort_enabled = true
 
 [node name="Balls" type="Node2D" parent="." unique_id=1140088959]
 y_sort_enabled = true

@@ -382,13 +382,13 @@ position = Vector2(1724, 255)
 position = Vector2(2961, 1671)
 
 [node name="Big_resource2" parent="." unique_id=1972275018 instance=ExtResource("3_gldc4")]
-position = Vector2(872, 1336)
+position = Vector2(673, 1379)
 
 [node name="Little_resource3" parent="." unique_id=1125170818 instance=ExtResource("2_paxxb")]
 position = Vector2(3699, 404)
 
 [node name="Big_resource3" parent="." unique_id=1303975894 instance=ExtResource("3_gldc4")]
-position = Vector2(3225, 925)
+position = Vector2(2965, 804)
 
 [node name="Little_resource4" parent="." unique_id=1655624498 instance=ExtResource("2_paxxb")]
 position = Vector2(618, 1838)
@@ -438,3 +438,27 @@ debug_color = Color(0.102192365, 0.64848673, 0, 0.41960785)
 position = Vector2(5625.75, 1721)
 shape = SubResource("RectangleShape2D_jh32y")
 debug_color = Color(0, 0.54060465, 0.9504301, 0.41960785)
+
+[node name="Big_resource4" parent="." unique_id=1681944721 instance=ExtResource("3_gldc4")]
+position = Vector2(1869, 1936)
+
+[node name="Big_resource5" parent="." unique_id=1877007194 instance=ExtResource("3_gldc4")]
+position = Vector2(1366, 3108)
+
+[node name="Big_resource6" parent="." unique_id=1329314642 instance=ExtResource("3_gldc4")]
+position = Vector2(270, 2825)
+
+[node name="Big_resource7" parent="." unique_id=886012511 instance=ExtResource("3_gldc4")]
+position = Vector2(3577, 2967)
+
+[node name="Big_resource8" parent="." unique_id=411719692 instance=ExtResource("3_gldc4")]
+position = Vector2(4205, 1866)
+
+[node name="Big_resource9" parent="." unique_id=473210409 instance=ExtResource("3_gldc4")]
+position = Vector2(4874, 2854)
+
+[node name="Big_resource10" parent="." unique_id=1427318678 instance=ExtResource("3_gldc4")]
+position = Vector2(4741, 1211)
+
+[node name="Big_resource11" parent="." unique_id=1273723925 instance=ExtResource("3_gldc4")]
+position = Vector2(4524, 395)

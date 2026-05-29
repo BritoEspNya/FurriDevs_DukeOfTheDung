@@ -1,10 +1,15 @@
 extends Area2D
 
 func _ready() -> void:
-	body_entered.connect(_on_body_entered)
+	if is_multiplayer_authority():
+		body_entered.connect(_on_body_entered)
 	
 func _on_body_entered(body: Node2D) -> void:
 	var player: Player = body as Player
 	if player:
-		player.dung_recolected += 3
-		queue_free()
+		Game.set_player_dung(player.get_id(), Game.get_player_dung(player.get_id()) + 5)
+		destroy.rpc()
+
+@rpc("call_local","reliable")
+func destroy() -> void: 
+	queue_free()

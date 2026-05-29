@@ -14,6 +14,7 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fjrip"]
 radius = 70.0
 height = 232.0
+[ext_resource type="PackedScene" uid="uid://bpb4vmxbltgdi" path="res://scenes/hud.tscn" id="5_qlg0r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_su8me"]
 size = Vector2(99, 122)
@@ -219,7 +220,7 @@ position = Vector2(66, 0)
 
 [node name="WeaponSpawnPoint" type="Marker2D" parent="WeaponPivot" unique_id=1947074105]
 
-[node name="HUD" parent="." unique_id=2067490662 instance=ExtResource("9_ur7pv")]
+[node name="HUD_p" parent="." unique_id=2067490662 instance=ExtResource("9_ur7pv")]
 
 [node name="HealthBar" type="ProgressBar" parent="." unique_id=36352460]
 offset_left = -75.0
@@ -229,3 +230,4 @@ offset_bottom = -135.0
 theme = ExtResource("10_y4r1p")
 theme_type_variation = &"HealthBar"
 show_percentage = false
+[node name="HUD" parent="." unique_id=2000280290 instance=ExtResource("5_qlg0r")]

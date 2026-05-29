@@ -28,6 +28,8 @@ static func get_role_name(role: Role) -> String:
 
 
 class PlayerData:
+	signal dung_changed(value: int)
+	
 	var id: int
 	var name: String
 	# Position relative to other players
@@ -36,7 +38,11 @@ class PlayerData:
 	var vote: bool = false
 	var scene: Player
 	# Match/player economy data.
-	var dung: int = 0
+
+	var dung: int = 0:
+		set(value):
+			dung = value
+			dung_changed.emit(dung)
 	# Inventory format:
 	# {
 	#	"spear": 1,
