@@ -46,23 +46,27 @@ func _ready() -> void:
 	health_bar.value = health_component.health
 func _physics_process(delta: float) -> void:
 	var move_input: Vector2 = input_synchronizer.move_input
-	if input_synchronizer.flight_input:
-		_speed = flight_speed
-	else:
-		_speed = walk_speed
-	if is_multiplayer_authority():
-		weapon_pivot.rotation = global_position.direction_to(get_global_mouse_position()).angle()
-		#Debug.log("Cambio de rotación:", weapon_pivot.rotation)
-		if Input.is_action_just_pressed("fire_main_weapon"):
-			#fire()
-			spear.fire()
 	if input_synchronizer.mode_input:
+		# Flight mode
+		if input_synchronizer.flight_input:
+			_speed = flight_speed
+		else:
+			_speed = walk_speed
+		# Normal Movement
 		velocity.x = move_toward(velocity.x, move_input.x * _speed, acceleration * delta)
 		velocity.y = move_toward(velocity.y, move_input.y * _speed, acceleration * delta)
 		if velocity.length() > 0:
 			var angle = velocity.angle() + PI / 2
 			pivot.rotation = lerp_angle(pivot.rotation, angle, rotation_speed * delta)
+		# Weapon movement and fire
+		if is_multiplayer_authority():
+			weapon_pivot.rotation = global_position.direction_to(get_global_mouse_position()).angle()
+			#Debug.log("Cambio de rotación:", weapon_pivot.rotation)
+			if Input.is_action_just_pressed("fire_main_weapon"):
+				#fire()
+				spear.fire()
 	else:
+		# Movement with ball attached
 		pivot.rotation += move_input.x * rotation_speed * delta
 		var forward_direction = Vector2.UP.rotated(pivot.rotation)
 		velocity = velocity.move_toward(forward_direction * _speed * move_input.y, acceleration * delta)

@@ -15,6 +15,8 @@ enum MatchState {
 @export_range(0.0, 1.0, 0.05) var death_keep_ratio: float = 0.25
 @onready var shop_screen: Control = $"../UI/ShopScreen"
 @onready var round_timer: Timer = $"../Timers/RoundTimer"
+@onready var match_timer: Timer = $"../Timers/MatchTimer"
+@onready var end_screen: Control = $"../UI/EndScreen"
 @onready var shop_timer: Timer = $"../Timers/ShopTimer"
 @onready var timer_label: Label = $"../UI/TimerLabel"
 
@@ -37,6 +39,8 @@ func setup(match_players: Array[Node], match_balls: Array[Node], match_spawn_poi
 
 func _ready() -> void:
 	shop_screen.hide()
+	end_screen.hide()
+	match_timer.timeout.connect(_on_match_timer_timeout)
 	round_timer.timeout.connect(_on_round_timer_timeout)
 	shop_timer.timeout.connect(_on_shop_timer_timeout)
 	# OJO se debe haber ejecutado setup()
@@ -56,6 +60,7 @@ func _connect_player_death_signals() -> void:
 
 func start_match() -> void:
 	change_state(MatchState.GAME_STARTING)
+	match_timer.start()
 	start_round()
 
 func start_round() -> void:
@@ -79,8 +84,9 @@ func exit_shop() -> void:
 	start_round()
 
 func end_match() -> void:
+	end_screen.show()
 	change_state(MatchState.GAME_ENDING)
-	#_set_gameplay_enabled(false)
+	_set_gameplay_enabled(false)
 
 func change_state(new_state: MatchState) -> void:
 	if current_state == new_state:
@@ -104,6 +110,9 @@ func _on_round_timer_timeout() -> void:
 
 func _on_shop_timer_timeout() -> void:
 	exit_shop()
+	
+func _on_match_timer_timeout() -> void:
+	end_match()
 
 func _process(delta: float) -> void:
 	update_timer_label()

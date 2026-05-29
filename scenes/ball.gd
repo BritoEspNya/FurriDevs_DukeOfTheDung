@@ -4,7 +4,7 @@ var _near_players: Array[Node2D]
 var attached_player: Player
 var is_attached: bool = false
 
-var distance: float = 200
+var distance: float = 150
 var follow_speed: float = 8.0
 
 @onready var area_2d: Area2D = $Area2D
