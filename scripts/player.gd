@@ -5,7 +5,7 @@ signal respawned
 signal died
 
 @export var walk_speed: int = 200
-@export var flight_speed: int = 500
+@export var flight_speed: int = 1000
 @export var acceleration: float = 400
 @export var rotation_speed: float = 5
 @export var projectile_scene: PackedScene
@@ -80,7 +80,10 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 	if input_synchronizer.move_input:
-		playback.travel("walk")
+		if input_synchronizer.flight_input:
+			playback.travel("fly")
+		else:
+			playback.travel("walk")
 	else:
 		if get_real_velocity().is_zero_approx():
 			playback.travel("idle")
