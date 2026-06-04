@@ -82,7 +82,8 @@ func _physics_process(delta: float) -> void:
 	if input_synchronizer.move_input:
 		playback.travel("walk")
 	else:
-		playback.travel("RESET")
+		if get_real_velocity().is_zero_approx():
+			playback.travel("idle")
 
 func setup(data: Statics.PlayerData) -> void:
 	_data = data
