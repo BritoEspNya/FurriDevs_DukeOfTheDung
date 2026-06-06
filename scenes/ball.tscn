@@ -1,7 +1,17 @@
 [gd_scene format=3 uid="uid://d0udwekt8pmqj"]
 
 [ext_resource type="Script" uid="uid://chlo6ylsbqml7" path="res://scenes/ball.gd" id="1_cxlvu"]
-[ext_resource type="Texture2D" uid="uid://b5ho53dtufwi5" path="res://assets/map assets/ball.png" id="2_cxlvu"]
+[ext_resource type="Shader" uid="uid://bq76el8joqeu4" path="res://scenes/ball.gdshader" id="2_f7cbr"]
+[ext_resource type="Texture2D" uid="uid://dyvk4msonthvg" path="res://assets/ball assets/DungBall_texture.png" id="3_4dx81"]
+[ext_resource type="Texture2D" uid="uid://cf7jw1y68qjlp" path="res://assets/ball assets/DungBall_outline.png" id="3_eew57"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eew57"]
+shader = ExtResource("2_f7cbr")
+shader_parameter/radius = 0.49
+shader_parameter/roll_speed = 2.0
+shader_parameter/edge_warp_reduction = 0.6
+shader_parameter/texture_offset = Vector2(0, 0)
+shader_parameter/outline_texture = ExtResource("3_eew57")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cxlvu"]
 radius = 200.0
@@ -24,8 +34,10 @@ script = ExtResource("1_cxlvu")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1302526253]
 y_sort_enabled = true
 texture_filter = 1
-scale = Vector2(8, 8)
-texture = ExtResource("2_cxlvu")
+texture_repeat = 2
+material = SubResource("ShaderMaterial_eew57")
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_4dx81")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=871529693]
 
