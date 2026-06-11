@@ -8,5 +8,5 @@ script = ExtResource("1_teler")
 display_name = "Spear"
 description = "Sharp enough to make beetles nervous. Deals 5 damage"
 image = ExtResource("1_n750c")
-price = 15
+price = 4
 metadata/_custom_type_script = "uid://dbyecwbfuftuy"

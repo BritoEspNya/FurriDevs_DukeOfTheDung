@@ -7,6 +7,7 @@ signal health_changed(value: int, max_value: int)
 #signal damaged(data: DamageDataResource)
 signal healed(amount: int)
 
+@export var armor: int = 0
 @export var max_health: int = 100
 @export var health: int = 100:
 	set(value):
@@ -40,7 +41,7 @@ func take_damage(damage: int) -> void:
 	if not multiplayer.is_server() or damage <= 0 or is_dead:
 		return
 	#current_health = max(current_health - data.amount, 0)
-	health = max(health - damage, 0)
+	health = max(health - (damage-armor), 0)
 	if health <= 0:
 		die()
 	#damaged.emit(data)
