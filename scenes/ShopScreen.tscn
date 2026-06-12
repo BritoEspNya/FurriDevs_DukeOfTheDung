@@ -2,8 +2,16 @@
 
 [ext_resource type="Texture2D" uid="uid://00svg7rmdj4k" path="res://assets/shop assets/Cartel.png" id="1_344ft"]
 [ext_resource type="Script" uid="uid://bqyxol28i2afe" path="res://scenes/shop_screen.gd" id="1_vvvvj"]
-[ext_resource type="PackedScene" uid="uid://xpnabp5j1vwx" path="res://scenes/shop_buttons.tscn" id="2_hmq8g"]
-[ext_resource type="PackedScene" uid="uid://v4pvpglqhhnt" path="res://scenes/map.tscn" id="4_evw12"]
+[ext_resource type="Script" uid="uid://dbyecwbfuftuy" path="res://items/item_data.gd" id="3_2h0fh"]
+[ext_resource type="PackedScene" uid="uid://bbxscb5yvmh5b" path="res://scenes/store_card.tscn" id="3_vvvvj"]
+[ext_resource type="Resource" uid="uid://34p1i82q4iwu" path="res://items/crossbow.tres" id="4_qidm5"]
+[ext_resource type="Resource" uid="uid://cb3cw5riphjx7" path="res://items/spear.tres" id="5_qidm5"]
+[ext_resource type="Resource" uid="uid://bikog6ra2oipn" path="res://items/beePerk.tres" id="6_8xcxb"]
+[ext_resource type="Resource" uid="uid://blueioml5nfol" path="res://items/ladybugPerk.tres" id="7_5gkhy"]
+[ext_resource type="Resource" uid="uid://dckkdatinmnxt" path="res://items/dragonflyPerk.tres" id="8_lcxuf"]
+[ext_resource type="Resource" uid="uid://cskisnb8ahv2l" path="res://items/lightHelmet.tres" id="9_qjy16"]
+[ext_resource type="Resource" uid="uid://pnokseyy5xod" path="res://items/mediumHelmet.tres" id="10_u5p5s"]
+[ext_resource type="Resource" uid="uid://m06ix6j1cfsh" path="res://items/heavyHelmet.tres" id="11_8im1p"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_evw12"]
 bg_color = Color(0.003921569, 0.003921569, 0.003921569, 0.15686275)
@@ -19,9 +27,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_vvvvj")
-
-[node name="Map" parent="." unique_id=778570579 instance=ExtResource("4_evw12")]
-position = Vector2(-1116, -538)
+item_card_scene = ExtResource("3_vvvvj")
+item_data_array = Array[ExtResource("3_2h0fh")]([ExtResource("4_qidm5"), ExtResource("5_qidm5"), ExtResource("6_8xcxb"), ExtResource("7_5gkhy"), ExtResource("8_lcxuf"), ExtResource("9_qjy16"), ExtResource("10_u5p5s"), ExtResource("11_8im1p")])
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=741939017]
 layout_mode = 1
@@ -67,38 +74,52 @@ size_flags_vertical = 3
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_2h0fh")
 
-[node name="ShopButtons" parent="MarginContainer/VBoxContainer/MarginContainer/Panel" unique_id=114534445 instance=ExtResource("2_hmq8g")]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer/Panel" unique_id=1291031652]
 layout_mode = 1
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 106.0
-offset_top = 95.0
-offset_right = 106.0
-offset_bottom = 95.0
-grow_horizontal = 1
-grow_vertical = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
 
-[node name="ShopButtons2" parent="MarginContainer/VBoxContainer/MarginContainer/Panel" unique_id=1795545310 instance=ExtResource("2_hmq8g")]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.0
-offset_left = -111.0
-offset_top = 100.0
-offset_right = -111.0
-offset_bottom = 100.0
-grow_vertical = 1
+[node name="ItemCardContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/Panel/MarginContainer" unique_id=1604712684]
+unique_name_in_owner = true
+layout_mode = 2
 
-[node name="ShopButtons3" parent="MarginContainer/VBoxContainer/MarginContainer/Panel" unique_id=1489693190 instance=ExtResource("2_hmq8g")]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_bottom = 0.0
-offset_left = -330.0
-offset_top = 102.0
-offset_right = -330.0
-offset_bottom = 102.0
-grow_horizontal = 0
-grow_vertical = 1
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer/Panel/MarginContainer/ItemCardContainer" unique_id=1087702332]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 0
+
+[node name="ItemCard1" parent="MarginContainer/VBoxContainer/MarginContainer/Panel/MarginContainer/ItemCardContainer/MarginContainer" unique_id=64687722 instance=ExtResource("3_vvvvj")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer/Panel/MarginContainer/ItemCardContainer" unique_id=537333588]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+
+[node name="ItemCard2" parent="MarginContainer/VBoxContainer/MarginContainer/Panel/MarginContainer/ItemCardContainer/MarginContainer2" unique_id=879243745 instance=ExtResource("3_vvvvj")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer/Panel/MarginContainer/ItemCardContainer" unique_id=1948953920]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 8
+
+[node name="ItemCard3" parent="MarginContainer/VBoxContainer/MarginContainer/Panel/MarginContainer/ItemCardContainer/MarginContainer3" unique_id=2077878698 instance=ExtResource("3_vvvvj")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3

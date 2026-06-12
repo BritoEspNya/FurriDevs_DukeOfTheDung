@@ -2,8 +2,8 @@ class_name Statics
 extends Node
 
 
-const MAX_CLIENTS = 3
-const PORT = 5409 # Number between 1024 and 65535.
+const MAX_CLIENTS: int = 3
+const PORT: int = 5409 # Number between 1024 and 65535.
 
 
 enum Role {
@@ -28,12 +28,31 @@ static func get_role_name(role: Role) -> String:
 
 
 class PlayerData:
+	signal dung_changed(value: int)
+	
 	var id: int
 	var name: String
 	# Position relative to other players
 	var index: int = -1
 	var role: Role
 	var vote: bool = false
+	var scene: Player
+	# Match/player economy data.
+
+	var dung: int = 0:
+		set(value):
+			dung = value
+			dung_changed.emit(dung)
+	# Inventory format:
+	# {
+	#	"spear": 1,
+	#	"shield": 1,
+	#	"speed_boots": 2
+	# }
+	var inventory: Dictionary = {}
+	# Currently equipped weapon/item id.
+	# Example: "spear"
+	var equipped_weapon_id: String = ""
 	
 	func _init(new_id: int, new_name: String, new_index: int = -1, new_role: Role = Role.NONE) -> void:
 		id = new_id
@@ -54,7 +73,7 @@ class PlayerData:
 		}
 	
 	static func from_dict(data: Dictionary) -> PlayerData:
-		var player = PlayerData.new(data.id, data.name, data.index, data.role)
+		var player: PlayerData = PlayerData.new(data.id, data.name, data.index, data.role)
 		player.vote = data.vote
 		return player
 	

@@ -10,5 +10,6 @@ func _physics_process(_delta: float) -> void:
 		return
 	move_input = Input.get_vector("input_left", "input_right", "input_up", "input_down")
 	flight_input = Input.is_action_pressed("input_space")
-	if Input.is_action_just_pressed("input_movement_mode"):
-		mode_input = !mode_input
+	
+	#if Input.is_action_just_pressed("input_movement_mode"):
+	#	mode_input = !mode_input

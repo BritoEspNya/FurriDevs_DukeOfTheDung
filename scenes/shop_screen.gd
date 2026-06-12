@@ -1,64 +1,35 @@
 extends Control
 
-@onready var shop_buttons: Control = $MarginContainer/VBoxContainer/MarginContainer/Panel/ShopButtons
-@onready var shop_buttons_2: Control = $MarginContainer/VBoxContainer/MarginContainer/Panel/ShopButtons2
-@onready var shop_buttons_3: Control = $MarginContainer/VBoxContainer/MarginContainer/Panel/ShopButtons3
+@export var item_card_scene: PackedScene
+@export var item_data_array: Array[ItemData]
+@onready var item_card_container: HBoxContainer = %ItemCardContainer
+@onready var item_card_1: ItemCard = %ItemCard1
+@onready var item_card_2: ItemCard = %ItemCard2
+@onready var item_card_3: ItemCard = %ItemCard3
 
-var items = [
-	{
-		"name": "Dragonfly perk",
-		"cost": 10,
-		"texture": "res://assets/shop assets/sprite 1.png",
-		"tooltip": "+ 10% velocity"
-	},
-	{
-		"name": "Crossbow",
-		"cost": 12,
-		"texture": "res://assets/shop assets/7.png",
-		"tooltip": "20 damage"
-	},
-	{
-		"name": "Bee perk",
-		"cost": 12,
-		"texture": "res://assets/shop assets/Sprite 3.png",
-		"tooltip": "+ 10% damage"
-	},
-	{
-		"name": "Spear",
-		"cost": 5,
-		"texture": "res://assets/shop assets/53.png",
-		"tooltip": "10 damage"
-	},
-	{
-		"name": "Ladybug perk",
-		"cost": 8,
-		"texture": "res://assets/shop assets/Sprite 2.png",
-		"tooltip": "+ 10% life"
-	}
-]
 
-func _ready():
-	randomize()
+func _ready() -> void:
+	generate_cards()
+	item_card_1.bought.connect(_on_bought.bind(item_card_1))
+	item_card_2.bought.connect(_on_bought.bind(item_card_2))
+	item_card_3.bought.connect(_on_bought.bind(item_card_3))
+
+func generate_cards() -> void:
+	if not item_card_scene:
+		return
 	
-	# Mezclar ítems y tomar 3 aleatorios
-	var selected_items = items.duplicate()
-	selected_items.shuffle()
-	selected_items.shuffle()
-	selected_items = selected_items.slice(0, 3)
+	var available_items = item_data_array.duplicate()
 	
-	# Lista de contenedores de botones
-	var shops = [shop_buttons, shop_buttons_2, shop_buttons_3]
-	
-	# Asignar datos a cada botón
-	for i in range(shops.size()):
-		var button = shops[i].get_node("Button")
-		var texture_rect = button.get_node("MarginContainer/TextureRect")
-		var label = button.get_node("Label")
-		var label2 = button.get_node("Label2")
+	for margin_container in item_card_container.get_children():
+		var item_card: ItemCard = margin_container.get_child(0)
 		
-		var item = selected_items[i]
+		var random_item = available_items.pick_random()
+		item_card.item_data = random_item
 		
-		texture_rect.texture = load(item["texture"])
-		label.text = item["name"]
-		label2.text = "Cost: %d dung" % item["cost"]
-		button.tooltip_text = item["tooltip"]
+		available_items.erase(random_item)
+
+func _on_bought(item_card: ItemCard) -> void:
+	var available_items = item_data_array.duplicate()
+	available_items.erase(item_card)
+	item_card.item_data = available_items.pick_random()
+	
