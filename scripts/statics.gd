@@ -2,8 +2,8 @@ class_name Statics
 extends Node
 
 
-const MAX_CLIENTS = 3
-const PORT = 5409 # Number between 1024 and 65535.
+const MAX_CLIENTS: int = 3
+const PORT: int = 5409 # Number between 1024 and 65535.
 
 
 enum Role {
