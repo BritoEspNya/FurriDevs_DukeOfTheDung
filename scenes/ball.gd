@@ -37,7 +37,7 @@ func _physics_process(delta: float) -> void:
 		current_offset.x -= displacement.x / visible_width
 		current_offset.y -= displacement.y / visible_height
 		
-		sprite_2d.material.set_shader_parameter("texture_offset", current_offset)
+		sprite_2d.set_instance_shader_parameter("texture_offset", current_offset)
 	
 	last_position = global_position
 	

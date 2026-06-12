@@ -10,7 +10,6 @@ shader = ExtResource("2_f7cbr")
 shader_parameter/radius = 0.49
 shader_parameter/roll_speed = 2.0
 shader_parameter/edge_warp_reduction = 0.6
-shader_parameter/texture_offset = Vector2(0, 0)
 shader_parameter/outline_texture = ExtResource("3_eew57")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cxlvu"]
