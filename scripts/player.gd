@@ -138,7 +138,7 @@ func _on_died() -> void:
 		
 		
 func _on_revived() -> void:
-	respawned.emit()
+	respawned.emit() #Hotfix: El player se mueve a sí mismo?
 	await get_tree().create_timer(0.5).timeout
 	_apply_dead_state(false)
 	
@@ -178,6 +178,10 @@ func increase_velocity(value:int) -> void:
 	walk_speed = walk_speed*value
 
 func _on_respawn_timeout() -> void:
+	#if is_multiplayer_authority():
+		#Debug.log("RESPAWWWW")
+		#respawned.emit()
+	#await get_tree().create_timer(0.5).timeout
 	health_component.revive_full()
 	
 	

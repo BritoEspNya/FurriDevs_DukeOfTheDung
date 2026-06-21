@@ -61,7 +61,7 @@ func heal(amount: int) -> void:
 func revive_full() -> void:
 	if not multiplayer.is_server():
 		return
-
+	
 	health = max_health
 	is_dead = false
 

@@ -49,7 +49,10 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_player_respawn(player: Player, spawn_point: Node2D) -> void:
-		player.global_position = spawn_point.global_position
+	#if not multiplayer.is_server():
+		#return
+	#player.global_position = spawn_point.global_position
+	player.apply_respawn_position(spawn_point.global_position)
 
 func _on_player_died(player: Player) -> void:
 	if not multiplayer.is_server():
