@@ -34,6 +34,7 @@ var _speed: int = walk_speed
 @onready var pivot: Node2D = $Pivot
 @onready var weapon_pivot: Node2D = $WeaponPivot
 @onready var spear: Spear = $WeaponPivot/Weapons/Spear
+@onready var melee: Node2D = $WeaponPivot/Weapons/Meele
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var playback: AnimationNodeStateMachinePlayback = animation_tree["parameters/playback"]
@@ -70,9 +71,10 @@ func _physics_process(delta: float) -> void:
 		if is_multiplayer_authority():
 			weapon_pivot.rotation = global_position.direction_to(get_global_mouse_position()).angle()
 			#Debug.log("Cambio de rotación:", weapon_pivot.rotation)
-			if Input.is_action_just_pressed("fire_main_weapon"):
+			if input_synchronizer.attack_input:
 				#fire()
-				spear.fire()
+				#spear.fire()
+				melee.attack.rpc()
 	else:
 		# Movement with ball attached
 		pivot.rotation += move_input.x * rotation_speed * delta

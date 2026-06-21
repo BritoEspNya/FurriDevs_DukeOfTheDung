@@ -3,6 +3,7 @@ extends MultiplayerSynchronizer
 
 @export var move_input: Vector2
 @export var flight_input: bool
+@export var attack_input: bool
 @export var mode_input: bool = true
 
 func _physics_process(_delta: float) -> void:
@@ -10,6 +11,7 @@ func _physics_process(_delta: float) -> void:
 		return
 	move_input = Input.get_vector("input_left", "input_right", "input_up", "input_down")
 	flight_input = Input.is_action_pressed("input_space")
+	attack_input = Input.is_action_just_pressed("fire_main_weapon")
 	
 	#if Input.is_action_just_pressed("input_movement_mode"):
 	#	mode_input = !mode_input

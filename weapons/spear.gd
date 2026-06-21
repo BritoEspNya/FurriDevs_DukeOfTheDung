@@ -16,7 +16,7 @@ func fire() -> void:
 	#var direction: Vector2 = projectile_spawn_marker.global_position.direction_to(get_global_mouse_position())
 	fire_server.rpc_id(1)
 
-@rpc("any_peer", "call_local", "reliable")
+@rpc("any_peer", "reliable")
 func fire_server() -> void:
 	if not projectile_scene:
 		return
