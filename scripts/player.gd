@@ -5,7 +5,7 @@ signal respawned
 signal died
 
 @export var walk_speed: int = 200
-@export var flight_speed: int = 1000
+@export var flight_speed: int = 600
 @export var acceleration: float = 400
 @export var rotation_speed: float = 5
 @export var projectile_scene: PackedScene
@@ -51,6 +51,7 @@ func _ready() -> void:
 	health_bar.max_value = health_component.max_health
 	respawn_timer.timeout.connect(_on_respawn_timeout)
 	health_bar.value = health_component.health
+
 func _physics_process(delta: float) -> void:
 	var move_input: Vector2 = input_synchronizer.move_input
 	if input_synchronizer.mode_input:
@@ -136,7 +137,6 @@ func _on_died() -> void:
 		#_handle_server_death_logic()
 		respawn_timer.start()
 		
-		
 func _on_revived() -> void:
 	respawned.emit() #Hotfix: El player se mueve a sí mismo?
 	await get_tree().create_timer(0.5).timeout
@@ -172,7 +172,13 @@ func get_id() -> int:
 	return _data.id
 	
 func increase_max_healt(value:int) -> void:
-	pass
+	var max_healt_increase = int(health_component.max_health*0.10)
+	health_component.max_health += max_healt_increase
+	health_component.health += max_healt_increase
+	hb.health_bar.max_value = health_component.max_health
+	hb.health_bar.value = health_component.health
+	health_bar.max_value = health_component.max_health
+	health_bar.value = health_component.health
 
 func increase_velocity(value:int) -> void:
 	walk_speed = walk_speed*value
@@ -184,4 +190,9 @@ func _on_respawn_timeout() -> void:
 	#await get_tree().create_timer(0.5).timeout
 	health_component.revive_full()
 	
+func increase_dash(value:int) -> void:
+	flight_speed += value
+	Debug.log(flight_speed)
 	
+func increase_armor(value:int) -> void:
+	health_component.armor = value

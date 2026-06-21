@@ -9,5 +9,4 @@ speed = 1.2
 display_name = "Dragonfly perk"
 description = "\"Your beetle body channels the power of the dragonfly. +20% movement speed.\""
 image = ExtResource("1_kfavx")
-price = 12
 metadata/_custom_type_script = "uid://dbyecwbfuftuy"
