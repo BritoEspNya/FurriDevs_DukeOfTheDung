@@ -3,7 +3,7 @@ shader_type canvas_item;
 uniform float radius = 0.5;
 uniform float roll_speed = 0.1; // Higher default for fast rolling
 uniform float edge_warp_reduction : hint_range(0.0, 1.0) = 0.6; // 0.0 = full 3D warp, 1.0 = flat 2D
-uniform vec2 texture_offset = vec2(0.0);
+instance uniform vec2 texture_offset = vec2(0.0);
 uniform sampler2D outline_texture : filter_nearest; 
 
 void fragment() {
