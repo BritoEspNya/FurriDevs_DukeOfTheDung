@@ -51,8 +51,25 @@ theme_type_variation = &"Zero"
 layout_mode = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 bbcode_enabled = true
-text = "[center]
-[font_size=80]Duke [/font_size][font_size=50]of the [/font_size][font_size=80]Dung[/font_size]
+text = "
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[center]
+[font_size=80]Duke[/font_size][font_size=50] of the [/font_size][font_size=80]Dung[/font_size]
 
 
 [wave][font_size=60]by Furrydevs[/font_size][/wave]
@@ -61,23 +78,28 @@ text = "[center]
 
 
 
-[font_size=35]
-Lobby
+
+
+
+
+[shake]
+[font_size=45]
+[b]Lobby[/b]
 by Elías Zelada
 
-pixel top down
+[b]pixel top down[/b]
 by Cainos
 
-Nature Landscapes Free Pixel Art
+[b]Nature Landscapes Free Pixel Art[/b]
 by Free Game Assets (GUI, Sprite, Tilesets)
 
-rpg-weapons-icons-pixel-art
+[b]rpg-weapons-icons-pixel-art[/b]
 by Pixel-Banner
 
-Raven Fantasy Icons
+[b]Raven Fantasy Icons[/b]
 by Clockwork Raven
 [/font_size]
-
+[/shake]
 
 
 
