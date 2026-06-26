@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cgsspji18smle" path="res://lobby/lobby_screen.tscn" id="1_m3vk0"]
 [ext_resource type="Script" uid="uid://cuqvj8grm28qy" path="res://ui/credits.gd" id="2_hvxmk"]
+[ext_resource type="Texture2D" uid="uid://cdcasqan7pusy" path="res://assets/UI Assets/origbig.png" id="3_1bagf"]
 [ext_resource type="Script" uid="uid://d3n87yt617shu" path="res://ui/richlabelmovement.gd" id="3_74u3g"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_74u3g"]
@@ -9,6 +10,9 @@ bg_color = Color(0, 0, 0, 0)
 
 [node name="CreditsScreen" unique_id=502613410 instance=ExtResource("1_m3vk0")]
 script = ExtResource("2_hvxmk")
+
+[node name="TextureRect" parent="." index="0" unique_id=364813797]
+texture = ExtResource("3_1bagf")
 
 [node name="Panel" parent="MarginContainer2/VBoxContainer" parent_id_path=PackedInt32Array(1821834613) index="0" unique_id=1252654520]
 theme_override_styles/panel = SubResource("StyleBoxFlat_74u3g")
