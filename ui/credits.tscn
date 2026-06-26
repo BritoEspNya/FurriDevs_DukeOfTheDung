@@ -125,4 +125,5 @@ by Clockwork Raven
 
 [/center]
 "
+scroll_active = false
 script = ExtResource("3_74u3g")
