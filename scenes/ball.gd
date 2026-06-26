@@ -77,9 +77,9 @@ func _on_body_entered(body: Node2D) -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	var projectile: Projectile = area as Projectile
-	Debug.log("xao")
+	#Debug.log("xao1")
 	if projectile:
-		Debug.log("xao")
+		Debug.log("xao2")
 		if is_multiplayer_authority():
 			#await get_tree().create_timer(0.05).timeout
 			projectile.queue_free()

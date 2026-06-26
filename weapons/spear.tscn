@@ -2,13 +2,13 @@
 
 [ext_resource type="Script" uid="uid://dn7jwtkl00ljh" path="res://weapons/spear.gd" id="1_att47"]
 [ext_resource type="PackedScene" uid="uid://fja3u8rkhq8s" path="res://weapons/SpearProjectile.tscn" id="2_3p0se"]
-[ext_resource type="Texture2D" uid="uid://brmdvyfdggcrh" path="res://assets/shop assets/53.png" id="2_qwioj"]
+[ext_resource type="Texture2D" uid="uid://brmdvyfdggcrh" path="res://assets/shop assets/spear.png" id="2_qwioj"]
 
 [node name="Spear" type="Node2D" unique_id=71827757]
 script = ExtResource("1_att47")
 projectile_scene = ExtResource("2_3p0se")
 
-[node name="ProjectileSpawnMarkerSpear" type="Marker2D" parent="." unique_id=1371906066]
+[node name="ProjectileSpawnMarker" type="Marker2D" parent="." unique_id=1371906066]
 position = Vector2(66, 0)
 
 [node name="ProjectileSpawner" type="MultiplayerSpawner" parent="." unique_id=1775052370]

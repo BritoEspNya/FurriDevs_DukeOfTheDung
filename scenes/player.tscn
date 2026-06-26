@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://d2ijtieumyhof"]
 
 [ext_resource type="Script" uid="uid://bx3d78qgetgp5" path="res://scripts/player.gd" id="1_g2els"]
-[ext_resource type="PackedScene" uid="uid://fja3u8rkhq8s" path="res://weapons/SpearProjectile.tscn" id="2_dqkch"]
 [ext_resource type="Texture2D" uid="uid://ogom7y53uhmw" path="res://assets/player asset/beetle-walk-spritesheet.png" id="2_qhqgy"]
+[ext_resource type="PackedScene" uid="uid://btmrd6nvlryln" path="res://weapons/crossbow.tscn" id="3_3v2ag"]
 [ext_resource type="PackedScene" uid="uid://kyo5ugj565rn" path="res://scenes/input_synchronizer.tscn" id="3_qhqgy"]
 [ext_resource type="Script" uid="uid://bdhvqyy2d5ivq" path="res://components/hitbox_component.gd" id="4_fjrip"]
 [ext_resource type="PackedScene" uid="uid://ddd1jtgth5ca0" path="res://components/health_component.tscn" id="5_qlg0r"]
@@ -24,6 +24,9 @@ size = Vector2(99, 122)
 properties/0/path = NodePath("WeaponPivot:rotation")
 properties/0/spawn = true
 properties/0/replication_mode = 1
+properties/1/path = NodePath(".:current_weapon_idx")
+properties/1/spawn = true
+properties/1/replication_mode = 1
 
 [sub_resource type="Animation" id="Animation_dqkch"]
 length = 0.001
@@ -337,7 +340,7 @@ scale = Vector2(0.5, 0.5)
 motion_mode = 1
 script = ExtResource("1_g2els")
 acceleration = 700.0
-projectile_scene = ExtResource("2_dqkch")
+weapon_scenes = Array[PackedScene]([ExtResource("8_smehm"), ExtResource("3_3v2ag")])
 
 [node name="Pivot" type="Node2D" parent="." unique_id=1595429681]
 
@@ -356,11 +359,6 @@ texture_filter = 1
 scale = Vector2(4, 4)
 texture = ExtResource("2_qhqgy")
 hframes = 4
-
-[node name="ProjectileSpawnMarker" type="Marker2D" parent="Pivot" unique_id=1171435953]
-visible = false
-position = Vector2(0, -60)
-scale = Vector2(1.0000001, 1)
 
 [node name="HitboxComponent" type="Area2D" parent="Pivot" unique_id=419975491]
 collision_layer = 0
@@ -401,9 +399,6 @@ autostart = true
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=717306847]
 replication_config = SubResource("SceneReplicationConfig_smehm")
 
-[node name="ProjectileSpawner" type="MultiplayerSpawner" parent="." unique_id=1232346897]
-spawn_path = NodePath("../WeaponPivot/WeaponSpawnPoint")
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=731913897]
 libraries/ = SubResource("AnimationLibrary_tuyoq")
 
@@ -415,12 +410,11 @@ anim_player = NodePath("../AnimationPlayer")
 
 [node name="WeaponPivot" type="Node2D" parent="." unique_id=1442164285]
 
-[node name="Weapons" type="Node2D" parent="WeaponPivot" unique_id=867513081]
-
-[node name="Spear" parent="WeaponPivot/Weapons" unique_id=71827757 instance=ExtResource("8_smehm")]
-position = Vector2(100, 0)
-
 [node name="WeaponSpawnPoint" type="Marker2D" parent="WeaponPivot" unique_id=1947074105]
+position = Vector2(92, 0)
+
+[node name="WeaponSpawner" type="MultiplayerSpawner" parent="." unique_id=1055292100]
+spawn_path = NodePath("../WeaponPivot/WeaponSpawnPoint")
 
 [node name="HB" parent="." unique_id=2067490662 instance=ExtResource("9_ur7pv")]
 
