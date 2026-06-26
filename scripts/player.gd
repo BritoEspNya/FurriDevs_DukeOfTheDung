@@ -92,7 +92,7 @@ func _physics_process(delta: float) -> void:
 				#if current_weapon:
 				current_weapon.main_attack()
 			if Input.is_action_just_pressed("dev_swap_weapon"):
-				swap_weapon.rpc_id(1)
+				swap_weapon.rpc()
 	else:
 		# Movement with ball attached
 		pivot.rotation += move_input.x * rotation_speed * delta
@@ -130,7 +130,7 @@ func setup(data: Statics.PlayerData) -> void:
 		#current_weapon.rotation = weapon_spawn_point.rotation
 		#weapon_spawn_point.add_child(current_weapon, true)
 
-@rpc("any_peer", "call_local", "reliable")
+@rpc("authority", "call_local", "reliable")
 func swap_weapon() -> void:
 	var n = weapon_scenes.size()
 	if n > 1:
