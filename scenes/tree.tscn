@@ -41,7 +41,7 @@ material = SubResource("ShaderMaterial_1yde3")
 position = Vector2(1.6666667, -10.333333)
 texture = ExtResource("1_viusy")
 region_enabled = true
-region_rect = Rect2(32.131317, 90.16002, 116.83209, 75.77696)
+region_rect = Rect2(156.76718, 91.966324, 116.83209, 75.77696)
 
 [node name="Tree" type="Sprite2D" parent="." unique_id=1025314838]
 texture_filter = 1
