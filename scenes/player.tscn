@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://btmrd6nvlryln" path="res://weapons/crossbow.tscn" id="3_3v2ag"]
 [ext_resource type="PackedScene" uid="uid://kyo5ugj565rn" path="res://scenes/input_synchronizer.tscn" id="3_qhqgy"]
 [ext_resource type="Script" uid="uid://bdhvqyy2d5ivq" path="res://components/hitbox_component.gd" id="4_fjrip"]
+[ext_resource type="PackedScene" uid="uid://bp5ospqywug5l" path="res://weapons/weapon.tscn" id="4_jej6c"]
 [ext_resource type="PackedScene" uid="uid://ddd1jtgth5ca0" path="res://components/health_component.tscn" id="5_qlg0r"]
 [ext_resource type="Script" uid="uid://d0ssffnqid5lp" path="res://components/hurtbox_component.gd" id="6_tuyoq"]
 [ext_resource type="Texture2D" uid="uid://cnmp3flsoywpi" path="res://assets/player asset/Beetle_flght_spritesheet.png" id="7_3v2ag"]
@@ -340,7 +341,7 @@ scale = Vector2(0.5, 0.5)
 motion_mode = 1
 script = ExtResource("1_g2els")
 acceleration = 700.0
-weapon_scenes = Array[PackedScene]([ExtResource("8_smehm"), ExtResource("3_3v2ag")])
+weapon_scenes = Array[PackedScene]([ExtResource("8_smehm"), ExtResource("3_3v2ag"), ExtResource("4_jej6c")])
 
 [node name="Pivot" type="Node2D" parent="." unique_id=1595429681]
 
@@ -412,6 +413,9 @@ anim_player = NodePath("../AnimationPlayer")
 
 [node name="WeaponSpawnPoint" type="Marker2D" parent="WeaponPivot" unique_id=1947074105]
 position = Vector2(92, 0)
+
+[node name="AttackSpawner" type="MultiplayerSpawner" parent="." unique_id=355441154]
+spawn_path = NodePath(".")
 
 [node name="WeaponSpawner" type="MultiplayerSpawner" parent="." unique_id=1055292100]
 spawn_path = NodePath("../WeaponPivot/WeaponSpawnPoint")

@@ -7,7 +7,7 @@
 
 [node name="Crossbow" unique_id=71827757 instance=ExtResource("1_m3te7")]
 script = ExtResource("2_ua5uu")
-projectile_scene = ExtResource("3_ua5uu")
+attack_scene = ExtResource("3_ua5uu")
 
 [node name="Sprite2D" parent="." index="2" unique_id=1808882682]
 scale = Vector2(6, 6)

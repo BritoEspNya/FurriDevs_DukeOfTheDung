@@ -39,6 +39,7 @@ var current_weapon: Weapon
 #@onready var spear: Spear = $WeaponPivot/Weapons/Spear
 @onready var weapon_spawn_point: Marker2D = $WeaponPivot/WeaponSpawnPoint
 @onready var weapon_spawner: MultiplayerSpawner = $WeaponSpawner
+@onready var attack_spawner: MultiplayerSpawner = $AttackSpawner
 
 
 @onready var animation_tree: AnimationTree = $AnimationTree
@@ -55,6 +56,8 @@ func _ready() -> void:
 			continue
 		Debug.log("Weapon scene path: " + weapon_scene.resource_path)
 		weapon_spawner.add_spawnable_scene(weapon_scene.resource_path)
+
+		#weapon.queue_free()
 	
 	#if projectile_scene: # Para proyectiles propios del player
 		#projectile_spawner.add_spawnable_scene(projectile_scene.resource_path)
