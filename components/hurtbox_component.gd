@@ -16,7 +16,7 @@ func _on_area_entered(area: Area2D) -> void:
 		return
 	var hitbox: HitboxComponent = area as HitboxComponent
 	if hitbox and health_component:
-		if hitbox.owner == owner: # No se puede pegar a sí mismo
+		if hitbox.source_owner == owner: # No se puede pegar a sí mismo
 			return
 		health_component.take_damage(hitbox.damage)	
 		#hitbox.damage_dealt.emit()
