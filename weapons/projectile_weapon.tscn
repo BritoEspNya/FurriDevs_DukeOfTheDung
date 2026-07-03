@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dts1hemixrvx5"]
+
+[ext_resource type="Script" uid="uid://c5xg3bjyrktts" path="res://weapons/projectile_weapon.gd" id="1_fgakn"]
+[ext_resource type="PackedScene" uid="uid://fja3u8rkhq8s" path="res://weapons/SpearProjectile.tscn" id="2_2a0r3"]
+[ext_resource type="Texture2D" uid="uid://brmdvyfdggcrh" path="res://assets/shop assets/spear.png" id="3_5iyy5"]
+
+[node name="ProjectileWeapon" type="Node2D" unique_id=71827757]
+script = ExtResource("1_fgakn")
+projectile_scene = ExtResource("2_2a0r3")
+
+[node name="ProjectileSpawnMarker" type="Marker2D" parent="." unique_id=1371906066]
+position = Vector2(66, 0)
+
+[node name="ProjectileSpawner" type="MultiplayerSpawner" parent="." unique_id=1775052370]
+spawn_path = NodePath(".")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1808882682]
+texture_filter = 1
+position = Vector2(39, 0)
+rotation = 0.7853982
+scale = Vector2(4, 4)
+texture = ExtResource("3_5iyy5")

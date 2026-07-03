@@ -1,3 +1,2 @@
-class_name Spear
+class_name Crossbow
 extends ProjectileWeapon
-	

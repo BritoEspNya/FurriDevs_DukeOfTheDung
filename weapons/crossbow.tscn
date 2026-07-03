@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://btmrd6nvlryln"]
+
+[ext_resource type="PackedScene" uid="uid://dts1hemixrvx5" path="res://weapons/projectile_weapon.tscn" id="1_m3te7"]
+[ext_resource type="Texture2D" uid="uid://d214bgrswpk6s" path="res://assets/shop assets/Crossbow.png" id="2_l5gvd"]
+[ext_resource type="Script" uid="uid://dxk5rbvhtybhv" path="res://weapons/crossbow.gd" id="2_ua5uu"]
+[ext_resource type="PackedScene" uid="uid://fja3u8rkhq8s" path="res://weapons/SpearProjectile.tscn" id="3_ua5uu"]
+
+[node name="Crossbow" unique_id=71827757 instance=ExtResource("1_m3te7")]
+script = ExtResource("2_ua5uu")
+attack_scene = ExtResource("3_ua5uu")
+
+[node name="Sprite2D" parent="." index="2" unique_id=1808882682]
+scale = Vector2(6, 6)
+texture = ExtResource("2_l5gvd")

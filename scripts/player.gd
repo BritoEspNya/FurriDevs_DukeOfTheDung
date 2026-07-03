@@ -8,10 +8,13 @@ signal died
 @export var flight_speed: int = 600
 @export var acceleration: float = 400
 @export var rotation_speed: float = 5
-@export var projectile_scene: PackedScene
+#@export var projectile_scene: PackedScene
+@export var current_weapon_idx: int = 0
+@export var weapon_scenes: Array[PackedScene]
 
 var _data: Statics.PlayerData
 var _speed: int = walk_speed
+var current_weapon: Weapon
 
 @onready var label: Label = $Pivot/Label
 @onready var multiplayer_synchronizer: MultiplayerSynchronizer = $MultiplayerSynchronizer
@@ -19,8 +22,8 @@ var _speed: int = walk_speed
 @onready var input_synchronizer: InputSyncronizer = $InputSynchronizer
 @onready var sync_timer: Timer = $SyncTimer
 @onready var dung_recolected: int = 0
-@onready var projectile_spawner: MultiplayerSpawner = $ProjectileSpawner
-@onready var projectile_spawn_marker: Marker2D = $Pivot/ProjectileSpawnMarker
+#@onready var projectile_spawner: MultiplayerSpawner = $ProjectileSpawner
+#@onready var projectile_spawn_marker: Marker2D = $Pivot/ProjectileSpawnMarker
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var hb: HB = $HB
 @onready var health_bar: ProgressBar = $HealthBar
@@ -33,8 +36,11 @@ var _speed: int = walk_speed
 
 @onready var pivot: Node2D = $Pivot
 @onready var weapon_pivot: Node2D = $WeaponPivot
-@onready var spear: Spear = $WeaponPivot/Weapons/Spear
-@onready var melee: Node2D = $WeaponPivot/Weapons/Meele
+#@onready var spear: Spear = $WeaponPivot/Weapons/Spear
+@onready var weapon_spawn_point: Marker2D = $WeaponPivot/WeaponSpawnPoint
+@onready var weapon_spawner: MultiplayerSpawner = $WeaponSpawner
+@onready var attack_spawner: MultiplayerSpawner = $AttackSpawner
+
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var playback: AnimationNodeStateMachinePlayback = animation_tree["parameters/playback"]
@@ -44,15 +50,26 @@ func _ready() -> void:
 	health_component.died.connect(_on_died)
 	health_component.revived.connect(_on_revived)
 	sync_timer.timeout.connect(_on_sync_timeout)
-	if projectile_scene: # Para proyectiles propios del player
-		projectile_spawner.add_spawnable_scene(projectile_scene.resource_path)
+	weapon_spawner.spawned.connect(_on_weapon_spawned)
+	for weapon_scene: PackedScene in weapon_scenes:
+		if not weapon_scene:
+			continue
+		Debug.log("Weapon scene path: " + weapon_scene.resource_path)
+		weapon_spawner.add_spawnable_scene(weapon_scene.resource_path)
+
+		#weapon.queue_free()
+	
+	#if projectile_scene: # Para proyectiles propios del player
+		#projectile_spawner.add_spawnable_scene(projectile_scene.resource_path)
  	
 	hb.health_bar.max_value = health_component.max_health
 	hb.health_bar.value = health_component.health
 	health_bar.max_value = health_component.max_health
 	respawn_timer.timeout.connect(_on_respawn_timeout)
 	health_bar.value = health_component.health
+	
 
+	
 func _physics_process(delta: float) -> void:
 	var move_input: Vector2 = input_synchronizer.move_input
 	if input_synchronizer.mode_input:
@@ -73,8 +90,12 @@ func _physics_process(delta: float) -> void:
 			#Debug.log("Cambio de rotación:", weapon_pivot.rotation)
 			if input_synchronizer.attack_input:
 				#fire()
-				#spear.fire()
-				melee.attack.rpc()
+				#if not weapon_scenes:
+					#pass
+				#if current_weapon:
+				current_weapon.main_attack()
+			if Input.is_action_just_pressed("dev_swap_weapon"):
+				swap_weapon.rpc()
 	else:
 		# Movement with ball attached
 		pivot.rotation += move_input.x * rotation_speed * delta
@@ -98,14 +119,56 @@ func setup(data: Statics.PlayerData) -> void:
 	set_multiplayer_authority(data.id, false)
 	multiplayer_synchronizer.set_multiplayer_authority(data.id, false)
 	input_synchronizer.set_multiplayer_authority(data.id, false)
-	#health_component.set_multiplayer_authority(1, false)
+	#weapon_spawner.set_multiplayer_authority(1, false)
 	camera_2d.enabled = is_multiplayer_authority()
 	hb.visible = is_multiplayer_authority()
 	health_bar.visible = not is_multiplayer_authority()
 	#pivot.set_multiplayer_authority(data.id, false)
 	if is_multiplayer_authority():
 		sync_timer.start()
+	if multiplayer.is_server():
+		equip_weapon(current_weapon_idx)
+		#current_weapon = weapon_scenes[current_weapon_idx].instantiate()
+		#current_weapon.position = weapon_spawn_point.position
+		#current_weapon.rotation = weapon_spawn_point.rotation
+		#weapon_spawn_point.add_child(current_weapon, true)
 
+@rpc("authority", "call_local", "reliable")
+func swap_weapon() -> void:
+	var n = weapon_scenes.size()
+	if n > 1:
+		current_weapon_idx = (current_weapon_idx+1) % n
+		Debug.log("SWAAAAP TO: " + str(current_weapon_idx))
+		equip_weapon(current_weapon_idx)
+
+func equip_weapon(weapon_idx: int) -> void:
+	if not multiplayer.is_server():
+		return
+
+	if weapon_idx < 0 or weapon_idx >= weapon_scenes.size():
+		var deb: String = "Invalid weapon index: " + str(weapon_idx)
+		Debug.log(deb)
+		return
+
+	var weapon_scene := weapon_scenes[weapon_idx]
+	if not weapon_scene:
+		var deb: String = "Weapon scene is null at index: " + str(weapon_idx)
+		Debug.log(deb)
+		return
+
+	if current_weapon and is_instance_valid(current_weapon):
+		current_weapon.queue_free()
+
+	current_weapon_idx = weapon_idx
+	current_weapon = weapon_scene.instantiate() as Weapon
+
+	current_weapon.position = Vector2.ZERO
+	current_weapon.rotation = 0.0
+	#current_weapon.name = "CurrentWeapon"
+	
+	#current_weapon.position = weapon_spawn_point.position
+	#current_weapon.rotation = weapon_spawn_point.rotation
+	weapon_spawn_point.add_child(current_weapon, true)
 
 @rpc("authority", "call_remote", "unreliable_ordered")
 func send_position(pos: Vector2) -> void:
@@ -117,6 +180,12 @@ func send_position(pos: Vector2) -> void:
 	##animation_tree["parameters/%s/request" % one_shot_name] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 	## now it should call fire() methon (i'll change the name in the future)
 	#pass
+	
+func _on_weapon_spawned(node: Node) -> void:
+	Debug.log("Weapon spawned locally: " + node.name)
+
+	if node is Weapon:
+		current_weapon = node
 
 func _on_sync_timeout() -> void:
 	if is_multiplayer_authority(): # HOTFIX
@@ -140,7 +209,7 @@ func _on_died() -> void:
 		respawn_timer.start()
 		
 func _on_revived() -> void:
-	respawned.emit()
+	respawned.emit() #Hotfix: El player se mueve a sí mismo?
 	await get_tree().create_timer(0.5).timeout
 	_apply_dead_state(false)
 	
@@ -186,6 +255,10 @@ func increase_velocity(value:int) -> void:
 	walk_speed = walk_speed*value
 
 func _on_respawn_timeout() -> void:
+	#if is_multiplayer_authority():
+		#Debug.log("RESPAWWWW")
+		#respawned.emit()
+	#await get_tree().create_timer(0.5).timeout
 	health_component.revive_full()
 	
 func increase_dash(value:int) -> void:
