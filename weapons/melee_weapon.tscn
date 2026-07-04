@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bcrgenvvdigvd"]
+
+[ext_resource type="Script" uid="uid://bblnvbwrjbw12" path="res://weapons/melee_weapon.gd" id="1_45di4"]
+[ext_resource type="PackedScene" uid="uid://bmpbkd1ab62cc" path="res://weapons/melee_attack.tscn" id="2_j23ck"]
+
+[node name="MeleeWeapon" type="Node2D" unique_id=350075814]
+script = ExtResource("1_45di4")
+attack_scene = ExtResource("2_j23ck")
+
+[node name="AttackSpawnMarker" type="Marker2D" parent="." unique_id=839182058]
+position = Vector2(200, 0)
+
+[node name="ProjectileSpawner" type="MultiplayerSpawner" parent="." unique_id=1892856431]
+spawn_path = NodePath(".")
