@@ -44,6 +44,11 @@ func main_attack_server() -> void:
 	if not attack_scene:
 		return
 	var attack_ins: Projectile = attack_scene.instantiate()
+	for child in attack_ins.get_children():
+		if child is HitboxComponent:
+			var hitbox: HitboxComponent = child
+			hitbox.source_owner = owner_player
+			break
 	attack_ins.global_position = attack_spawn_marker.global_position
 	attack_ins.global_rotation = attack_spawn_marker.global_rotation
 	owner_player.attack_spawner.add_child(attack_ins, true)
