@@ -1,9 +1,8 @@
 extends ItemData
 
-@export var dash: int = 1000
-
 func action(player: Player) -> void:
-	player.increase_dash(dash)
+	pass
 
 func equip(player:Player) -> void:
-	player.equip_perk(self)
+	Debug.log("llamando a equip de arma")
+	player.equip_weapon(self)
