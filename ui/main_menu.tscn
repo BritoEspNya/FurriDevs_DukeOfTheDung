@@ -66,6 +66,7 @@ offset_transform_position = Vector2(0, 50)
 
 [node name="Host" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer2" unique_id=163287319]
 unique_name_in_owner = true
+texture_filter = 1
 layout_mode = 2
 text = "Host"
 

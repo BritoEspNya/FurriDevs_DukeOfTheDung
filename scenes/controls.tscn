@@ -342,6 +342,7 @@ _data = {
 }
 
 [node name="Tutorial" type="Control" unique_id=1749064742]
+custom_minimum_size = Vector2(1280, 720)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
