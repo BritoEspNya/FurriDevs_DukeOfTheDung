@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://bh5x6lcqiuude"]
+
+[ext_resource type="Texture2D" uid="uid://rwoy3asd5vbu" path="res://assets/custom-box1.png" id="1_3wboo"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g4v7s"]
+content_margin_left = 36.0
+content_margin_top = 25.0
+content_margin_right = 36.0
+content_margin_bottom = 36.0
+texture = ExtResource("1_3wboo")
+texture_margin_left = 32.0
+texture_margin_top = 32.0
+texture_margin_right = 32.0
+texture_margin_bottom = 32.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(0, 0, 96, 83)
+
+[node name="Panel" type="PanelContainer" unique_id=1703585275]
+texture_filter = 1
+offset_right = 72.0
+offset_bottom = 72.0
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxTexture_g4v7s")
