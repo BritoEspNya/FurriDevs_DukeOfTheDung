@@ -6,7 +6,7 @@ extends Control
 @onready var join: Button = %Join
 @onready var credits: Button = %Credits
 @onready var quit: Button = %Quit
-@onready var tutorial: Button = %Tutorial
+@onready var controls: Button = %Controls
 
 
 func _ready() -> void:
@@ -18,6 +18,6 @@ func _ready() -> void:
 	host.pressed.connect(func() -> void: get_tree().change_scene_to_file("res://lobby/host_screen.tscn"))
 	join.pressed.connect(func() -> void: get_tree().change_scene_to_file("res://lobby/join_screen.tscn"))
 	credits.pressed.connect(func() -> void: get_tree().change_scene_to_file("res://ui/credits.tscn"))
-	tutorial.pressed.connect(func() -> void: get_tree().change_scene_to_file("res://scenes/tutorial.tscn"))
+	controls.pressed.connect(func() -> void: get_tree().change_scene_to_file("res://scenes/controls.tscn"))
 	
 	host.grab_focus()
