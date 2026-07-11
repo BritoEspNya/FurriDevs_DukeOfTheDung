@@ -1,0 +1,646 @@
+[gd_scene format=3 uid="uid://dwrpab1tmln4m"]
+
+[ext_resource type="Script" uid="uid://dme5uwnnsv3hq" path="res://scenes/controls.gd" id="1_jlst0"]
+[ext_resource type="Texture2D" uid="uid://br64ccwuru1mm" path="res://assets/orig.png" id="2_dloai"]
+[ext_resource type="PackedScene" uid="uid://bh5x6lcqiuude" path="res://scenes/custom_block-panel.tscn" id="3_k6bol"]
+[ext_resource type="Texture2D" uid="uid://n2o50bkshvgu" path="res://assets/Controllers and Keyboard/kb_light_all.png" id="4_a8sje"]
+[ext_resource type="Texture2D" uid="uid://dryi72r0tyf5r" path="res://assets/Controllers and Keyboard/mouse.png" id="5_t622t"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_g4v7s"]
+font_size = 60
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g4v7s"]
+atlas = ExtResource("4_a8sje")
+region = Rect2(0, 352, 16, 16)
+
+[sub_resource type="Animation" id="Animation_4kmhl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 352, 16, 16)]
+}
+
+[sub_resource type="Animation" id="Animation_cq4me"]
+resource_name = "idle"
+length = 1.0000033854875714
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture:region")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Rect2(0, 352, 16, 16), Rect2(16, 352, 16, 16)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6yjpi"]
+_data = {
+&"RESET": SubResource("Animation_4kmhl"),
+&"idle": SubResource("Animation_cq4me")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cq4me"]
+atlas = ExtResource("4_a8sje")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="Animation" id="Animation_6yjpi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 16, 16)]
+}
+
+[sub_resource type="Animation" id="Animation_gbqnl"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture:region")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Rect2(0, 0, 16, 16), Rect2(16, 0, 16, 16)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ckvwl"]
+_data = {
+&"RESET": SubResource("Animation_6yjpi"),
+&"idle": SubResource("Animation_gbqnl")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6yjpi"]
+atlas = ExtResource("4_a8sje")
+region = Rect2(0, 288, 16, 16)
+
+[sub_resource type="Animation" id="Animation_ckvwl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 288, 16, 16)]
+}
+
+[sub_resource type="Animation" id="Animation_nlqja"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture:region")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Rect2(0, 288, 16, 16), Rect2(16, 288, 16, 16)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0epgs"]
+_data = {
+&"RESET": SubResource("Animation_ckvwl"),
+&"idle": SubResource("Animation_nlqja")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gbqnl"]
+atlas = ExtResource("4_a8sje")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="Animation" id="Animation_0epgs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 48, 16, 16)]
+}
+
+[sub_resource type="Animation" id="Animation_g2equ"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture:region")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Rect2(0, 48, 16, 16), Rect2(16, 48, 16, 16)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tbcdj"]
+_data = {
+&"RESET": SubResource("Animation_0epgs"),
+&"idle": SubResource("Animation_g2equ")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_yf5fn"]
+font_size = 60
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ckvwl"]
+atlas = ExtResource("4_a8sje")
+region = Rect2(128, 128, 16, 16)
+
+[sub_resource type="Animation" id="Animation_tbcdj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(128, 128, 16, 16)]
+}
+
+[sub_resource type="Animation" id="Animation_ej4tf"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture:region")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Rect2(128, 128, 16, 16), Rect2(144, 128, 16, 16)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0hilk"]
+_data = {
+&"RESET": SubResource("Animation_tbcdj"),
+&"idle": SubResource("Animation_ej4tf")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nlqja"]
+atlas = ExtResource("4_a8sje")
+region = Rect2(0, 64, 16, 16)
+
+[sub_resource type="Animation" id="Animation_wr8iv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 64, 16, 16)]
+}
+
+[sub_resource type="Animation" id="Animation_0hilk"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture:region")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Rect2(0, 64, 16, 16), Rect2(16, 64, 16, 16)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wr8iv"]
+_data = {
+&"RESET": SubResource("Animation_wr8iv"),
+&"idle": SubResource("Animation_0hilk")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0epgs"]
+atlas = ExtResource("5_t622t")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="Animation" id="Animation_e13mp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 16, 16, 16)]
+}
+
+[sub_resource type="Animation" id="Animation_vrdqu"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture:region")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Rect2(0, 16, 16, 16), Rect2(16, 16, 16, 16)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cmspm"]
+_data = {
+&"RESET": SubResource("Animation_e13mp"),
+&"idle": SubResource("Animation_vrdqu")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g2equ"]
+atlas = ExtResource("4_a8sje")
+region = Rect2(0, 272, 16, 16)
+
+[sub_resource type="Animation" id="Animation_cmspm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 272, 16, 16)]
+}
+
+[sub_resource type="Animation" id="Animation_ikfo1"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture:region")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Rect2(0, 272, 16, 16), Rect2(16, 272, 16, 16)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dwom6"]
+_data = {
+&"RESET": SubResource("Animation_cmspm"),
+&"idle": SubResource("Animation_ikfo1")
+}
+
+[node name="Tutorial" type="Control" unique_id=1749064742]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_jlst0")
+
+[node name="MenuPanel" type="PanelContainer" parent="." unique_id=2129067625]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="tempBGTexture" type="TextureRect" parent="MenuPanel" unique_id=1998619336]
+layout_mode = 2
+texture = ExtResource("2_dloai")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuPanel" unique_id=802374032]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuPanel/VBoxContainer" unique_id=467214894]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TittleContainer" type="PanelContainer" parent="MenuPanel/VBoxContainer/MarginContainer" unique_id=1443298000]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuPanel/VBoxContainer/MarginContainer/TittleContainer" unique_id=1114203949]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="MenuPanel/VBoxContainer/MarginContainer/TittleContainer/HBoxContainer" unique_id=2142747708]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "く"
+
+[node name="Label" type="Label" parent="MenuPanel/VBoxContainer/MarginContainer/TittleContainer/HBoxContainer" unique_id=1684341681]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Keyboard Controls"
+label_settings = SubResource("LabelSettings_g4v7s")
+horizontal_alignment = 1
+
+[node name="ControlsContainer" type="PanelContainer" parent="MenuPanel/VBoxContainer" unique_id=791449696]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuPanel/VBoxContainer/ControlsContainer" unique_id=1355854724]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer" unique_id=345047171]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer" unique_id=471794458]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Panel" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer/MarginContainer" unique_id=559401456 instance=ExtResource("3_k6bol")]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer/MarginContainer/Panel" unique_id=1340805330]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer/MarginContainer/Panel/HBoxContainer" unique_id=1301658901]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer/MarginContainer/Panel/HBoxContainer/VBoxContainer" unique_id=1078632641]
+texture_filter = 1
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+size_flags_vertical = 3
+texture = SubResource("AtlasTexture_g4v7s")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer/MarginContainer/Panel/HBoxContainer/VBoxContainer/TextureRect" unique_id=2074687760]
+libraries/ = SubResource("AnimationLibrary_6yjpi")
+autoplay = &"idle"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer/MarginContainer/Panel/HBoxContainer/VBoxContainer" unique_id=2053733866]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="TextureRect" type="TextureRect" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer/MarginContainer/Panel/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=2062293313]
+texture_filter = 1
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = SubResource("AtlasTexture_cq4me")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer/MarginContainer/Panel/HBoxContainer/VBoxContainer/HBoxContainer/TextureRect" unique_id=1028210693]
+libraries/ = SubResource("AnimationLibrary_ckvwl")
+autoplay = &"idle"
+
+[node name="TextureRect2" type="TextureRect" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer/MarginContainer/Panel/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=1144408705]
+texture_filter = 1
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = SubResource("AtlasTexture_6yjpi")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer/MarginContainer/Panel/HBoxContainer/VBoxContainer/HBoxContainer/TextureRect2" unique_id=957501296]
+libraries/ = SubResource("AnimationLibrary_0epgs")
+autoplay = &"idle"
+
+[node name="TextureRect3" type="TextureRect" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer/MarginContainer/Panel/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=208186691]
+texture_filter = 1
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = SubResource("AtlasTexture_gbqnl")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer/MarginContainer/Panel/HBoxContainer/VBoxContainer/HBoxContainer/TextureRect3" unique_id=1164584460]
+libraries/ = SubResource("AnimationLibrary_tbcdj")
+autoplay = &"idle"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer/MarginContainer/Panel/HBoxContainer" unique_id=1534395855]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer/MarginContainer/Panel/HBoxContainer/VBoxContainer2" unique_id=394601007]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Movement"
+label_settings = SubResource("LabelSettings_yf5fn")
+
+[node name="MarginContainer2" type="MarginContainer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer" unique_id=1733765133]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Panel2" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer/MarginContainer2" unique_id=1234645485 instance=ExtResource("3_k6bol")]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer/MarginContainer2/Panel2" unique_id=1340701480]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer/MarginContainer2/Panel2/HBoxContainer" unique_id=1537687914]
+texture_filter = 1
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = SubResource("AtlasTexture_ckvwl")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer/MarginContainer2/Panel2/HBoxContainer/TextureRect" unique_id=29709849]
+libraries/ = SubResource("AnimationLibrary_0hilk")
+autoplay = &"idle"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer/MarginContainer2/Panel2/HBoxContainer" unique_id=2146082739]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer/MarginContainer2/Panel2/HBoxContainer/VBoxContainer2" unique_id=1117862489]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Flight (HOLD)"
+label_settings = SubResource("LabelSettings_yf5fn")
+
+[node name="MarginContainer3" type="MarginContainer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer" unique_id=1495547434]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Panel3" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer/MarginContainer3" unique_id=57720639 instance=ExtResource("3_k6bol")]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer/MarginContainer3/Panel3" unique_id=1726008287]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer/MarginContainer3/Panel3/HBoxContainer" unique_id=1713664480]
+texture_filter = 1
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = SubResource("AtlasTexture_nlqja")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer/MarginContainer3/Panel3/HBoxContainer/TextureRect" unique_id=1330492561]
+libraries/ = SubResource("AnimationLibrary_wr8iv")
+autoplay = &"idle"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer/MarginContainer3/Panel3/HBoxContainer" unique_id=1653542767]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer/MarginContainer3/Panel3/HBoxContainer/VBoxContainer2" unique_id=1286305272]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Grab"
+label_settings = SubResource("LabelSettings_yf5fn")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer" unique_id=782782746]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer2" unique_id=951462814]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Panel" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer2/MarginContainer" unique_id=1855548767 instance=ExtResource("3_k6bol")]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer2/MarginContainer/Panel" unique_id=1583270112]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer2/MarginContainer/Panel/HBoxContainer" unique_id=164264593]
+texture_filter = 1
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = SubResource("AtlasTexture_0epgs")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer2/MarginContainer/Panel/HBoxContainer/TextureRect" unique_id=811311297]
+libraries/ = SubResource("AnimationLibrary_cmspm")
+autoplay = &"idle"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer2/MarginContainer/Panel/HBoxContainer" unique_id=1667881345]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer2/MarginContainer/Panel/HBoxContainer/VBoxContainer2" unique_id=837630514]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Attack"
+label_settings = SubResource("LabelSettings_yf5fn")
+
+[node name="MarginContainer2" type="MarginContainer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer2" unique_id=1487956698]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Panel2" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer2/MarginContainer2" unique_id=695666421 instance=ExtResource("3_k6bol")]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer2/MarginContainer2/Panel2" unique_id=2116509766]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer2/MarginContainer2/Panel2/HBoxContainer" unique_id=1539441784]
+texture_filter = 1
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = SubResource("AtlasTexture_g2equ")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer2/MarginContainer2/Panel2/HBoxContainer/TextureRect" unique_id=596892112]
+libraries/ = SubResource("AnimationLibrary_dwom6")
+autoplay = &"idle"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer2/MarginContainer2/Panel2/HBoxContainer" unique_id=1641015651]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer2/MarginContainer2/Panel2/HBoxContainer/VBoxContainer2" unique_id=1953463283]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Swap weapon"
+label_settings = SubResource("LabelSettings_yf5fn")
