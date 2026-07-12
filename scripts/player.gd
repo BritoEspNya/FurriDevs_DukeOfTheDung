@@ -127,7 +127,7 @@ func setup(data: Statics.PlayerData) -> void:
 	if is_multiplayer_authority():
 		sync_timer.start()
 	if multiplayer.is_server():
-		equip_weapon(current_weapon_idx)
+		equip_weapon_ph(current_weapon_idx)
 		#current_weapon = weapon_scenes[current_weapon_idx].instantiate()
 		#current_weapon.position = weapon_spawn_point.position
 		#current_weapon.rotation = weapon_spawn_point.rotation
@@ -139,9 +139,9 @@ func swap_weapon() -> void:
 	if n > 1:
 		current_weapon_idx = (current_weapon_idx+1) % n
 		Debug.log("SWAAAAP TO: " + str(current_weapon_idx))
-		equip_weapon(current_weapon_idx)
+		equip_weapon_ph(current_weapon_idx)
 
-func equip_weapon(weapon_idx: int) -> void:
+func equip_weapon_ph(weapon_idx: int) -> void:
 	if not multiplayer.is_server():
 		return
 
