@@ -9,6 +9,3 @@ extends Resource
 
 func action(player: Player) -> void:
 	pass
-
-func equip(player:Player) -> void:
-	pass

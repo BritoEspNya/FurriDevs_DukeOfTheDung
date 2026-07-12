@@ -14,10 +14,10 @@
 [ext_resource type="Resource" uid="uid://m06ix6j1cfsh" path="res://items/heavyHelmet.tres" id="11_8im1p"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_evw12"]
-bg_color = Color(0, 0, 0, 0)
+bg_color = Color(0.003921569, 0.003921569, 0.003921569, 0.15686275)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2h0fh"]
-bg_color = Color(0, 0, 0, 0)
+bg_color = Color(0.003921569, 0.003921569, 0.003921569, 0.15686275)
 
 [node name="ShopScreen" type="Control" unique_id=1658476554]
 layout_mode = 3

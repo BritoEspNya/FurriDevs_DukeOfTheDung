@@ -4,6 +4,3 @@ extends ItemData
 
 func action(player: Player) -> void:
 	player.increase_velocity(speed)
-
-func equip(player:Player) -> void:
-	player.equip_perk(self)
