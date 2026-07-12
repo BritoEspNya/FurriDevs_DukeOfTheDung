@@ -1,0 +1,7 @@
+[gd_resource type="Resource" format=3 uid="uid://cb3cw5riphjx7"]
+
+[ext_resource type="Script" uid="uid://fh4d3knvvhnt" path="res://items/spear.gd" id="1_teler"]
+
+[resource]
+script = ExtResource("1_teler")
+metadata/_custom_type_script = "uid://dbyecwbfuftuy"

@@ -267,3 +267,16 @@ func increase_dash(value:int) -> void:
 	
 func increase_armor(value:int) -> void:
 	health_component.armor = value
+
+func equip_weapon(item) -> void:
+	Debug.log("equipando arma")
+	_data.inventory_hud["weapon"].append(item)
+	_data.inventory_changed.emit(_data.inventory_hud)
+
+func equip_armor(item) -> void:
+	_data.inventory_hud["armor"] = [item]
+	_data.inventory_changed.emit(_data.inventory_hud)
+	
+func equip_perk(item) -> void:
+	_data.inventory_hud["perks"].append(item)
+	_data.inventory_changed.emit(_data.inventory_hud)

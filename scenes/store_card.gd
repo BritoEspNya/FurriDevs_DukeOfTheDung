@@ -33,4 +33,5 @@ func _on_gui_input(event: InputEvent) -> void:
 			Game.set_current_player_dung(player_coins-item_data.price)
 			var player: Player = Game.get_current_player().scene
 			item_data.action(player)
+			item_data.equip(player)
 			bought.emit()
