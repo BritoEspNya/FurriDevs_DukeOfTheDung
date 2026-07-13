@@ -10,6 +10,10 @@ offset_left = -9.0
 offset_top = -7.0
 script = ExtResource("2_a2sqk")
 
+[node name="Sprite2D" parent="." index="0" unique_id=300437505]
+position = Vector2(651, 368)
+scale = Vector2(2.2569444, 2.2530863)
+
 [node name="GameStartContainer" type="PanelContainer" parent="." index="1" unique_id=1208578375]
 unique_name_in_owner = true
 layout_mode = 1
@@ -48,12 +52,12 @@ horizontal_alignment = 1
 [node name="StartTimer" type="Timer" parent="." index="2" unique_id=2111353830]
 wait_time = 3.0
 
-[node name="Label" parent="MarginContainer2/VBoxContainer/Panel" parent_id_path=PackedInt32Array(1252654520) index="0" unique_id=125948541]
+[node name="Label" parent="MarginContainer2/VBoxContainer/Panel" parent_id_path=PackedInt32Array(1418666595) index="0" unique_id=361117685]
 text = "Lobby"
 
-[node name="MarginContainer2_VBoxContainer_MarginContainer_Panel#PanelContainer" parent="MarginContainer2/VBoxContainer/MarginContainer/Control" parent_id_path=PackedInt32Array(328397483) index="0" unique_id=1873221397]
-custom_minimum_size = Vector2(629, 375)
+[node name="MarginContainer2_VBoxContainer_MarginContainer_Panel#PanelContainer" parent="MarginContainer2/VBoxContainer/MarginContainer/Control" parent_id_path=PackedInt32Array(1936046180) index="0" unique_id=486540011]
 clip_contents = true
+custom_minimum_size = Vector2(629, 375)
 offset_left = -110.0
 offset_right = 519.0
 offset_bottom = 375.0
@@ -99,7 +103,7 @@ size_flags_horizontal = 3
 text = "Wating for players ..."
 horizontal_alignment = 1
 
-[node name="MarginContainer2_VBoxContainer_MarginContainer_Panel#PanelContainer2" type="PanelContainer" parent="MarginContainer2/VBoxContainer/MarginContainer/Control" parent_id_path=PackedInt32Array(328397483) index="1" unique_id=1487465113]
+[node name="MarginContainer2_VBoxContainer_MarginContainer_Panel#PanelContainer2" type="PanelContainer" parent="MarginContainer2/VBoxContainer/MarginContainer/Control" parent_id_path=PackedInt32Array(1936046180) index="1" unique_id=1487465113]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5

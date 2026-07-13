@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cdcasqan7pusy"
-path="res://.godot/imported/origbig.png-d76ab37a0cec0c0ec054963993416cd8.ctex"
+uid="uid://b88jo31epcy8n"
+path="res://.godot/imported/kb_dark_symbols.png-7b13e2eb315cbe03604a89a14f63358b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/UI Assets/origbig.png"
-dest_files=["res://.godot/imported/origbig.png-d76ab37a0cec0c0ec054963993416cd8.ctex"]
+source_file="res://assets/Controllers and Keyboard/kb_dark_symbols.png"
+dest_files=["res://.godot/imported/kb_dark_symbols.png-7b13e2eb315cbe03604a89a14f63358b.ctex"]
 
 [params]
 

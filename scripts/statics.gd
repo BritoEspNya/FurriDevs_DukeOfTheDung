@@ -29,7 +29,6 @@ static func get_role_name(role: Role) -> String:
 
 class PlayerData:
 	signal dung_changed(value: int)
-	signal inventory_changed(value:Dictionary)
 	
 	var id: int
 	var name: String
@@ -44,17 +43,6 @@ class PlayerData:
 		set(value):
 			dung = value
 			dung_changed.emit(dung)
-	# Inventory format:
-	# {
-	#	"weapon": List[tres],
-	#	"armor": List[tres],
-	#	"perks": List[tres]
-	# }
-	var inventory_hud: Dictionary = {"weapon":[],"armor":[],"perks": []}:
-		set(value):
-			inventory_hud = value
-			inventory_changed.emit(inventory_hud)
-			
 	# Inventory format:
 	# {
 	#	"spear": 1,
