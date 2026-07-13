@@ -2,9 +2,11 @@
 
 [ext_resource type="Texture2D" uid="uid://brmdvyfdggcrh" path="res://assets/shop assets/spear.png" id="1_n750c"]
 [ext_resource type="Script" uid="uid://fh4d3knvvhnt" path="res://items/spear_item.gd" id="1_teler"]
+[ext_resource type="PackedScene" uid="uid://cha2lg2lxo46g" path="res://weapons/spear.tscn" id="3_u0kxu"]
 
 [resource]
 script = ExtResource("1_teler")
+weapon_scene = ExtResource("3_u0kxu")
 display_name = "Spear"
 description = "\"Sharp enough to make beetles nervous. Deals 5 damage\""
 image = ExtResource("1_n750c")
