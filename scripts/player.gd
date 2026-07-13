@@ -10,7 +10,7 @@ signal died
 @export var rotation_speed: float = 5
 #@export var projectile_scene: PackedScene
 @export var current_weapon_idx: int = 0
-@export var weapon_scenes: Array[PackedScene]
+@export var weapon_scenes: Array[PackedScene] # por defecto: Array[melee_weapon.scene()] 
 
 var _data: Statics.PlayerData
 var _speed: int = walk_speed
@@ -51,14 +51,7 @@ func _ready() -> void:
 	health_component.revived.connect(_on_revived)
 	sync_timer.timeout.connect(_on_sync_timeout)
 	weapon_spawner.spawned.connect(_on_weapon_spawned)
-	for weapon_scene: PackedScene in weapon_scenes:
-		if not weapon_scene:
-			continue
-		Debug.log("Weapon scene path: " + weapon_scene.resource_path)
-		weapon_spawner.add_spawnable_scene(weapon_scene.resource_path)
-
-		#weapon.queue_free()
-	
+	setup_weapon_spawner(weapon_scenes)
 	#if projectile_scene: # Para proyectiles propios del player
 		#projectile_spawner.add_spawnable_scene(projectile_scene.resource_path)
  	
@@ -68,7 +61,6 @@ func _ready() -> void:
 	respawn_timer.timeout.connect(_on_respawn_timeout)
 	health_bar.value = health_component.health
 	
-
 	
 func _physics_process(delta: float) -> void:
 	var move_input: Vector2 = input_synchronizer.move_input
@@ -96,6 +88,17 @@ func _physics_process(delta: float) -> void:
 				current_weapon.main_attack()
 			if Input.is_action_just_pressed("dev_swap_weapon"):
 				swap_weapon.rpc()
+			if Input.is_action_just_pressed("debug_buy_spear"):
+					var deb: String = "current buyer_id: " + str(get_id())
+					Debug.log(deb)
+					var spear_item: ItemData = preload("uid://cb3cw5riphjx7")
+					self.equip_weapon_inv(spear_item)
+			if Input.is_action_just_pressed("debug_free_dung"):
+					if multiplayer.is_server():
+						request_debug_add_dung(50)
+					else:
+						request_debug_add_dung.rpc_id(1, 50)
+			
 	else:
 		# Movement with ball attached
 		pivot.rotation += move_input.x * rotation_speed * delta
@@ -132,6 +135,13 @@ func setup(data: Statics.PlayerData) -> void:
 		#current_weapon.position = weapon_spawn_point.position
 		#current_weapon.rotation = weapon_spawn_point.rotation
 		#weapon_spawn_point.add_child(current_weapon, true)
+		
+func setup_weapon_spawner(weapon_scenes_array: Array[PackedScene]) -> void:
+	for weapon_scene: PackedScene in weapon_scenes_array:
+		if not weapon_scene:
+			continue
+		Debug.log("Weapon scene path: " + weapon_scene.resource_path)
+		weapon_spawner.add_spawnable_scene(weapon_scene.resource_path)
 
 @rpc("authority", "call_local", "reliable")
 func swap_weapon() -> void:
@@ -280,3 +290,18 @@ func equip_armor(item) -> void:
 func equip_perk(item) -> void:
 	_data.inventory_hud["perks"].append(item)
 	_data.inventory_changed.emit(_data.inventory_hud)
+
+@rpc("any_peer", "call_local", "reliable")
+func request_debug_add_dung(amount: int) -> void:
+	if not multiplayer.is_server():
+		return
+
+	var sender_id := multiplayer.get_remote_sender_id()
+	if sender_id == 0:
+		sender_id = multiplayer.get_unique_id()
+
+	var player_data: Statics.PlayerData = Game.get_player(sender_id)
+	if player_data == null:
+		return
+
+	Game.set_player_dung(sender_id, player_data.dung + amount)

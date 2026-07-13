@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="EquippableWeaponItemData" format=3 uid="uid://34p1i82q4iwu"]
 
 [ext_resource type="Texture2D" uid="uid://d214bgrswpk6s" path="res://assets/shop assets/Crossbow.png" id="1_exp30"]
-[ext_resource type="Script" uid="uid://c8hgprtvavpmk" path="res://items/equippable_weapon_item_data.gd.gd" id="2_rhwe4"]
+[ext_resource type="Script" uid="uid://c8hgprtvavpmk" path="res://items/equippable_weapon_item_data.gd" id="2_rhwe4"]
 [ext_resource type="PackedScene" uid="uid://btmrd6nvlryln" path="res://weapons/crossbow.tscn" id="3_5vf3e"]
 
 [resource]
