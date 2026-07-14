@@ -3,6 +3,7 @@ extends Node
 signal players_updated
 signal player_updated(id: int)
 signal vote_updated(id: int)
+signal purchase_approved(item_path: String)
 
 @export var multiplayer_test: bool = false
 @export var use_roles: bool = true
@@ -190,6 +191,60 @@ func set_current_player_dung(value:int) -> void:
 func multicast_set_player_coins(id: int, value:int) -> void:
 	var player_data = get_player(id)
 	player_data.dung = value
+
+# Llamada de solicitud de compra al servidor
+@rpc("any_peer", "call_local", "reliable")
+func request_buy_item(item_path: String) -> void:
+	# Llamada al servidor
+	if not multiplayer.is_server():
+		return
+	# Obtenemos el emisario
+	var buyer_id := multiplayer.get_remote_sender_id()
+	if buyer_id == 0: # Call local
+		buyer_id = multiplayer.get_unique_id()
+	# Obtenemos el player
+	var player_data := get_player(buyer_id)
+	# Verificamos que sea un item válido
+	var item: ItemData = get_item_from_path(item_path)
+	# Verificamos la compra
+	if player_data.dung < item.price:
+		Debug.log("Te falta cualquier plata loco")
+		return
+	# Cambiamos el dung
+	set_player_dung(buyer_id, player_data.dung - item.price)
+	# Aplicamos la compra en todos los peers
+	apply_purchase.rpc(buyer_id, item_path)
+	Debug.log("Señal de compra enviada patodos!")	
+
+@rpc("authority", "call_local", "reliable")
+func apply_purchase(buyer_id: int, item_path: String) -> void:
+	Debug.log(
+		"Peer %d -> jugador %d compró %s"
+		% [
+			multiplayer.get_unique_id(),
+			buyer_id,
+			item_path
+		]
+	)
+	# Cargar player (buyer)
+	var player: Player = get_scene_player_from_id(buyer_id)
+	# Cargar recurso (load(item_path))
+	var item: ItemData = get_item_from_path(item_path)
+	# Aplicar item.action(player) e item.equip(player)
+	item.action(player)
+	item.equip(player)
+	# Enviar bought.emit()
+	if multiplayer.get_unique_id() == buyer_id:
+		purchase_approved.emit(item_path)
+
+func get_scene_player_from_id(id: int) -> Player:
+	var player_data := get_player(id)
+	if player_data == null:
+		return null
+	return player_data.scene as Player
+	
+func get_item_from_path(path: String) -> ItemData:
+	return load(path) as ItemData
 
 func get_player_dung(id:int) -> int:
 	return get_player(id).dung

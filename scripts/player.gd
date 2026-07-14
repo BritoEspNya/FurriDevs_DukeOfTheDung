@@ -62,6 +62,7 @@ func _ready() -> void:
 	health_bar.value = health_component.health
 	
 	
+	
 func _physics_process(delta: float) -> void:
 	var move_input: Vector2 = input_synchronizer.move_input
 	if input_synchronizer.mode_input:
@@ -84,15 +85,16 @@ func _physics_process(delta: float) -> void:
 				#fire()
 				#if not weapon_scenes:
 					#pass
-				#if current_weapon:
-				current_weapon.main_attack()
+				if current_weapon:
+					current_weapon.main_attack()
 			if Input.is_action_just_pressed("dev_swap_weapon"):
 				swap_weapon.rpc()
 			if Input.is_action_just_pressed("debug_buy_spear"):
 					var deb: String = "current buyer_id: " + str(get_id())
 					Debug.log(deb)
 					var spear_item: ItemData = preload("uid://cb3cw5riphjx7")
-					self.equip_weapon_inv(spear_item)
+					Game.request_buy_item(spear_item.resource_path)
+					#self.equip_weapon_inv(spear_item)
 			if Input.is_action_just_pressed("debug_free_dung"):
 					if multiplayer.is_server():
 						request_debug_add_dung(50)
@@ -142,6 +144,36 @@ func setup_weapon_spawner(weapon_scenes_array: Array[PackedScene]) -> void:
 			continue
 		Debug.log("Weapon scene path: " + weapon_scene.resource_path)
 		weapon_spawner.add_spawnable_scene(weapon_scene.resource_path)
+		
+func register_weapon_scene(weapon_scene: PackedScene) -> int:
+	if weapon_scene == null:
+		return -1
+
+	var scene_path := weapon_scene.resource_path
+
+	if scene_path.is_empty():
+		push_error("La escena del arma no tiene resource_path")
+		return -1
+	
+	# Verificamos que no exista el
+	for index: int in weapon_scenes.size():
+		var registered_scene := weapon_scenes[index]
+
+		if registered_scene == null:
+			continue
+
+		if registered_scene.resource_path == scene_path:
+			return index
+
+	weapon_scenes.append(weapon_scene)
+	weapon_spawner.add_spawnable_scene(scene_path)
+
+	Debug.log(
+		"Registered weapon scene: %s at index %d"
+		% [scene_path, weapon_scenes.size() - 1]
+	)
+
+	return weapon_scenes.size() - 1
 
 @rpc("authority", "call_local", "reliable")
 func swap_weapon() -> void:
@@ -282,6 +314,8 @@ func equip_weapon_inv(item) -> void:
 	Debug.log("equipando arma")
 	_data.inventory_hud["weapon"].append(item)
 	_data.inventory_changed.emit(_data.inventory_hud)
+	register_weapon_scene(item.weapon_scene)
+	# Una vez 
 
 func equip_armor(item) -> void:
 	_data.inventory_hud["armor"] = [item]

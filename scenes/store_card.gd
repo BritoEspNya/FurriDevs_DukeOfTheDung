@@ -31,7 +31,6 @@ func update() -> void:
 func _on_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("click"):
 		Game.request_buy_item.rpc_id(1,item_data.resource_path)
-		
 		#var player_coins: int = Game.get_current_player_dung()
 		#if player_coins >= item_data.price:
 			#Game.set_current_player_dung(player_coins-item_data.price)
