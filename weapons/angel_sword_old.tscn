@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cyfxvbt6ottqs"]
+
+[ext_resource type="Script" uid="uid://c5xg3bjyrktts" path="res://weapons/projectile_weapon.gd" id="1_jl0q6"]
+[ext_resource type="Texture2D" uid="uid://dkxfxrs3vsurj" path="res://assets/player asset/AngelSword.png" id="2_4ladi"]
+
+[node name="ProjectileWeapon" type="Node2D" unique_id=71827757]
+script = ExtResource("1_jl0q6")
+
+[node name="ProjectileSpawnMarker" type="Marker2D" parent="." unique_id=1371906066]
+position = Vector2(2612, 0)
+
+[node name="ProjectileSpawner" type="MultiplayerSpawner" parent="." unique_id=1775052370]
+spawn_path = NodePath(".")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1808882682]
+texture_filter = 1
+position = Vector2(1404, 0)
+rotation = 0.7853982
+texture = ExtResource("2_4ladi")
