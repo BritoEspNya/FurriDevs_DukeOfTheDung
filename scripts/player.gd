@@ -81,7 +81,7 @@ func _physics_process(delta: float) -> void:
 		if is_multiplayer_authority():
 			weapon_pivot.rotation = global_position.direction_to(get_global_mouse_position()).angle()
 			#Debug.log("Cambio de rotación:", weapon_pivot.rotation)
-			if input_synchronizer.attack_input:
+			if input_synchronizer.attack_input and not input_synchronizer.flight_input:
 				#fire()
 				#if not weapon_scenes:
 					#pass
