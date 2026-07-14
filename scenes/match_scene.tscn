@@ -80,7 +80,7 @@ script = ExtResource("7_on7a6")
 [node name="Timers" type="Node" parent="." unique_id=770002393]
 
 [node name="RoundTimer" type="Timer" parent="Timers" unique_id=954822435]
-wait_time = 111.96300000000001
+wait_time = 30.0
 one_shot = true
 
 [node name="ShopTimer" type="Timer" parent="Timers" unique_id=1704158372]
