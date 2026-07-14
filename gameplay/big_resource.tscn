@@ -12,6 +12,8 @@ properties/0/spawn = true
 properties/0/replication_mode = 0
 
 [node name="Big_resource" type="Area2D" unique_id=201861898]
+collision_layer = 0
+collision_mask = 128
 script = ExtResource("1_838aw")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1657006920]
