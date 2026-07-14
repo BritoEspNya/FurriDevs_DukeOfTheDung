@@ -148,31 +148,25 @@ func setup_weapon_spawner(weapon_scenes_array: Array[PackedScene]) -> void:
 func register_weapon_scene(weapon_scene: PackedScene) -> int:
 	if weapon_scene == null:
 		return -1
-
 	var scene_path := weapon_scene.resource_path
-
 	if scene_path.is_empty():
 		push_error("La escena del arma no tiene resource_path")
 		return -1
 	
-	# Verificamos que no exista el
+	# Verificamos que no exista el arma
 	for index: int in weapon_scenes.size():
 		var registered_scene := weapon_scenes[index]
-
 		if registered_scene == null:
 			continue
-
 		if registered_scene.resource_path == scene_path:
 			return index
-
+	# Agregamos la escena del arma al spawner
 	weapon_scenes.append(weapon_scene)
 	weapon_spawner.add_spawnable_scene(scene_path)
-
 	Debug.log(
 		"Registered weapon scene: %s at index %d"
 		% [scene_path, weapon_scenes.size() - 1]
 	)
-
 	return weapon_scenes.size() - 1
 
 @rpc("authority", "call_local", "reliable")
