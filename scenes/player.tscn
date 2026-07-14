@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://ddd1jtgth5ca0" path="res://components/health_component.tscn" id="5_qlg0r"]
 [ext_resource type="Script" uid="uid://d0ssffnqid5lp" path="res://components/hurtbox_component.gd" id="6_tuyoq"]
 [ext_resource type="Texture2D" uid="uid://cnmp3flsoywpi" path="res://assets/player asset/Beetle_flght_spritesheet.png" id="7_3v2ag"]
-[ext_resource type="PackedScene" uid="uid://ohcpyqgt3d10" path="res://ui/hb.tscn" id="9_ur7pv"]
 [ext_resource type="Theme" uid="uid://86edik8i4neo" path="res://resources/theme.tres" id="10_y4r1p"]
 [ext_resource type="PackedScene" uid="uid://bpb4vmxbltgdi" path="res://scenes/hud.tscn" id="11_d2wvv"]
 
@@ -25,7 +24,7 @@ properties/0/spawn = true
 properties/0/replication_mode = 1
 properties/1/path = NodePath(".:current_weapon_idx")
 properties/1/spawn = true
-properties/1/replication_mode = 1
+properties/1/replication_mode = 2
 
 [sub_resource type="Animation" id="Animation_dqkch"]
 length = 0.001
@@ -417,8 +416,6 @@ spawn_path = NodePath(".")
 
 [node name="WeaponSpawner" type="MultiplayerSpawner" parent="." unique_id=1055292100]
 spawn_path = NodePath("../WeaponPivot/WeaponSpawnPoint")
-
-[node name="HB" parent="." unique_id=2067490662 instance=ExtResource("9_ur7pv")]
 
 [node name="HealthBar" type="ProgressBar" parent="." unique_id=36352460]
 offset_left = -75.0

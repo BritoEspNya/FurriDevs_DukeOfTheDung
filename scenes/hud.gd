@@ -1,8 +1,9 @@
+class_name HUD
 extends CanvasLayer
 
 @onready var dung: Label = %Dung
 @onready var inventory_container: HBoxContainer = %InventoryContainer
-
+@onready var health_bar: ProgressBar = $HealthBar
 
 func _ready() -> void:
 	var current_player_data: Statics.PlayerData = Game.get_current_player()

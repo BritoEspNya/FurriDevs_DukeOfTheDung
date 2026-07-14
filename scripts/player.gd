@@ -25,9 +25,9 @@ var current_weapon: Weapon
 #@onready var projectile_spawner: MultiplayerSpawner = $ProjectileSpawner
 #@onready var projectile_spawn_marker: Marker2D = $Pivot/ProjectileSpawnMarker
 @onready var health_component: HealthComponent = $HealthComponent
-@onready var hb: HB = $HB
+@onready var hud: HUD = $HUD
 @onready var health_bar: ProgressBar = $HealthBar
-@onready var hud: CanvasLayer = $HUD
+#@onready var hud: CanvasLayer = $HUD
 @onready var respawn_timer: Timer = $RespawnTimer
 
 
@@ -55,8 +55,8 @@ func _ready() -> void:
 	#if projectile_scene: # Para proyectiles propios del player
 		#projectile_spawner.add_spawnable_scene(projectile_scene.resource_path)
  	
-	hb.health_bar.max_value = health_component.max_health
-	hb.health_bar.value = health_component.health
+	hud.health_bar.max_value = health_component.max_health
+	hud.health_bar.value = health_component.health
 	health_bar.max_value = health_component.max_health
 	respawn_timer.timeout.connect(_on_respawn_timeout)
 	health_bar.value = health_component.health
@@ -126,7 +126,7 @@ func setup(data: Statics.PlayerData) -> void:
 	input_synchronizer.set_multiplayer_authority(data.id, false)
 	#weapon_spawner.set_multiplayer_authority(1, false)
 	camera_2d.enabled = is_multiplayer_authority()
-	hb.visible = is_multiplayer_authority()
+	hud.visible = is_multiplayer_authority()
 	health_bar.visible = not is_multiplayer_authority()
 	#pivot.set_multiplayer_authority(data.id, false)
 	if is_multiplayer_authority():
@@ -222,7 +222,7 @@ func _on_sync_timeout() -> void:
 func _on_health_changed(value: int, max_value: int) -> void:
 	var deb: String = str("HP: ", value, "/", max_value)
 	Debug.log(deb)
-	hb.health_bar.value = value
+	hud.health_bar.value = value
 	health_bar.value = value
 	# UI local, barra de vida, efectos visuales simples.
 
@@ -274,8 +274,8 @@ func increase_max_healt(value:int) -> void:
 	var max_healt_increase = int(health_component.max_health*0.10)
 	health_component.max_health += max_healt_increase
 	health_component.health += max_healt_increase
-	hb.health_bar.max_value = health_component.max_health
-	hb.health_bar.value = health_component.health
+	hud.health_bar.max_value = health_component.max_health
+	hud.health_bar.value = health_component.health
 	health_bar.max_value = health_component.max_health
 	health_bar.value = health_component.health
 

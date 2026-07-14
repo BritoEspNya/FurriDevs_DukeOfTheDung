@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://bpb4vmxbltgdi"]
 
 [ext_resource type="Script" uid="uid://74pytd6sm8yr" path="res://scenes/hud.gd" id="1_ahhtf"]
+[ext_resource type="Theme" uid="uid://86edik8i4neo" path="res://resources/theme.tres" id="2_5ysmq"]
+[ext_resource type="Texture2D" uid="uid://clpcphiswq7ca" path="res://assets/UI Assets/health_bar.png" id="3_6fi6k"]
 
 [node name="HUD" type="CanvasLayer" unique_id=2000280290]
 script = ExtResource("1_ahhtf")
@@ -51,3 +53,25 @@ horizontal_alignment = 1
 [node name="InventoryContainer" type="HBoxContainer" parent="VBoxContainer2" unique_id=1934973843]
 unique_name_in_owner = true
 layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=444951917]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1764205022]
+layout_mode = 2
+
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=1734059601]
+offset_left = 106.0
+offset_top = 79.67236
+offset_right = 311.42853
+offset_bottom = 117.67236
+theme = ExtResource("2_5ysmq")
+theme_type_variation = &"HealthBar"
+show_percentage = false
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=526139988]
+texture_filter = 1
+position = Vector2(188.4285, 76.67236)
+scale = Vector2(3.4581263, 3.7015424)
+texture = ExtResource("3_6fi6k")
