@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://e7puldywsjfu"]
+
+[ext_resource type="Script" uid="uid://cp65pikhdvbu3" path="res://weapons/weapon.gd" id="1_jl0q6"]
+[ext_resource type="Texture2D" uid="uid://dkxfxrs3vsurj" path="res://assets/player asset/AngelSword.png" id="2_4ladi"]
+[ext_resource type="PackedScene" uid="uid://dco626r4ehnmv" path="res://weapons/sword_attack.tscn" id="2_jl0q6"]
+
+[node name="AngelSword" type="Node2D" unique_id=71827757]
+script = ExtResource("1_jl0q6")
+attack_scene = ExtResource("2_jl0q6")
+attack_cooldown = 1.0
+base_damage = 25.0
+
+[node name="AttackSpawnMarker" type="Marker2D" parent="." unique_id=1371906066]
+position = Vector2(122, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1808882682]
+texture_filter = 1
+position = Vector2(152, 0)
+rotation = 0.7853982
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_4ladi")

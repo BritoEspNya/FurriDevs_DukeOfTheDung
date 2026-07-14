@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bx3d78qgetgp5" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://ogom7y53uhmw" path="res://assets/player asset/beetle-walk-spritesheet.png" id="2_qhqgy"]
+[ext_resource type="PackedScene" uid="uid://e7puldywsjfu" path="res://weapons/angel_sword.tscn" id="3_d2wvv"]
 [ext_resource type="PackedScene" uid="uid://kyo5ugj565rn" path="res://scenes/input_synchronizer.tscn" id="3_qhqgy"]
 [ext_resource type="Script" uid="uid://bdhvqyy2d5ivq" path="res://components/hitbox_component.gd" id="4_fjrip"]
 [ext_resource type="PackedScene" uid="uid://bcrgenvvdigvd" path="res://weapons/melee_weapon.tscn" id="5_f1ej7"]
@@ -338,7 +339,7 @@ scale = Vector2(0.5, 0.5)
 motion_mode = 1
 script = ExtResource("1_g2els")
 acceleration = 700.0
-weapon_scenes = Array[PackedScene]([ExtResource("5_f1ej7")])
+weapon_scenes = Array[PackedScene]([ExtResource("5_f1ej7"), ExtResource("3_d2wvv")])
 
 [node name="Pivot" type="Node2D" parent="." unique_id=1595429681]
 
