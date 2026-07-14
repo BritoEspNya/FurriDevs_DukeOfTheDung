@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://q0keb73ua61k" path="res://gameplay/little_resource.tscn" id="2_paxxb"]
 [ext_resource type="PackedScene" uid="uid://dwnxodiquq63m" path="res://gameplay/big_resource.tscn" id="3_gldc4"]
 [ext_resource type="PackedScene" uid="uid://b528aiaihjxiq" path="res://scenes/tree.tscn" id="5_2klcf"]
+[ext_resource type="PackedScene" uid="uid://boqgo1fp4wbnh" path="res://scenes/bush.tscn" id="7_nakos"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_paxxb"]
 texture = ExtResource("1_4xfga")
@@ -380,22 +381,31 @@ tile_set = ExtResource("2_0cso3")
 position = Vector2(620, 487)
 
 [node name="Tree2" parent="." unique_id=1199881037 instance=ExtResource("5_2klcf")]
-position = Vector2(2086, 1088)
+position = Vector2(1946.0001, 1006)
 
 [node name="Tree3" parent="." unique_id=1946298402 instance=ExtResource("5_2klcf")]
-position = Vector2(808, 2393)
+position = Vector2(770, 2736)
 
 [node name="Tree4" parent="." unique_id=1390610838 instance=ExtResource("5_2klcf")]
-position = Vector2(2362, 2708)
+position = Vector2(2604, 2777)
 
 [node name="Tree5" parent="." unique_id=1359667398 instance=ExtResource("5_2klcf")]
-position = Vector2(5050, 677)
+position = Vector2(4783, 601)
 
 [node name="Tree6" parent="." unique_id=1940562773 instance=ExtResource("5_2klcf")]
-position = Vector2(4020, 1345)
+position = Vector2(4613, 1573)
 
 [node name="Tree7" parent="." unique_id=129916682 instance=ExtResource("5_2klcf")]
-position = Vector2(4530, 2384)
+position = Vector2(4822, 2798)
+
+[node name="Tree8" parent="." unique_id=1499006296 instance=ExtResource("5_2klcf")]
+position = Vector2(3142.0002, 1761.0001)
+
+[node name="Tree9" parent="." unique_id=1101754087 instance=ExtResource("5_2klcf")]
+position = Vector2(3104, 512)
+
+[node name="Tree10" parent="." unique_id=1162926051 instance=ExtResource("5_2klcf")]
+position = Vector2(1103, 1724.0001)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=223762704]
 
@@ -418,3 +428,27 @@ debug_color = Color(0.102192365, 0.64848673, 0, 0.41960785)
 position = Vector2(5625.75, 1721)
 shape = SubResource("RectangleShape2D_jh32y")
 debug_color = Color(0, 0.54060465, 0.9504301, 0.41960785)
+
+[node name="Bush" parent="." unique_id=1803655451 instance=ExtResource("7_nakos")]
+position = Vector2(1851, 1908)
+
+[node name="Bush2" parent="." unique_id=2144770292 instance=ExtResource("7_nakos")]
+position = Vector2(1712, 2927)
+
+[node name="Bush3" parent="." unique_id=788174411 instance=ExtResource("7_nakos")]
+position = Vector2(3740, 2978)
+
+[node name="Bush4" parent="." unique_id=201718983 instance=ExtResource("7_nakos")]
+position = Vector2(3926, 1008)
+
+[node name="Bush5" parent="." unique_id=941469468 instance=ExtResource("7_nakos")]
+position = Vector2(538, 1043)
+
+[node name="Bush6" parent="." unique_id=1483762997 instance=ExtResource("7_nakos")]
+position = Vector2(4635, 2068)
+
+[node name="Bush7" parent="." unique_id=310707980 instance=ExtResource("7_nakos")]
+position = Vector2(338, 2213)
+
+[node name="Bush8" parent="." unique_id=1650949653 instance=ExtResource("7_nakos")]
+position = Vector2(2302, 420)
