@@ -75,3 +75,18 @@ texture_filter = 1
 position = Vector2(188.4285, 76.67236)
 scale = Vector2(3.4581263, 3.7015424)
 texture = ExtResource("3_6fi6k")
+
+[node name="StaminaBar" type="ProgressBar" parent="." unique_id=145426398]
+offset_left = 106.0
+offset_top = 138.00002
+offset_right = 311.42853
+offset_bottom = 176.00002
+scale = Vector2(0.71999943, 0.71999943)
+theme = ExtResource("2_5ysmq")
+theme_type_variation = &"StaminaBar"
+show_percentage = false
+
+[node name="Sprite2D" type="Sprite2D" parent="StaminaBar" unique_id=1740775952]
+texture_filter = 1
+position = Vector2(82.4285, -3)
+scale = Vector2(3.4581263, 3.7015424)
