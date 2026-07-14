@@ -29,7 +29,16 @@ func generate_cards() -> void:
 		available_items.erase(random_item)
 
 func _on_bought(item_card: ItemCard) -> void:
-	var available_items = item_data_array.duplicate()
-	available_items.erase(item_card)
+	var available_items: Array[ItemData] = item_data_array.duplicate()
+	var item_cards: Array[ItemCard] = [item_card_1, item_card_2, item_card_3]
+	# No repetir el ítem recién comprado.
+	available_items.erase(item_card.item_data)
+	# No usar ítems que ya muestran las otras cartas.
+	for card: ItemCard in item_cards:
+		if card == item_card:
+			continue
+		available_items.erase(card.item_data)
+	if available_items.is_empty():
+		Debug.log("No quedan ítems únicos disponibles para reemplazar la carta")
+		return
 	item_card.item_data = available_items.pick_random()
-	

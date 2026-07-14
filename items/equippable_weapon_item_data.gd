@@ -9,4 +9,4 @@ func action(player: Player) -> void:
 
 func equip(player:Player) -> void:
 	Debug.log("llamando a equip de arma")
-	player.equip_weapon(self)
+	player.equip_weapon_inv(self)

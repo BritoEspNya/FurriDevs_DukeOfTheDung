@@ -5,10 +5,12 @@ func _ready() -> void:
 		body_entered.connect(_on_body_entered)
 	
 func _on_body_entered(body: Node2D) -> void:
-	var player: Player = body as Player
-	if player:
-		Game.set_player_dung(player.get_id(), Game.get_player_dung(player.get_id()) + 5)
-		destroy.rpc()
+	var ball: Ball = body as Ball
+	if ball:
+		var player: Player = ball.attached_player
+		if player:
+			Game.set_player_dung(player.get_id(), Game.get_player_dung(player.get_id()) + 5)
+			destroy.rpc()
 
 @rpc("call_local","reliable")
 func destroy() -> void: 

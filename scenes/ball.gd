@@ -1,3 +1,4 @@
+class_name Ball
 extends StaticBody2D
 
 var _near_players: Array[Node2D]
@@ -61,6 +62,8 @@ func attach(player_path: NodePath) -> void:
 		set_collision_layer_value(1, false)
 		is_attached = true
 		player.input_synchronizer.mode_input = false
+		print("Layer:", collision_layer)
+		print("Mask:", collision_mask)
 
 @rpc("any_peer", "call_local", "reliable")
 func detach(player_path: NodePath) -> void:
