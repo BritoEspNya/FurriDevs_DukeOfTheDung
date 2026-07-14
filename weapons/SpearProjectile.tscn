@@ -19,11 +19,12 @@ properties/1/replication_mode = 0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cus6t"]
 size = Vector2(11, 8)
 
-[node name="SpearProjectile" type="Area2D" unique_id=1349324402]
+[node name="SpearProjectile" type="Area2D" unique_id=1349324402 node_paths=PackedStringArray("hitbox_component")]
 scale = Vector2(3, 3)
 collision_layer = 5
 collision_mask = 3
 script = ExtResource("1_enfed")
+hitbox_component = NodePath("HitboxComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1864048418]
 rotation = -1.5707964

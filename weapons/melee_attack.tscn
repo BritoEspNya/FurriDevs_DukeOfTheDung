@@ -151,9 +151,10 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_byqvd"]
 size = Vector2(16, 54)
 
-[node name="MeeleAttack" type="Area2D" unique_id=845703339]
+[node name="MeeleAttack" type="Area2D" unique_id=845703339 node_paths=PackedStringArray("hitbox_component")]
 scale = Vector2(2, 2)
 script = ExtResource("1_e1m7m")
+hitbox_component = NodePath("HitboxComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=4685101]
 shape = SubResource("RectangleShape2D_g4v7s")

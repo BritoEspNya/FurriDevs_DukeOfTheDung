@@ -210,16 +210,8 @@ func equip_weapon_ph(weapon_idx: int) -> void:
 func send_position(pos: Vector2) -> void:
 	global_position = lerp(global_position, pos, 0.5)
 	
-
-## Not used for now, but it should get used later when the shoot animation have got implemented
-#func fire_one_shot(one_shot_name: String) -> void:
-	##animation_tree["parameters/%s/request" % one_shot_name] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
-	## now it should call fire() methon (i'll change the name in the future)
-	#pass
-	
 func _on_weapon_spawned(node: Node) -> void:
 	Debug.log("Weapon spawned locally: " + node.name)
-
 	if node is Weapon:
 		current_weapon = node
 
