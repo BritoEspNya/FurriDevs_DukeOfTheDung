@@ -96,3 +96,11 @@ class PlayerData:
 		index = player_data.index
 		role = player_data.role
 		vote = player_data.vote
+		
+	func reset() -> void:
+		dung = 0
+		inventory = {}
+		equipped_weapon_id = ""
+		inventory_hud = {"weapon":[],"armor":[],"perks": []}
+		dung_changed.emit(dung)
+		inventory_changed.emit(inventory_hud)

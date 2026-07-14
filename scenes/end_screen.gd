@@ -9,7 +9,7 @@ func show_results() -> void:
 	var sorted_players = Game.players.duplicate()
 	sorted_players.sort_custom(func(a, b): return a.dung > b.dung)
 	
-	var final_text = "-- PUNTAJES --\n"
+	var final_text = "-- SCORE --\n"
 	var position = 1
 	for player_data: Statics.PlayerData in sorted_players:
 		var player_name = player_data.name

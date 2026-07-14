@@ -339,3 +339,7 @@ func request_debug_add_dung(amount: int) -> void:
 		return
 
 	Game.set_player_dung(sender_id, player_data.dung + amount)
+
+func get_HUD() -> CanvasLayer: return hud
+
+func get_HB() -> CanvasLayer: return hb

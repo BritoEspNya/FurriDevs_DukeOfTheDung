@@ -19,6 +19,7 @@ enum MatchState {
 @onready var end_screen: Control = $"../UI/EndScreen"
 @onready var shop_timer: Timer = $"../Timers/ShopTimer"
 @onready var timer_label: Label = $"../UI/TimerLabel"
+@onready var results_timer: Timer = $"../Timers/ResultsTimer"
 
 var current_state: MatchState = MatchState.GAME_STARTING
 
@@ -43,6 +44,7 @@ func _ready() -> void:
 	match_timer.timeout.connect(_on_match_timer_timeout)
 	round_timer.timeout.connect(_on_round_timer_timeout)
 	shop_timer.timeout.connect(_on_shop_timer_timeout)
+	results_timer.timeout.connect(_on_results_timer_timeout)
 	# OJO se debe haber ejecutado setup()
 	start_match()
 	
@@ -84,10 +86,24 @@ func exit_shop() -> void:
 	start_round()
 
 func end_match() -> void:
+	shop_timer.stop()
+	round_timer.stop()
+	
+	for player in players:
+		var HUD: CanvasLayer = player.get_HUD()	
+		var HB: CanvasLayer = player.get_HB()
+		HUD.hide()
+		HB.hide()
+		
 	end_screen.show_results()
 	end_screen.show()
 	change_state(MatchState.GAME_ENDING)
 	_set_gameplay_enabled(false)
+	
+	for player_data in Game.players:
+		player_data.reset()
+	
+	results_timer.start()
 
 func change_state(new_state: MatchState) -> void:
 	if current_state == new_state:
@@ -115,6 +131,14 @@ func _on_shop_timer_timeout() -> void:
 func _on_match_timer_timeout() -> void:
 	end_match()
 
+func _on_results_timer_timeout() -> void:
+	if multiplayer.is_server():
+		go_to_lobby.rpc()
+
+@rpc("reliable", "call_local")
+func go_to_lobby() -> void:
+	get_tree().change_scene_to_file("res://lobby/waiting_screen.tscn")
+
 func _process(delta: float) -> void:
 	update_timer_label()
 	
@@ -130,7 +154,7 @@ func update_timer_label() -> void:
 			timer_label.text = "Starting..."
 
 		MatchState.GAME_ENDING:
-			timer_label.text = "Game Over"
+			timer_label.hide()
 			
 func _on_player_died(player: Player) -> void:
 	if not multiplayer.is_server():
