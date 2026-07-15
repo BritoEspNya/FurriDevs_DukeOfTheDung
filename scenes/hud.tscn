@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://74pytd6sm8yr" path="res://scenes/hud.gd" id="1_ahhtf"]
 [ext_resource type="Theme" uid="uid://86edik8i4neo" path="res://resources/theme.tres" id="2_5ysmq"]
 [ext_resource type="Texture2D" uid="uid://bne2j4colcawp" path="res://assets/player asset/game_ui.png" id="3_5ysmq"]
-[ext_resource type="Texture2D" uid="uid://bmtccg7wb7hlt" path="res://assets/UI Assets/horizontal_frame.png" id="4_6fi6k"]
+[ext_resource type="Texture2D" uid="uid://cj7t0igrxh2r7" path="res://assets/UI Assets/long_horizontal_frame.png" id="4_6fi6k"]
 
 [node name="HUD" type="CanvasLayer" unique_id=2000280290]
 script = ExtResource("1_ahhtf")
@@ -37,19 +37,19 @@ offset_bottom = 40.0
 layout_mode = 2
 
 [node name="HealthBar" type="ProgressBar" parent="." unique_id=1734059601]
-offset_left = 167.0
-offset_top = 62.0
-offset_right = 381.0
-offset_bottom = 85.0
+offset_left = 161.29756
+offset_top = 52.57853
+offset_right = 375.29755
+offset_bottom = 75.57853
 theme = ExtResource("2_5ysmq")
 theme_type_variation = &"HealthBar"
 show_percentage = false
 
 [node name="StaminaBar" type="ProgressBar" parent="." unique_id=145426398]
-offset_left = 165.0
-offset_top = 92.0
-offset_right = 466.3891
-offset_bottom = 122.55558
+offset_left = 159.29756
+offset_top = 82.57853
+offset_right = 460.68665
+offset_bottom = 113.13411
 scale = Vector2(0.71999943, 0.71999943)
 theme = ExtResource("2_5ysmq")
 theme_type_variation = &"StaminaBar"
@@ -57,7 +57,7 @@ show_percentage = false
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=526139988]
 texture_filter = 1
-position = Vector2(218.82047, 103.71074)
+position = Vector2(213.11803, 94.28927)
 scale = Vector2(2.2975452, 2.4592683)
 texture = ExtResource("3_5ysmq")
 
@@ -65,10 +65,10 @@ texture = ExtResource("3_5ysmq")
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -1038.0
-offset_top = 112.99999
-offset_right = -978.0
-offset_bottom = 169.0
+offset_left = -1062.0
+offset_top = 101.999985
+offset_right = -1002.0
+offset_bottom = 158.0
 grow_horizontal = 0
 scale = Vector2(0.79999876, 0.79999876)
 size_flags_horizontal = 8
@@ -94,17 +94,17 @@ text = "value"
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -226.00012
-offset_top = 58.999996
-offset_right = -94.00012
-offset_bottom = 115.000015
+offset_left = -197.0
+offset_top = 60.999996
+offset_right = -65.0
+offset_bottom = 117.000015
 grow_horizontal = 0
 scale = Vector2(0.79999876, 0.79999876)
 size_flags_horizontal = 8
 
 [node name="Sprite2D" type="Sprite2D" parent="Timer" unique_id=2136008535]
 texture_filter = 1
-position = Vector2(51.250298, 30.000048)
+position = Vector2(80.00035, 32.500053)
 scale = Vector2(2.8725536, 2.8725536)
 texture = ExtResource("4_6fi6k")
 
