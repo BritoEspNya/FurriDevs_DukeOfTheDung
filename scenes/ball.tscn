@@ -4,6 +4,7 @@
 [ext_resource type="Shader" uid="uid://bq76el8joqeu4" path="res://scenes/ball.gdshader" id="2_f7cbr"]
 [ext_resource type="Texture2D" uid="uid://dyvk4msonthvg" path="res://assets/ball assets/DungBall_texture.png" id="3_4dx81"]
 [ext_resource type="Texture2D" uid="uid://cf7jw1y68qjlp" path="res://assets/ball assets/DungBall_outline.png" id="3_eew57"]
+[ext_resource type="Texture2D" uid="uid://cjl2tnd1dbre3" path="res://assets/ball assets/DungBall_outline - copia.png" id="5_eew57"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eew57"]
 shader = ExtResource("2_f7cbr")
@@ -30,6 +31,13 @@ radius = 109.0
 collision_layer = 129
 collision_mask = 5
 script = ExtResource("1_cxlvu")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=650100756]
+self_modulate = Color(0.1254902, 0.1254902, 0.1254902, 0.1254902)
+texture_filter = 1
+position = Vector2(9.000001, 8.000003)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_eew57")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1302526253]
 y_sort_enabled = true
