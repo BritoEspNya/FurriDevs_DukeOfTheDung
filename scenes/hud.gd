@@ -4,6 +4,7 @@ extends CanvasLayer
 @onready var dung: Label = %Dung
 @onready var inventory_container: HBoxContainer = %InventoryContainer
 @onready var health_bar: ProgressBar = $HealthBar
+@onready var stamina_bar: ProgressBar = $StaminaBar
 @onready var timer_label: Label = $Timer/TimerLabel
 
 

@@ -15,6 +15,23 @@ signal died
 var _data: Statics.PlayerData
 var _speed: int = walk_speed
 var current_weapon: Weapon
+var is_flying: bool
+@export var max_stamina: int = 10
+@export var stamina: int = 10:
+	set(value):
+		var new_stamina = clamp(value, 0, max_stamina)
+		if stamina == new_stamina:
+			return
+		stamina = new_stamina
+		#stamina_changed.emit(stamina, max_stamina)
+var stamina_decrease_interval := 0.5  # cada 0.5s se descuenta 1
+var stamina_recover_interval := 0.2  # cada 0.2s se recupera 1
+var stamina_recover_delay := 1.0     # espera 1s tras dejar de correr
+var stamina_per_tick := 1
+var stamina_timer := 0.0
+var recovering_stamina := false
+var stamina_recover_timer := 0.0
+var stamina_locked := false  # impide correr si no hay stamina suficiente
 
 @onready var label: Label = $Pivot/Label
 @onready var multiplayer_synchronizer: MultiplayerSynchronizer = $MultiplayerSynchronizer
@@ -57,6 +74,8 @@ func _ready() -> void:
  	
 	hud.health_bar.max_value = health_component.max_health
 	hud.health_bar.value = health_component.health
+	hud.stamina_bar.max_value = max_stamina
+	hud.stamina_bar.value = stamina
 	health_bar.max_value = health_component.max_health
 	respawn_timer.timeout.connect(_on_respawn_timeout)
 	health_bar.value = health_component.health
@@ -67,8 +86,35 @@ func _physics_process(delta: float) -> void:
 	var move_input: Vector2 = input_synchronizer.move_input
 	if input_synchronizer.mode_input:
 		# Flight mode
-		if input_synchronizer.flight_input:
+		is_flying = input_synchronizer.flight_input 
+		if is_flying:
 			_speed = flight_speed
+			if move_input and stamina > 0:
+				stamina_timer += delta
+				stamina_recover_timer = 0.0
+				recovering_stamina = false
+
+				if stamina_timer >= stamina_decrease_interval:
+					stamina_timer = 0.0
+					stamina = max(stamina - stamina_per_tick, 0)
+					hud.stamina_bar.value = stamina
+					
+					if stamina <= 0:
+						is_flying = false  # ya no puede correr si no tiene stamina
+				else:
+					# Comenzar recuperación después de un retardo
+					stamina_recover_timer += delta
+					if stamina_recover_timer >= stamina_recover_delay:
+						recovering_stamina = true
+				
+				# Recuperación progresiva de stamina
+				if recovering_stamina and stamina < max_stamina:
+					stamina_timer += delta
+					if stamina_timer >= stamina_recover_interval:
+						stamina_timer = 0.0
+						stamina += stamina_per_tick
+						stamina = min(stamina, max_stamina)
+						hud.stamina_bar.value = stamina
 		else:
 			_speed = walk_speed
 		# Normal Movement
@@ -269,8 +315,11 @@ func apply_respawn_position(spawn_position: Vector2) -> void:
 
 func get_id() -> int:
 	return _data.id
+
+func get_dung() -> int:
+	return _data.dung
 	
-func change_timer_label(ltext: String) -> void:
+func set_timer_label(ltext: String) -> void:
 	hud.set_timer_label(ltext)
 
 func increase_max_healt(value:int) -> void:
