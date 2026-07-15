@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dkxfxrs3vsurj"
-path="res://.godot/imported/AngelSword.png-e3a29a79c85ed3ac24b34c8f38e78b04.ctex"
+uid="uid://dlel4wk3tuhe0"
+path="res://.godot/imported/olimpus_sword_basic.png-91bf632f897fb9d93367a48f014789bc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/player asset/AngelSword.png"
-dest_files=["res://.godot/imported/AngelSword.png-e3a29a79c85ed3ac24b34c8f38e78b04.ctex"]
+source_file="res://assets/player asset/olimpus_sword_basic.png"
+dest_files=["res://.godot/imported/olimpus_sword_basic.png-91bf632f897fb9d93367a48f014789bc.ctex"]
 
 [params]
 
