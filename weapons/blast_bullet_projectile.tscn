@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://b0p34t5f8gsg4"]
+
+[ext_resource type="Script" uid="uid://betdjv44g2qtq" path="res://weapons/projectile.gd" id="1_wb0oi"]
+[ext_resource type="Texture2D" uid="uid://78pqydsccq1l" path="res://assets/weapon_asset/blast_bullet.png" id="2_wb0oi"]
+[ext_resource type="Script" uid="uid://bdhvqyy2d5ivq" path="res://components/hitbox_component.gd" id="3_jxjsw"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xuifw"]
+radius = 3.0
+height = 6.0
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ns54y"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cus6t"]
+size = Vector2(8.166666, 7.3333335)
+
+[node name="BlastBulletProjectile" type="Area2D" unique_id=1349324402 node_paths=PackedStringArray("hitbox_component")]
+scale = Vector2(3, 3)
+collision_layer = 5
+collision_mask = 3
+script = ExtResource("1_wb0oi")
+speed = 700
+hitbox_component = NodePath("HitboxComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1864048418]
+rotation = -1.5707964
+shape = SubResource("CapsuleShape2D_xuifw")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=653511704]
+texture_filter = 1
+position = Vector2(0.6666667, 0.33333334)
+texture = ExtResource("2_wb0oi")
+
+[node name="ProjectileSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=304005535]
+replication_config = SubResource("SceneReplicationConfig_ns54y")
+
+[node name="HitboxComponent" type="Area2D" parent="." unique_id=539680452]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("3_jxjsw")
+metadata/_custom_type_script = "uid://bdhvqyy2d5ivq"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=1753507216]
+position = Vector2(2.3333335, 0.33333337)
+shape = SubResource("RectangleShape2D_cus6t")

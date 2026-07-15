@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cf82kww2byeq3"]
+
+[ext_resource type="PackedScene" uid="uid://dts1hemixrvx5" path="res://weapons/projectile_weapon.tscn" id="1_rfri3"]
+[ext_resource type="Script" uid="uid://dxk5rbvhtybhv" path="res://weapons/crossbow.gd" id="2_xl04r"]
+[ext_resource type="PackedScene" uid="uid://b0p34t5f8gsg4" path="res://weapons/blast_bullet_projectile.tscn" id="3_rfri3"]
+[ext_resource type="Texture2D" uid="uid://bavrnhi7n5ufr" path="res://assets/weapon_asset/blast_gun.png" id="4_rfri3"]
+
+[node name="BlastGun" unique_id=71827757 instance=ExtResource("1_rfri3")]
+script = ExtResource("2_xl04r")
+attack_scene = ExtResource("3_rfri3")
+attack_cooldown = 0.1
+base_damage = 8.0
+
+[node name="ProjectileSpawnMarker" parent="." index="0" unique_id=1371906066]
+position = Vector2(182, 0)
+
+[node name="Sprite2D" parent="." index="2" unique_id=1808882682]
+position = Vector2(83, 0)
+scale = Vector2(6, 6)
+texture = ExtResource("4_rfri3")
