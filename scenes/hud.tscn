@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://74pytd6sm8yr" path="res://scenes/hud.gd" id="1_ahhtf"]
 [ext_resource type="Theme" uid="uid://86edik8i4neo" path="res://resources/theme.tres" id="2_5ysmq"]
 [ext_resource type="Texture2D" uid="uid://bne2j4colcawp" path="res://assets/player asset/game_ui.png" id="3_5ysmq"]
+[ext_resource type="Texture2D" uid="uid://bmtccg7wb7hlt" path="res://assets/UI Assets/horizontal_frame.png" id="4_6fi6k"]
 
 [node name="HUD" type="CanvasLayer" unique_id=2000280290]
 script = ExtResource("1_ahhtf")
@@ -88,3 +89,26 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "value"
+
+[node name="Timer" type="VBoxContainer" parent="." unique_id=901211291]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -226.00012
+offset_top = 58.999996
+offset_right = -94.00012
+offset_bottom = 115.000015
+grow_horizontal = 0
+scale = Vector2(0.79999876, 0.79999876)
+size_flags_horizontal = 8
+
+[node name="Sprite2D" type="Sprite2D" parent="Timer" unique_id=2136008535]
+texture_filter = 1
+position = Vector2(51.250298, 30.000048)
+scale = Vector2(2.8725536, 2.8725536)
+texture = ExtResource("4_6fi6k")
+
+[node name="TimerLabel" type="Label" parent="Timer" unique_id=530944056]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Round Timer"

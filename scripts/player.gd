@@ -93,7 +93,7 @@ func _physics_process(delta: float) -> void:
 					var deb: String = "current buyer_id: " + str(get_id())
 					Debug.log(deb)
 					var spear_item: ItemData = preload("uid://cb3cw5riphjx7")
-					Game.request_buy_item(spear_item.resource_path)
+					Game.request_buy_item.rpc(spear_item.resource_path)
 					#self.equip_weapon_inv(spear_item)
 			if Input.is_action_just_pressed("debug_free_dung"):
 					if multiplayer.is_server():
@@ -270,6 +270,9 @@ func apply_respawn_position(spawn_position: Vector2) -> void:
 func get_id() -> int:
 	return _data.id
 	
+func change_timer_label(ltext: String) -> void:
+	hud.set_timer_label(ltext)
+
 func increase_max_healt(value:int) -> void:
 	var max_healt_increase = int(health_component.max_health*0.10)
 	health_component.max_health += max_healt_increase
