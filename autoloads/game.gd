@@ -236,12 +236,12 @@ func apply_purchase(buyer_id: int, item_path: String) -> void:
 	# Enviar bought.emit()
 	if multiplayer.get_unique_id() == buyer_id:
 		purchase_approved.emit(item_path)
-@rpc("authority", "call_local", "reliable")
+@rpc("any_peer", "call_local", "reliable")
 func change_timer_label(label_text: String) -> void:
 	# We need to change player->hud->timer_label 
 	var player_scene = get_scene_player_from_id(multiplayer.get_unique_id())
 	# Sabemos que el player tiene una función change_timer_label
-	player_scene.change_timer_label(label_text)
+	player_scene.set_timer_label(label_text)
 	
 
 func get_scene_player_from_id(id: int) -> Player:

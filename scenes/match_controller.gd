@@ -137,6 +137,7 @@ func update_timer_label() -> void:
 		MatchState.GAME_ENDING:
 			var label_text: String = "Game Over"
 			Game.change_timer_label.rpc(label_text)
+
 func _on_player_died(player: Player) -> void:
 	if not multiplayer.is_server():
 		return
