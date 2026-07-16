@@ -28,12 +28,7 @@ func _physics_process(delta: float) -> void:
 		var displacement = target_pos - global_position
 		var calc_velocity: Vector2 = (displacement * follow_weight)/delta
 		linear_velocity = calc_velocity.limit_length(max_speed)
-		'''
-		var target_pos = attached_player.ball_point.global_position
-		global_position = global_position.lerp(target_pos, follow_weight)
-		var calc_velocity: Vector2 = (global_position - last_position)/delta
-		linear_velocity = calc_velocity.limit_length(max_speed)
-		'''
+
 	var displacement = global_position - last_position
 	
 	if displacement != Vector2.ZERO:
