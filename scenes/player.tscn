@@ -333,7 +333,7 @@ states/idle/position = Vector2(381.5, 87.60156)
 states/walk/node = SubResource("AnimationNodeAnimation_dqkch")
 states/walk/position = Vector2(647, 86.75)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_qlg0r"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_tuyoq"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_fjrip"), "idle", "begin_flight", SubResource("AnimationNodeStateMachineTransition_oprun"), "begin_flight", "fly", SubResource("AnimationNodeStateMachineTransition_a8ls1"), "walk", "begin_flight", SubResource("AnimationNodeStateMachineTransition_qfm1y"), "fly", "end_flight", SubResource("AnimationNodeStateMachineTransition_jej6c"), "end_flight", "walk", SubResource("AnimationNodeStateMachineTransition_f1ej7"), "end_flight", "idle", SubResource("AnimationNodeStateMachineTransition_fulsm")]
-graph_offset = Vector2(-34.66984, 25.97351)
+graph_offset = Vector2(18.330158, -46.02649)
 
 [node name="Player" type="CharacterBody2D" unique_id=1237076710]
 scale = Vector2(0.5, 0.5)

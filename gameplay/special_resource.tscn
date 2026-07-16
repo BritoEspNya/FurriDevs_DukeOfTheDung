@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://crad55rtqecy7"]
+
+[ext_resource type="Script" uid="uid://bty8adq23acdk" path="res://gameplay/special_resource.gd" id="1_n0sll"]
+[ext_resource type="Texture2D" uid="uid://2muysje1rxy0" path="res://assets/map assets/big_resource.png" id="2_hhlft"]
+[ext_resource type="Shader" uid="uid://dc4fiwevamxlq" path="res://gameplay/special_resource.gdshader" id="2_nn33p"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hhlft"]
+shader = ExtResource("2_nn33p")
+shader_parameter/speed = 1.0
+shader_parameter/intensity = 0.5
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rirk1"]
+radius = 49.0
+height = 176.0
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_838aw"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 0
+
+[node name="Special_resource" type="Area2D" unique_id=201861898]
+collision_layer = 0
+collision_mask = 128
+script = ExtResource("1_n0sll")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1657006920]
+texture_filter = 1
+material = SubResource("ShaderMaterial_hhlft")
+scale = Vector2(4, 4)
+texture = ExtResource("2_hhlft")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=141813170]
+position = Vector2(-3, 5)
+rotation = -1.5707964
+shape = SubResource("CapsuleShape2D_rirk1")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=690275423]
+replication_config = SubResource("SceneReplicationConfig_838aw")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=602880314]
+self_modulate = Color(0.1254902, 0.1254902, 0.1254902, 0.1254902)
+texture_filter = 1
+position = Vector2(4, 4)
+scale = Vector2(4, 4)
+texture = ExtResource("2_hhlft")

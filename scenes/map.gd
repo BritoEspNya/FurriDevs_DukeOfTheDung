@@ -2,6 +2,8 @@ extends Node2D
 
 @export var world: TileMapLayer
 @export var resource_scenes: Array[PackedScene]
+@export var resource_weights: Array[int] = [70, 28, 2]
+
 var possible_positions = []
 var occupied_positions = {}
 
@@ -11,7 +13,7 @@ func _ready():
 
 	if multiplayer.is_server():
 		var timer = Timer.new()
-		timer.wait_time = 1
+		timer.wait_time = 1.5
 		timer.autostart = true
 		timer.timeout.connect(spawn_resource)
 		add_child(timer)
@@ -20,7 +22,24 @@ func get_valid_tiles():
 	var cells = world.get_used_cells()
 	for cell in cells:
 		possible_positions.append(cell)
-
+		
+func pick_weighted_resource() -> int:
+	var total_weight = 0
+	
+	for weight in resource_weights:
+		total_weight += weight
+	
+	var random_value = randi_range(1, total_weight)
+	var current = 0
+	
+	for i in range(resource_weights.size()):
+		current += resource_weights[i]
+		
+		if random_value <= current:
+			return i
+	
+	return 0
+	
 func spawn_resource():
 	if possible_positions.is_empty():
 		return
@@ -30,7 +49,7 @@ func spawn_resource():
 	while attempts > 0:
 		var random_cell = possible_positions.pick_random()
 		
-		var random_resource = range(resource_scenes.size()).pick_random()
+		var random_resource = pick_weighted_resource()
 		
 		if not occupied_positions.has(random_cell):
 			occupied_positions[random_cell] = true 

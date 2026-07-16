@@ -5,7 +5,6 @@ extends Node
 const MAX_CLIENTS: int = 3
 const PORT: int = 5409 # Number between 1024 and 65535.
 
-
 enum Role {
 	NONE,
 	ROLE_A,
@@ -55,23 +54,15 @@ class PlayerData:
 			inventory_hud = value
 			inventory_changed.emit(inventory_hud)
 			
-	# Inventory format:
-	# {
-	#	"spear": 1,
-	#	"shield": 1,
-	#	"speed_boots": 2
-	# }
-	var inventory: Dictionary = {}
-	# Currently equipped weapon/item id.
-	# Example: "spear"
-	var equipped_weapon_id: String = ""
-	
+
 	func _init(new_id: int, new_name: String, new_index: int = -1, new_role: Role = Role.NONE) -> void:
 		id = new_id
 		name = new_name
 		index = new_index
 		role = new_role
-	
+		var melee = preload("res://items/melee.tres")
+		inventory_hud["weapon"].append(melee)
+		inventory_changed.emit(inventory_hud)
 	func _to_string() -> String:
 		return "Player: {id: %d, name: %s, index: %d, role: %d}" % [id, name, index, Statics.get_role_name(role)]
 	
@@ -99,8 +90,6 @@ class PlayerData:
 		
 	func reset() -> void:
 		dung = 0
-		inventory = {}
-		equipped_weapon_id = ""
 		inventory_hud = {"weapon":[],"armor":[],"perks": []}
 		dung_changed.emit(dung)
 		inventory_changed.emit(inventory_hud)

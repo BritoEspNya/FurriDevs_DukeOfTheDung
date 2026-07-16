@@ -34,8 +34,9 @@ func _on_inventory_changed(value: Dictionary) -> void:
 		for item in value[category]:
 			var icon := TextureRect.new()
 			icon.texture = item.image
-			icon.custom_minimum_size = Vector2(16, 16)
-			icon.size = Vector2(16, 16)
+			icon.custom_minimum_size = Vector2(30, 30)
+			icon.size = Vector2(30, 30)
 			icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 			icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+			icon.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 			inventory_container.add_child(icon)
