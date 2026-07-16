@@ -61,32 +61,26 @@ position = Vector2(213.11803, 94.28927)
 scale = Vector2(2.2975452, 2.4592683)
 texture = ExtResource("3_5ysmq")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=805484462]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -1062.0
-offset_top = 101.999985
-offset_right = -1002.0
-offset_bottom = 158.0
-grow_horizontal = 0
-scale = Vector2(0.79999876, 0.79999876)
-size_flags_horizontal = 8
+[node name="PanelContainer" type="PanelContainer" parent="Sprite2D" unique_id=2039334978]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -94.5
+offset_top = -42.0
+offset_right = -34.5
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+offset_transform_enabled = true
+offset_transform_position = Vector2(10, 15)
 
-[node name="Label" type="Label" parent="VBoxContainer" unique_id=547596115]
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "Dung:"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer" unique_id=1242991285]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer" unique_id=1922479481]
-layout_mode = 2
-
-[node name="Dung" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer" unique_id=2009089019]
+[node name="Dung" type="Label" parent="Sprite2D/PanelContainer" unique_id=2009089019]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_vertical = 8
 theme_override_font_sizes/font_size = 32
 text = "value"
 
