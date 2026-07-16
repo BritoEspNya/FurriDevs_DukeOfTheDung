@@ -4,15 +4,12 @@
 [ext_resource type="Script" uid="uid://d1urh7pr0l6lh" path="res://lobby/waiting_screen.gd" id="2_a2sqk"]
 [ext_resource type="PackedScene" uid="uid://iobnvr8f3tkm" path="res://lobby/lobby_player.tscn" id="2_wjc1o"]
 [ext_resource type="Texture2D" uid="uid://tw8t38ns0seh" path="res://icon.svg" id="3_0nkhr"]
+[ext_resource type="AudioStream" uid="uid://bsp34jajgivhv" path="res://music/Sketchbook 2025-11-26.ogg" id="5_ssaso"]
 
 [node name="WaitingScreen" unique_id=610488868 instance=ExtResource("1_1g6tu")]
 offset_left = -9.0
 offset_top = -7.0
 script = ExtResource("2_a2sqk")
-
-[node name="Sprite2D" parent="." index="0" unique_id=300437505]
-position = Vector2(651, 368)
-scale = Vector2(2.2569444, 2.2530863)
 
 [node name="GameStartContainer" type="PanelContainer" parent="." index="1" unique_id=1208578375]
 unique_name_in_owner = true
@@ -52,12 +49,12 @@ horizontal_alignment = 1
 [node name="StartTimer" type="Timer" parent="." index="2" unique_id=2111353830]
 wait_time = 3.0
 
-[node name="Label" parent="MarginContainer2/VBoxContainer/Panel" parent_id_path=PackedInt32Array(1418666595) index="0" unique_id=361117685]
+[node name="Label" parent="MarginContainer2/VBoxContainer/Panel" parent_id_path=PackedInt32Array(1252654520) index="0" unique_id=125948541]
 text = "Lobby"
 
-[node name="MarginContainer2_VBoxContainer_MarginContainer_Panel#PanelContainer" parent="MarginContainer2/VBoxContainer/MarginContainer/Control" parent_id_path=PackedInt32Array(1936046180) index="0" unique_id=486540011]
-clip_contents = true
+[node name="MarginContainer2_VBoxContainer_MarginContainer_Panel#PanelContainer" parent="MarginContainer2/VBoxContainer/MarginContainer/Control" parent_id_path=PackedInt32Array(328397483) index="0" unique_id=1873221397]
 custom_minimum_size = Vector2(629, 375)
+clip_contents = true
 offset_left = -110.0
 offset_right = 519.0
 offset_bottom = 375.0
@@ -103,7 +100,7 @@ size_flags_horizontal = 3
 text = "Wating for players ..."
 horizontal_alignment = 1
 
-[node name="MarginContainer2_VBoxContainer_MarginContainer_Panel#PanelContainer2" type="PanelContainer" parent="MarginContainer2/VBoxContainer/MarginContainer/Control" parent_id_path=PackedInt32Array(1936046180) index="1" unique_id=1487465113]
+[node name="MarginContainer2_VBoxContainer_MarginContainer_Panel#PanelContainer2" type="PanelContainer" parent="MarginContainer2/VBoxContainer/MarginContainer/Control" parent_id_path=PackedInt32Array(328397483) index="1" unique_id=1487465113]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -184,3 +181,7 @@ unique_name_in_owner = true
 layout_mode = 2
 disabled = true
 text = "Ready"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="4" unique_id=2061162394]
+stream = ExtResource("5_ssaso")
+autoplay = true
