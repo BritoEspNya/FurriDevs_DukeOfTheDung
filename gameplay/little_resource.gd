@@ -9,7 +9,7 @@ func _on_body_entered(body: Node2D) -> void:
 	if ball:
 		var player: Player = ball.attached_player
 		if player:
-			Game.set_player_dung(player.get_id(), Game.get_player_dung(player.get_id()) + 2)
+			Game.set_player_dung(player.get_id(), Game.get_player_dung(player.get_id()) + 1)
 			destroy.rpc()
 
 @rpc("call_local","reliable")
