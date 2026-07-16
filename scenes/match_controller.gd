@@ -92,9 +92,9 @@ func end_match() -> void:
 	
 	for player in players:
 		var HUD: CanvasLayer = player.get_HUD()	
-		var HB: CanvasLayer = player.get_HB()
+		#var HB: CanvasLayer = player.get_HB()
 		HUD.hide()
-		HB.hide()
+		#HB.hide()
 		
 	end_screen.show_results()
 	end_screen.show()
@@ -159,7 +159,8 @@ func update_timer_label() -> void:
 			var label_text: String = "Starting..."
 			Game.change_timer_label.rpc(label_text)
 		MatchState.GAME_ENDING:
-			timer_label.hide()
+			#timer_label.hide()
+			pass
 			
 func _on_player_died(player: Player) -> void:
 	if not multiplayer.is_server():

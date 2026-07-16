@@ -392,4 +392,4 @@ func request_debug_add_dung(amount: int) -> void:
 
 func get_HUD() -> CanvasLayer: return hud
 
-func get_HB() -> CanvasLayer: return hb
+func get_HB() -> ProgressBar: return health_bar
