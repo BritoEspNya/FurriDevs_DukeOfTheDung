@@ -25,10 +25,15 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if is_attached:
 		var target_pos = attached_player.ball_point.global_position
+		var displacement = target_pos - global_position
+		var calc_velocity: Vector2 = (displacement * follow_weight)/delta
+		linear_velocity = calc_velocity.limit_length(max_speed)
+		'''
+		var target_pos = attached_player.ball_point.global_position
 		global_position = global_position.lerp(target_pos, follow_weight)
 		var calc_velocity: Vector2 = (global_position - last_position)/delta
 		linear_velocity = calc_velocity.limit_length(max_speed)
-		
+		'''
 	var displacement = global_position - last_position
 	
 	if displacement != Vector2.ZERO:
@@ -56,7 +61,7 @@ func _input(event: InputEvent) -> void:
 					
 @rpc("any_peer", "call_local", "reliable")
 func attach(player_path: NodePath) -> void:
-	freeze = true
+	#freeze = true
 	var player: Player = get_node(player_path)
 	if !attached_player:
 		attached_player = player
@@ -70,7 +75,7 @@ func attach(player_path: NodePath) -> void:
 
 @rpc("any_peer", "call_local", "reliable")
 func detach(player_path: NodePath) -> void:
-	freeze = false
+	#freeze = false
 	var player: Player = get_node(player_path)
 	set_collision_mask_value(1, true)
 	set_collision_layer_value(1, true)
