@@ -1,12 +1,13 @@
 class_name Ball
-extends StaticBody2D
+extends RigidBody2D
 
 var _near_players: Array[Node2D]
 var attached_player: Player
 var is_attached: bool = false
 
 var distance: float = 150
-var follow_speed: float = 8.0
+@export var follow_weight: float = 0.2
+@export var max_speed: float = 200
 
 @onready var area_2d: Area2D = $Area2D
 @onready var barrier: Area2D = $Barrier
@@ -23,9 +24,10 @@ func _ready() -> void:
 		
 func _physics_process(delta: float) -> void:
 	if is_attached:
-		var player_forward = Vector2.RIGHT.rotated(attached_player.pivot.rotation + PI/2)
-		var target_pos = attached_player.global_position + (player_forward * distance)
-		global_position = global_position.lerp(target_pos, follow_speed * delta)
+		var target_pos = attached_player.ball_point.global_position
+		global_position = global_position.lerp(target_pos, follow_weight)
+		var calc_velocity: Vector2 = (global_position - last_position)/delta
+		linear_velocity = calc_velocity.limit_length(max_speed)
 		
 	var displacement = global_position - last_position
 	
@@ -54,6 +56,7 @@ func _input(event: InputEvent) -> void:
 					
 @rpc("any_peer", "call_local", "reliable")
 func attach(player_path: NodePath) -> void:
+	freeze = true
 	var player: Player = get_node(player_path)
 	if !attached_player:
 		attached_player = player
@@ -67,6 +70,7 @@ func attach(player_path: NodePath) -> void:
 
 @rpc("any_peer", "call_local", "reliable")
 func detach(player_path: NodePath) -> void:
+	freeze = false
 	var player: Player = get_node(player_path)
 	set_collision_mask_value(1, true)
 	set_collision_layer_value(1, true)

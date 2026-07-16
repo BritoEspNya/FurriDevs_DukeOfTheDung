@@ -4,8 +4,8 @@ extends CharacterBody2D
 signal respawned
 signal died
 
-@export var walk_speed: int = 200
-@export var flight_speed: int = 600
+@export var walk_speed: float = 200
+@export var flight_speed: float = 600
 @export var acceleration: float = 400
 @export var rotation_speed: float = 5
 #@export var projectile_scene: PackedScene
@@ -13,8 +13,12 @@ signal died
 @export var weapon_scenes: Array[PackedScene] # por defecto: Array[melee_weapon.scene()] 
 
 var _data: Statics.PlayerData
-var _speed: int = walk_speed
+var _speed: float = walk_speed
 var current_weapon: Weapon
+
+var target_max_speed: float = walk_speed
+var current_max_speed: float = walk_speed
+var deceleration_rate: float = 5.0
 
 @onready var label: Label = $Pivot/Label
 @onready var multiplayer_synchronizer: MultiplayerSynchronizer = $MultiplayerSynchronizer
@@ -36,6 +40,8 @@ var current_weapon: Weapon
 
 @onready var pivot: Node2D = $Pivot
 @onready var weapon_pivot: Node2D = $WeaponPivot
+@onready var ball_pivot: Node2D = $BallPivot
+@onready var ball_point: Marker2D = $BallPivot/BallPoint
 #@onready var spear: Spear = $WeaponPivot/Weapons/Spear
 @onready var weapon_spawn_point: Marker2D = $WeaponPivot/WeaponSpawnPoint
 @onready var weapon_spawner: MultiplayerSpawner = $WeaponSpawner
@@ -69,8 +75,11 @@ func _physics_process(delta: float) -> void:
 		# Flight mode
 		if input_synchronizer.flight_input:
 			_speed = flight_speed
+			target_max_speed = flight_speed
 		else:
 			_speed = walk_speed
+			target_max_speed = walk_speed
+		current_max_speed = lerp(current_max_speed, target_max_speed, deceleration_rate * delta)
 		# Normal Movement
 		velocity.x = move_toward(velocity.x, move_input.x * _speed, acceleration * delta)
 		velocity.y = move_toward(velocity.y, move_input.y * _speed, acceleration * delta)
@@ -105,12 +114,15 @@ func _physics_process(delta: float) -> void:
 		# Movement with ball attached
 		pivot.rotation += move_input.x * rotation_speed * delta
 		var forward_direction = Vector2.UP.rotated(pivot.rotation)
-		velocity = velocity.move_toward(forward_direction * _speed * move_input.y, acceleration * delta)
+		velocity = velocity.move_toward(forward_direction * walk_speed * move_input.y, acceleration * delta)
+	velocity = velocity.limit_length(current_max_speed)
+	ball_pivot.rotation = pivot.rotation
 	move_and_slide()
 	
 	if input_synchronizer.move_input:
 		if input_synchronizer.flight_input:
-			playback.travel("fly")
+			if input_synchronizer.mode_input:
+				playback.travel("fly")
 		else:
 			playback.travel("walk")
 	else:

@@ -434,3 +434,8 @@ show_percentage = false
 [node name="RespawnTimer" type="Timer" parent="." unique_id=1302644998]
 wait_time = 2.0
 one_shot = true
+
+[node name="BallPivot" type="Node2D" parent="." unique_id=288934888]
+
+[node name="BallPoint" type="Marker2D" parent="BallPivot" unique_id=1251238695]
+position = Vector2(0, 250)
