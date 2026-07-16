@@ -15,6 +15,23 @@ signal died
 var _data: Statics.PlayerData
 var _speed: float = walk_speed
 var current_weapon: Weapon
+var is_flying: bool
+@export var max_stamina: int = 10
+@export var stamina: int = 10:
+	set(value):
+		var new_stamina = clamp(value, 0, max_stamina)
+		if stamina == new_stamina:
+			return
+		stamina = new_stamina
+		#stamina_changed.emit(stamina, max_stamina)
+var stamina_decrease_interval := 0.5  # cada 0.5s se descuenta 1
+var stamina_recover_interval := 0.2  # cada 0.2s se recupera 1
+var stamina_recover_delay := 1.0     # espera 1s tras dejar de correr
+var stamina_per_tick := 1
+var stamina_timer := 0.0
+var recovering_stamina := false
+var stamina_recover_timer := 0.0
+var stamina_locked := false  # impide correr si no hay stamina suficiente
 
 var target_max_speed: float = walk_speed
 var current_max_speed: float = walk_speed
@@ -29,9 +46,9 @@ var deceleration_rate: float = 5.0
 #@onready var projectile_spawner: MultiplayerSpawner = $ProjectileSpawner
 #@onready var projectile_spawn_marker: Marker2D = $Pivot/ProjectileSpawnMarker
 @onready var health_component: HealthComponent = $HealthComponent
-@onready var hb: HB = $HB
+@onready var hud: HUD = $HUD
 @onready var health_bar: ProgressBar = $HealthBar
-@onready var hud: CanvasLayer = $HUD
+#@onready var hud: CanvasLayer = $HUD
 @onready var respawn_timer: Timer = $RespawnTimer
 
 
@@ -61,8 +78,10 @@ func _ready() -> void:
 	#if projectile_scene: # Para proyectiles propios del player
 		#projectile_spawner.add_spawnable_scene(projectile_scene.resource_path)
  	
-	hb.health_bar.max_value = health_component.max_health
-	hb.health_bar.value = health_component.health
+	hud.health_bar.max_value = health_component.max_health
+	hud.health_bar.value = health_component.health
+	hud.stamina_bar.max_value = max_stamina
+	hud.stamina_bar.value = stamina
 	health_bar.max_value = health_component.max_health
 	respawn_timer.timeout.connect(_on_respawn_timeout)
 	health_bar.value = health_component.health
@@ -73,9 +92,36 @@ func _physics_process(delta: float) -> void:
 	var move_input: Vector2 = input_synchronizer.move_input
 	if input_synchronizer.mode_input:
 		# Flight mode
-		if input_synchronizer.flight_input:
+		is_flying = input_synchronizer.flight_input 
+		if is_flying:
 			_speed = flight_speed
 			target_max_speed = flight_speed
+			if move_input and stamina > 0:
+				stamina_timer += delta
+				stamina_recover_timer = 0.0
+				recovering_stamina = false
+
+				if stamina_timer >= stamina_decrease_interval:
+					stamina_timer = 0.0
+					stamina = max(stamina - stamina_per_tick, 0)
+					hud.stamina_bar.value = stamina
+					
+					if stamina <= 0:
+						is_flying = false  # ya no puede correr si no tiene stamina
+				else:
+					# Comenzar recuperación después de un retardo
+					stamina_recover_timer += delta
+					if stamina_recover_timer >= stamina_recover_delay:
+						recovering_stamina = true
+				
+				# Recuperación progresiva de stamina
+				if recovering_stamina and stamina < max_stamina:
+					stamina_timer += delta
+					if stamina_timer >= stamina_recover_interval:
+						stamina_timer = 0.0
+						stamina += stamina_per_tick
+						stamina = min(stamina, max_stamina)
+						hud.stamina_bar.value = stamina
 		else:
 			_speed = walk_speed
 			target_max_speed = walk_speed
@@ -102,7 +148,7 @@ func _physics_process(delta: float) -> void:
 					var deb: String = "current buyer_id: " + str(get_id())
 					Debug.log(deb)
 					var spear_item: ItemData = preload("uid://cb3cw5riphjx7")
-					Game.request_buy_item(spear_item.resource_path)
+					Game.request_buy_item.rpc(spear_item.resource_path)
 					#self.equip_weapon_inv(spear_item)
 			if Input.is_action_just_pressed("debug_free_dung"):
 					if multiplayer.is_server():
@@ -138,7 +184,7 @@ func setup(data: Statics.PlayerData) -> void:
 	input_synchronizer.set_multiplayer_authority(data.id, false)
 	#weapon_spawner.set_multiplayer_authority(1, false)
 	camera_2d.enabled = is_multiplayer_authority()
-	hb.visible = is_multiplayer_authority()
+	hud.visible = is_multiplayer_authority()
 	health_bar.visible = not is_multiplayer_authority()
 	#pivot.set_multiplayer_authority(data.id, false)
 	if is_multiplayer_authority():
@@ -160,31 +206,25 @@ func setup_weapon_spawner(weapon_scenes_array: Array[PackedScene]) -> void:
 func register_weapon_scene(weapon_scene: PackedScene) -> int:
 	if weapon_scene == null:
 		return -1
-
 	var scene_path := weapon_scene.resource_path
-
 	if scene_path.is_empty():
 		push_error("La escena del arma no tiene resource_path")
 		return -1
 	
-	# Verificamos que no exista el
+	# Verificamos que no exista el arma
 	for index: int in weapon_scenes.size():
 		var registered_scene := weapon_scenes[index]
-
 		if registered_scene == null:
 			continue
-
 		if registered_scene.resource_path == scene_path:
 			return index
-
+	# Agregamos la escena del arma al spawner
 	weapon_scenes.append(weapon_scene)
 	weapon_spawner.add_spawnable_scene(scene_path)
-
 	Debug.log(
 		"Registered weapon scene: %s at index %d"
 		% [scene_path, weapon_scenes.size() - 1]
 	)
-
 	return weapon_scenes.size() - 1
 
 @rpc("authority", "call_local", "reliable")
@@ -228,16 +268,8 @@ func equip_weapon_ph(weapon_idx: int) -> void:
 func send_position(pos: Vector2) -> void:
 	global_position = lerp(global_position, pos, 0.5)
 	
-
-## Not used for now, but it should get used later when the shoot animation have got implemented
-#func fire_one_shot(one_shot_name: String) -> void:
-	##animation_tree["parameters/%s/request" % one_shot_name] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
-	## now it should call fire() methon (i'll change the name in the future)
-	#pass
-	
 func _on_weapon_spawned(node: Node) -> void:
 	Debug.log("Weapon spawned locally: " + node.name)
-
 	if node is Weapon:
 		current_weapon = node
 
@@ -248,7 +280,7 @@ func _on_sync_timeout() -> void:
 func _on_health_changed(value: int, max_value: int) -> void:
 	var deb: String = str("HP: ", value, "/", max_value)
 	Debug.log(deb)
-	hb.health_bar.value = value
+	hud.health_bar.value = value
 	health_bar.value = value
 	# UI local, barra de vida, efectos visuales simples.
 
@@ -295,13 +327,19 @@ func apply_respawn_position(spawn_position: Vector2) -> void:
 
 func get_id() -> int:
 	return _data.id
+
+func get_dung() -> int:
+	return _data.dung
 	
+func set_timer_label(ltext: String) -> void:
+	hud.set_timer_label(ltext)
+
 func increase_max_healt(value:int) -> void:
 	var max_healt_increase = int(health_component.max_health*0.10)
 	health_component.max_health += max_healt_increase
 	health_component.health += max_healt_increase
-	hb.health_bar.max_value = health_component.max_health
-	hb.health_bar.value = health_component.health
+	hud.health_bar.max_value = health_component.max_health
+	hud.health_bar.value = health_component.health
 	health_bar.max_value = health_component.max_health
 	health_bar.value = health_component.health
 

@@ -1,35 +1,12 @@
 [gd_scene format=3 uid="uid://bpb4vmxbltgdi"]
 
 [ext_resource type="Script" uid="uid://74pytd6sm8yr" path="res://scenes/hud.gd" id="1_ahhtf"]
+[ext_resource type="Theme" uid="uid://86edik8i4neo" path="res://resources/theme.tres" id="2_5ysmq"]
+[ext_resource type="Texture2D" uid="uid://bne2j4colcawp" path="res://assets/player asset/game_ui.png" id="3_5ysmq"]
+[ext_resource type="Texture2D" uid="uid://cj7t0igrxh2r7" path="res://assets/UI Assets/long_horizontal_frame.png" id="4_6fi6k"]
 
 [node name="HUD" type="CanvasLayer" unique_id=2000280290]
 script = ExtResource("1_ahhtf")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=805484462]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -40.0
-offset_bottom = 40.0
-grow_horizontal = 0
-size_flags_horizontal = 8
-
-[node name="Label" type="Label" parent="VBoxContainer" unique_id=547596115]
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "Dung:"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer" unique_id=1242991285]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer" unique_id=1922479481]
-layout_mode = 2
-
-[node name="Dung" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer" unique_id=2009089019]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "value"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="." unique_id=1350798991]
 anchors_preset = 7
@@ -51,3 +28,87 @@ horizontal_alignment = 1
 [node name="InventoryContainer" type="HBoxContainer" parent="VBoxContainer2" unique_id=1934973843]
 unique_name_in_owner = true
 layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=444951917]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1764205022]
+layout_mode = 2
+
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=1734059601]
+offset_left = 161.29756
+offset_top = 52.57853
+offset_right = 375.29755
+offset_bottom = 75.57853
+theme = ExtResource("2_5ysmq")
+theme_type_variation = &"HealthBar"
+show_percentage = false
+
+[node name="StaminaBar" type="ProgressBar" parent="." unique_id=145426398]
+offset_left = 159.29756
+offset_top = 82.57853
+offset_right = 460.68665
+offset_bottom = 113.13411
+scale = Vector2(0.71999943, 0.71999943)
+theme = ExtResource("2_5ysmq")
+theme_type_variation = &"StaminaBar"
+show_percentage = false
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=526139988]
+texture_filter = 1
+position = Vector2(213.11803, 94.28927)
+scale = Vector2(2.2975452, 2.4592683)
+texture = ExtResource("3_5ysmq")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=805484462]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -1062.0
+offset_top = 101.999985
+offset_right = -1002.0
+offset_bottom = 158.0
+grow_horizontal = 0
+scale = Vector2(0.79999876, 0.79999876)
+size_flags_horizontal = 8
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=547596115]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Dung:"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer" unique_id=1242991285]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer" unique_id=1922479481]
+layout_mode = 2
+
+[node name="Dung" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer" unique_id=2009089019]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "value"
+
+[node name="Timer" type="VBoxContainer" parent="." unique_id=901211291]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -197.0
+offset_top = 60.999996
+offset_right = -65.0
+offset_bottom = 117.000015
+grow_horizontal = 0
+scale = Vector2(0.79999876, 0.79999876)
+size_flags_horizontal = 8
+
+[node name="Sprite2D" type="Sprite2D" parent="Timer" unique_id=2136008535]
+texture_filter = 1
+position = Vector2(80.00035, 32.500053)
+scale = Vector2(2.8725536, 2.8725536)
+texture = ExtResource("4_6fi6k")
+
+[node name="TimerLabel" type="Label" parent="Timer" unique_id=530944056]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Round Timer"

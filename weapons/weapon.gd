@@ -3,6 +3,12 @@ extends Node2D
 
 @export var attack_scene: PackedScene
 @export var attack_cooldown: float = 0.3
+#@export var projectile_damage: float
+@export_category("Damage")
+@export_range(0.0, 1000.0, 1, "or_greater")
+var base_damage: float = 10.0
+var buff_damage: float = 0.0
+var base_muultiplier: float = 1.0
 
 var attack_spawn_marker: Marker2D #= $AttackSpawnMarker
 var owner_player: Player
@@ -20,6 +26,15 @@ func _ready() -> void:
 	
 func get_attack_spawn_marker() -> Marker2D:
 	return $AttackSpawnMarker
+	
+func get_attack_damage() -> float:
+	return (base_damage*base_muultiplier)+buff_damage
+
+func add_attack_damage(buff: float) -> void:
+	buff_damage = buff
+	
+func add_mult_base_damage(mult: float) -> void:
+	base_muultiplier += mult
 
 func setup_weapon(player: Player) -> void:
 	owner_player = player
@@ -44,11 +59,7 @@ func main_attack_server() -> void:
 	if not attack_scene:
 		return
 	var attack_ins: Projectile = attack_scene.instantiate()
-	for child in attack_ins.get_children():
-		if child is HitboxComponent:
-			var hitbox: HitboxComponent = child
-			hitbox.source_owner = owner_player
-			break
+	attack_ins.setup(get_attack_damage(), owner_player)
 	attack_ins.global_position = attack_spawn_marker.global_position
 	attack_ins.global_rotation = attack_spawn_marker.global_rotation
 	owner_player.attack_spawner.add_child(attack_ins, true)

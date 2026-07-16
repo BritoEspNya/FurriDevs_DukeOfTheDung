@@ -7,14 +7,14 @@
 [node name="Spear" type="Node2D" unique_id=71827757]
 script = ExtResource("1_att47")
 attack_scene = ExtResource("2_3p0se")
-attack_cooldown = 0.1
+attack_cooldown = 1.0
 
 [node name="ProjectileSpawnMarker" type="Marker2D" parent="." unique_id=1371906066]
 position = Vector2(66, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1808882682]
 texture_filter = 1
-position = Vector2(39, 0)
+position = Vector2(66, 0)
 rotation = 0.7853982
-scale = Vector2(4, 4)
+scale = Vector2(6, 6)
 texture = ExtResource("2_qwioj")

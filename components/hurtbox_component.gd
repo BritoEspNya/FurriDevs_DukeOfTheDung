@@ -18,6 +18,6 @@ func _on_area_entered(area: Area2D) -> void:
 	if hitbox and health_component:
 		if hitbox.source_owner == owner: # No se puede pegar a sí mismo
 			return
-		health_component.take_damage(hitbox.damage)	
+		health_component.take_damage(hitbox.get_damage())	
 		#hitbox.damage_dealt.emit()
 		

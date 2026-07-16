@@ -1,8 +1,9 @@
-[gd_scene format=3 uid="uid://bmpbkd1ab62cc"]
+[gd_scene format=3 uid="uid://dco626r4ehnmv"]
 
-[ext_resource type="Texture2D" uid="uid://up4yfw01ar6f" path="res://assets/player asset/basic_attack_spritesheet.png" id="1_1uu3n"]
-[ext_resource type="Script" uid="uid://cin5heiyplxfs" path="res://weapons/melee_attack.gd" id="1_e1m7m"]
-[ext_resource type="Script" uid="uid://bdhvqyy2d5ivq" path="res://components/hitbox_component.gd" id="2_e1m7m"]
+[ext_resource type="Script" uid="uid://64s5nt32l31u" path="res://weapons/sword_attack.gd" id="1_r7a21"]
+[ext_resource type="Texture2D" uid="uid://up4yfw01ar6f" path="res://assets/player asset/basic_attack_spritesheet.png" id="2_lvj6i"]
+[ext_resource type="Script" uid="uid://bdhvqyy2d5ivq" path="res://components/hitbox_component.gd" id="3_c648w"]
+[ext_resource type="Texture2D" uid="uid://csqid2hls1ty0" path="res://assets/player asset/sword_attack_spritesheet.png" id="3_lvj6i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
 
@@ -15,7 +16,7 @@ properties/1/spawn = true
 properties/1/replication_mode = 0
 
 [sub_resource type="Animation" id="Animation_64rkb"]
-length = 0.001
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -23,10 +24,10 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
 "update": 1,
-"values": [0]
+"values": []
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -50,7 +51,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("1_1uu3n")]
+"values": [ExtResource("2_lvj6i")]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -76,6 +77,18 @@ tracks/4/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprite2D:vframes")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
 
 [sub_resource type="Animation" id="Animation_6p2d4"]
 resource_name = "attack"
@@ -91,7 +104,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("1_1uu3n")]
+"values": [ExtResource("2_lvj6i")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -142,18 +155,96 @@ tracks/4/keys = {
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_c648w"]
+resource_name = "sword_attack"
+length = 0.6
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:hframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [6]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:vframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_lvj6i")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.19999999, 0.3, 0.39999998, 0.49999997),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HitboxComponent:monitoring")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("HitboxComponent:monitorable")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_e1m7m"]
 _data = {
 &"RESET": SubResource("Animation_64rkb"),
-&"attack": SubResource("Animation_6p2d4")
+&"attack": SubResource("Animation_6p2d4"),
+&"sword_attack": SubResource("Animation_c648w")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_byqvd"]
-size = Vector2(16, 54)
+size = Vector2(61, 118.9375)
 
-[node name="MeeleAttack" type="Area2D" unique_id=845703339 node_paths=PackedStringArray("hitbox_component")]
-scale = Vector2(2, 2)
-script = ExtResource("1_e1m7m")
+[node name="SwordAttack" type="Area2D" unique_id=845703339 node_paths=PackedStringArray("hitbox_component")]
+scale = Vector2(6, 6)
+script = ExtResource("1_r7a21")
 hitbox_component = NodePath("HitboxComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=4685101]
@@ -162,8 +253,9 @@ disabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=280954506]
 texture_filter = 1
-rotation = 1.5707964
-texture = ExtResource("1_1uu3n")
+position = Vector2(17.000002, 0)
+rotation = 0.86290044
+texture = ExtResource("2_lvj6i")
 hframes = 6
 
 [node name="ProjectileSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=620100875]
@@ -177,9 +269,9 @@ collision_layer = 4
 collision_mask = 2
 monitoring = false
 monitorable = false
-script = ExtResource("2_e1m7m")
+script = ExtResource("3_c648w")
 metadata/_custom_type_script = "uid://bdhvqyy2d5ivq"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=974764076]
-position = Vector2(17, 0)
+position = Vector2(42.5, -4.46875)
 shape = SubResource("RectangleShape2D_byqvd")

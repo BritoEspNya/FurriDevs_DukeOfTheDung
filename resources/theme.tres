@@ -4,9 +4,18 @@
 bg_color = Color(0.1254902, 0.10980392, 0.07450981, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d4nwg"]
-bg_color = Color(0.48199728, 0.6760634, 0.32997873, 1)
+bg_color = Color(0, 0.8745098, 0.41568628, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ct1h"]
+bg_color = Color(0.05467868, 0.12043258, 0.15617993, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_886mr"]
+bg_color = Color(0, 0.6205014, 0.76990384, 1)
 
 [resource]
 HealthBar/base_type = &"ProgressBar"
 HealthBar/styles/background = SubResource("StyleBoxFlat_tekt2")
 HealthBar/styles/fill = SubResource("StyleBoxFlat_d4nwg")
+StaminaBar/base_type = &"ProgressBar"
+StaminaBar/styles/background = SubResource("StyleBoxFlat_7ct1h")
+StaminaBar/styles/fill = SubResource("StyleBoxFlat_886mr")

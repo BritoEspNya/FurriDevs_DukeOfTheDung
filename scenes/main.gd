@@ -2,7 +2,7 @@ extends Node2D
 
 @export var player_scene: PackedScene
 @export var ball_scene: PackedScene
-@export var big_resource: PackedScene
+@export var dung_resource_scenes: Array[PackedScene]
 
 @onready var players: Node2D = $World/Players
 @onready var balls: Node2D = $Balls
@@ -52,15 +52,38 @@ func _on_player_respawn(player: Player, spawn_point: Node2D) -> void:
 	#if not multiplayer.is_server():
 		#return
 	#player.global_position = spawn_point.global_position
+	# Aplicamos una posición aleatoria?
 	player.apply_respawn_position(spawn_point.global_position)
 
 func _on_player_died(player: Player) -> void:
 	if not multiplayer.is_server():
 		return
-	var total_dung = player._data.dung
-	var dropped_dung = total_dung/4
-	Game.set_player_dung(player._data.id, total_dung - dropped_dung)
-	var resource_ins = big_resource.instantiate()
+	var total_dung = player.get_dung()
+	var dropped_dung: int = total_dung/3
+	var n_big_resources: int = dropped_dung / 5
+	var m_little_resources: int = (dropped_dung % 5) / 2
+	Game.set_player_dung(player.get_id(), total_dung - dropped_dung)
+	# resources = [little_resource, big_resource]
+	var deb_cnt: int = 0
+	while n_big_resources > 0:
+		while m_little_resources > 0:
+			spawn_dung_resource(0, player, 75)
+			m_little_resources -= 1
+			deb_cnt += 1
+		spawn_dung_resource(1, player, 75)
+		n_big_resources -= 1
+		deb_cnt += 1
+	var deb: String = "Se han spawneado "+str(deb_cnt)+" cacas OMG"
+	Debug.log(deb)
+	
+func spawn_dung_resource(resource_type: int, player_s: Player, range: int) -> void:
 	# "Cuadrado"
-	resource_ins.global_position = player.global_position + Vector2(randf_range(-10, 10), randf_range(-10, 10))
+	var resource_ins
+	if resource_type == 0:
+		resource_ins = dung_resource_scenes.get(0).instantiate()
+	else:
+		resource_ins = dung_resource_scenes.get(1).instantiate()
+	resource_ins.global_position = player_s.global_position + Vector2(randf_range(-range, range), randf_range(-range, range))
 	multiplayer_spawner.call_deferred("add_child", resource_ins, true)
+	#var deb: String = "Hemos spawneado el recurso: "+str(resource_ins)
+	#Debug.log(deb)

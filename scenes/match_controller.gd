@@ -21,6 +21,7 @@ enum MatchState {
 @onready var timer_label: Label = $"../UI/TimerLabel"
 @onready var results_timer: Timer = $"../Timers/ResultsTimer"
 
+
 var current_state: MatchState = MatchState.GAME_STARTING
 
 var players: Array[Node] = []
@@ -34,7 +35,7 @@ func setup(match_players: Array[Node], match_balls: Array[Node], match_spawn_poi
 	players = match_players
 	balls = match_balls
 	spawn_points = match_spawn_points
-
+	#multiplayer_synchronizer.set_multiplayer_authority(1, false)
 	if multiplayer.is_server():
 		_connect_player_death_signals()
 
@@ -143,16 +144,20 @@ func _process(delta: float) -> void:
 	update_timer_label()
 	
 func update_timer_label() -> void:
+	# Enviaremos un rpc desde el servidor para actualizar el timer de todos los peers.
+	# Por lo tanto, solo el server debe ejecutar esta función:
+	if not multiplayer.is_server:
+		return
 	match current_state:
 		MatchState.GAME_PLAYING:
-			timer_label.text = "Round Timer: " + str(int(round(round_timer.time_left)))
-
+			var label_text: String = "Round Timer: " + str(int(round(round_timer.time_left)))
+			Game.change_timer_label.rpc(label_text)
 		MatchState.GAME_SHOP:
-			timer_label.text = "Shop Timer: " + str(int(round(shop_timer.time_left)))
-
+			var label_text: String = "Shop Timer: " + str(int(round(shop_timer.time_left)))
+			Game.change_timer_label.rpc(label_text)
 		MatchState.GAME_STARTING:
-			timer_label.text = "Starting..."
-
+			var label_text: String = "Starting..."
+			Game.change_timer_label.rpc(label_text)
 		MatchState.GAME_ENDING:
 			timer_label.hide()
 			
