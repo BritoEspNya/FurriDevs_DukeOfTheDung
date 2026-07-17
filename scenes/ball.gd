@@ -54,6 +54,8 @@ func _physics_process(delta: float) -> void:
 			if last_charge > 0:
 				linear_velocity = linear_velocity * last_charge
 				was_attached = false
+			else:
+				linear_velocity = linear_velocity.limit_length(max_speed*2)
 
 	var displacement = global_position - last_position
 	
@@ -75,10 +77,10 @@ func _input(event: InputEvent) -> void:
 	# Attach & Detach
 	if event.is_action_pressed("input_movement_mode"):
 		if _near_players.has(player):
-			if !is_attached:
-				attach.rpc(player.get_path())
-			else:
-				if player == attached_player:
+			if player == attached_player:
+				if !is_attached:
+					attach.rpc(player.get_path())
+				else:
 					detach.rpc(player.get_path())
 	# Ball Rush
 	if is_attached:

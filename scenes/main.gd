@@ -39,8 +39,8 @@ func _spawn_match_entities() -> void:
 		
 		ball_instances.append(ball_instance) # Agregamos la bola
 		
-		var ball_spawn_point = ball_spawn_points.get_child(i)
-		ball_instance.global_position = ball_spawn_point.global_position
+		ball_instance.global_position = player_instance.ball_point.global_position
+		ball_instance.attached_player = player_instance
 
 func _setup_match_controller() -> void:
 	match_controller.setup(player_instances, ball_instances, spawn_points)
