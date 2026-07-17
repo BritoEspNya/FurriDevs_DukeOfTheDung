@@ -10,5 +10,5 @@ weapon_scene = ExtResource("3_mgae5")
 display_name = "Angel Sword"
 description = "The power of the Father of Gods in your hand. Deals 25 damage on a huge area."
 image = ExtResource("1_w50xh")
-price = 35
+price = 50
 metadata/_custom_type_script = "uid://dbyecwbfuftuy"

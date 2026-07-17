@@ -9,6 +9,9 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_74u3g"]
 bg_color = Color(0, 0, 0, 0)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_icdkc"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
 [node name="CreditsScreen" unique_id=502613410 instance=ExtResource("1_m3vk0")]
 script = ExtResource("2_hvxmk")
 
@@ -47,6 +50,7 @@ offset_right = 0.0
 offset_bottom = 0.0
 grow_vertical = 2
 theme_type_variation = &"Zero"
+theme_override_styles/panel = SubResource("StyleBoxFlat_icdkc")
 
 [node name="MarginContainer2_VBoxContainer_MarginContainer_Panel#PanelContainer" type="RichTextLabel" parent="MarginContainer2/VBoxContainer/MarginContainer/Control/MarginContainer2_VBoxContainer_MarginContainer_Panel#PanelContainer" index="0" unique_id=1843684968]
 layout_mode = 2

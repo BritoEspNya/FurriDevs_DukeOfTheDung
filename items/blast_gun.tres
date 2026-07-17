@@ -10,5 +10,5 @@ weapon_scene = ExtResource("3_q0o1q")
 display_name = "Blast Gun"
 description = "Lower damage. Crazy speed. Deal 5 damage each 0.1s. Buy it now!"
 image = ExtResource("1_lelsn")
-price = 30
+price = 35
 metadata/_custom_type_script = "uid://dbyecwbfuftuy"
