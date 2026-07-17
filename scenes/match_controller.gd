@@ -16,7 +16,8 @@ enum MatchState {
 @onready var shop_screen: Control = $"../UI/ShopScreen"
 @onready var round_timer: Timer = $"../Timers/RoundTimer"
 @onready var match_timer: Timer = $"../Timers/MatchTimer"
-@onready var end_screen: Control = $"../UI/EndScreen"
+#@onready var end_screen: Control = $"../UI/EndScreen"
+@onready var end_screen_2: Control = $"../UI/EndScreen2"
 @onready var shop_timer: Timer = $"../Timers/ShopTimer"
 #@onready var timer_label: Label = $"../UI/TimerLabel"
 @onready var results_timer: Timer = $"../Timers/ResultsTimer"
@@ -41,7 +42,7 @@ func setup(match_players: Array[Node], match_balls: Array[Node], match_spawn_poi
 
 func _ready() -> void:
 	shop_screen.hide()
-	end_screen.hide()
+	end_screen_2.hide()
 	match_timer.timeout.connect(_on_match_timer_timeout)
 	round_timer.timeout.connect(_on_round_timer_timeout)
 	shop_timer.timeout.connect(_on_shop_timer_timeout)
@@ -100,16 +101,14 @@ func end_match() -> void:
 		#var HB: CanvasLayer = player.get_HB()
 		HUD.hide()
 		#HB.hide()
-		
-	end_screen.show_results()
-	end_screen.show()
+	results_timer.start()
+	end_screen_2.show_results()
+	end_screen_2.show()
 	change_state(MatchState.GAME_ENDING)
 	_set_gameplay_enabled(false)
 	
 	for player_data in Game.players:
 		player_data.reset()
-	
-	results_timer.start()
 
 func change_state(new_state: MatchState) -> void:
 	if current_state == new_state:
