@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cmelluavc7yg6" path="res://scenes/end_screen.tscn" id="6_hid0r"]
 [ext_resource type="Script" uid="uid://ba07fntbvwu7m" path="res://scenes/match_controller.gd" id="6_k0j1d"]
 [ext_resource type="Script" uid="uid://dndd6xwc8o8m4" path="res://scenes/end_screen.gd" id="7_on7a6"]
+[ext_resource type="PackedScene" uid="uid://dl1kwo0w1vrh3" path="res://scenes/end_screen_2.tscn" id="8_on7a6"]
 
 [node name="MatchScene" type="Node2D" unique_id=1397281341]
 y_sort_enabled = true
@@ -62,7 +63,10 @@ process_mode = 3
 process_mode = 3
 
 [node name="EndScreen" parent="UI" unique_id=1388846591 instance=ExtResource("6_hid0r")]
+visible = false
 script = ExtResource("7_on7a6")
+
+[node name="EndScreen2" parent="UI" unique_id=701418161 instance=ExtResource("8_on7a6")]
 
 [node name="Timers" type="Node" parent="." unique_id=770002393]
 
@@ -76,11 +80,11 @@ wait_time = 5.0
 one_shot = true
 
 [node name="MatchTimer" type="Timer" parent="Timers" unique_id=1978069221]
-wait_time = 30.0
+wait_time = 5.0
 one_shot = true
 
 [node name="ResultsTimer" type="Timer" parent="Timers" unique_id=762352874]
-wait_time = 10.0
+wait_time = 30.0
 one_shot = true
 
 [node name="MatchController" type="Node" parent="." unique_id=1530699601]

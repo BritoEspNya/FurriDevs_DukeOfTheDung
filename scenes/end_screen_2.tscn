@@ -1,0 +1,237 @@
+[gd_scene format=3 uid="uid://dl1kwo0w1vrh3"]
+
+[ext_resource type="Script" uid="uid://2pvavn4upn5h" path="res://scenes/end_screen_2.gd" id="1_dsoy3"]
+[ext_resource type="Texture2D" uid="uid://c7dw4lk3p51hi" path="res://assets/Pixel Art Top Down - Basic v1.2.3/Texture/tower.png" id="2_4yd61"]
+[ext_resource type="Texture2D" uid="uid://ddm3drt1pwqa8" path="res://assets/player asset/beetle_sprite.png" id="3_w6ffo"]
+[ext_resource type="Texture2D" uid="uid://bunjtgx0brnm0" path="res://assets/player asset/Crown spritesheet.png" id="4_qr1vu"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_yf5fn"]
+font_size = 100
+
+[sub_resource type="LabelSettings" id="LabelSettings_g4v7s"]
+font_size = 20
+
+[sub_resource type="Animation" id="Animation_ntju2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_ng5cw"]
+resource_name = "shine"
+length = 0.5666700295541436
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333334, 0.16666667, 0.20000002, 0.23333335, 0.26666668, 0.3, 0.33333334, 0.36666667, 0.40000004, 0.43333337, 0.4666667, 0.5, 0.53333336),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8lsqo"]
+_data = {
+&"RESET": SubResource("Animation_ntju2"),
+&"shine": SubResource("Animation_ng5cw")
+}
+
+[node name="EndScreen2" type="Control" unique_id=701418161]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_dsoy3")
+
+[node name="PanelContainer2" type="PanelContainer" parent="." unique_id=175884620]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="PanelContainer2" unique_id=916821474]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "GAME SET"
+label_settings = SubResource("LabelSettings_yf5fn")
+horizontal_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=295584293]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Podium3" type="Sprite2D" parent="PanelContainer" unique_id=356195361]
+texture_filter = 1
+position = Vector2(-350, 550)
+scale = Vector2(3, 3)
+texture = ExtResource("2_4yd61")
+
+[node name="Sprite2D" type="Sprite2D" parent="PanelContainer/Podium3" unique_id=1903911686]
+position = Vector2(0, -240)
+scale = Vector2(0.035, 0.035)
+texture = ExtResource("3_w6ffo")
+
+[node name="Player3" type="Label" parent="PanelContainer/Podium3" unique_id=1324743476]
+texture_filter = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -54.5
+offset_top = -250.0
+offset_right = -9.5
+offset_bottom = -213.0
+grow_horizontal = 2
+size_flags_horizontal = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -40)
+text = "Player
+"
+label_settings = SubResource("LabelSettings_g4v7s")
+horizontal_alignment = 1
+
+[node name="Score3" type="Label" parent="PanelContainer/Podium3" unique_id=1502907915]
+texture_filter = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -54.5
+offset_top = -250.0
+offset_right = -9.5
+offset_bottom = -213.0
+grow_horizontal = 2
+size_flags_horizontal = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -60)
+text = "Score
+"
+label_settings = SubResource("LabelSettings_g4v7s")
+horizontal_alignment = 1
+
+[node name="Podium1" type="Sprite2D" parent="PanelContainer" unique_id=421047567]
+texture_filter = 1
+position = Vector2(0, 350)
+scale = Vector2(3, 3)
+texture = ExtResource("2_4yd61")
+
+[node name="Sprite2D" type="Sprite2D" parent="PanelContainer/Podium1" unique_id=844335892]
+position = Vector2(0, -240)
+scale = Vector2(0.035, 0.035)
+texture = ExtResource("3_w6ffo")
+
+[node name="Player1" type="Label" parent="PanelContainer/Podium1" unique_id=1281517617]
+texture_filter = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -54.5
+offset_top = -250.0
+offset_right = -9.5
+offset_bottom = -213.0
+grow_horizontal = 2
+size_flags_horizontal = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -40)
+text = "Player
+"
+label_settings = SubResource("LabelSettings_g4v7s")
+horizontal_alignment = 1
+
+[node name="Score1" type="Label" parent="PanelContainer/Podium1" unique_id=1763386930]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -54.5
+offset_top = -250.0
+offset_right = -9.5
+offset_bottom = -213.0
+grow_horizontal = 2
+size_flags_horizontal = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -60)
+text = "Score
+"
+label_settings = SubResource("LabelSettings_g4v7s")
+horizontal_alignment = 1
+
+[node name="Sprite2D2" type="Sprite2D" parent="PanelContainer/Podium1" unique_id=1707788472]
+position = Vector2(0, -320)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_qr1vu")
+hframes = 4
+vframes = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PanelContainer/Podium1/Sprite2D2" unique_id=915199536]
+libraries/ = SubResource("AnimationLibrary_8lsqo")
+autoplay = &"shine"
+
+[node name="Podium2" type="Sprite2D" parent="PanelContainer" unique_id=1478941727]
+texture_filter = 1
+position = Vector2(350, 450)
+scale = Vector2(3, 3)
+texture = ExtResource("2_4yd61")
+
+[node name="Sprite2D" type="Sprite2D" parent="PanelContainer/Podium2" unique_id=776730583]
+position = Vector2(0, -240)
+scale = Vector2(0.035, 0.035)
+texture = ExtResource("3_w6ffo")
+
+[node name="Player2" type="Label" parent="PanelContainer/Podium2" unique_id=410445664]
+texture_filter = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -54.5
+offset_top = -250.0
+offset_right = -9.5
+offset_bottom = -213.0
+grow_horizontal = 2
+size_flags_horizontal = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -40)
+text = "Player
+"
+label_settings = SubResource("LabelSettings_g4v7s")
+horizontal_alignment = 1
+
+[node name="Score2" type="Label" parent="PanelContainer/Podium2" unique_id=318413596]
+texture_filter = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -54.5
+offset_top = -250.0
+offset_right = -9.5
+offset_bottom = -213.0
+grow_horizontal = 2
+size_flags_horizontal = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -60)
+text = "Score
+"
+label_settings = SubResource("LabelSettings_g4v7s")
+horizontal_alignment = 1

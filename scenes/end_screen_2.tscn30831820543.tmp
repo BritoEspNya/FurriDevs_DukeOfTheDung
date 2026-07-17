@@ -1,0 +1,172 @@
+[gd_scene format=3 uid="uid://dl1kwo0w1vrh3"]
+
+[ext_resource type="Script" uid="uid://2pvavn4upn5h" path="res://scenes/end_screen_2.gd" id="1_dsoy3"]
+[ext_resource type="Texture2D" uid="uid://c7dw4lk3p51hi" path="res://assets/Pixel Art Top Down - Basic v1.2.3/Texture/tower.png" id="2_4yd61"]
+[ext_resource type="Texture2D" uid="uid://ddm3drt1pwqa8" path="res://assets/player asset/beetle_sprite.png" id="3_w6ffo"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_g4v7s"]
+font_size = 20
+
+[node name="EndScreen2" type="Control" unique_id=701418161]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_dsoy3")
+
+[node name="PanelContainer2" type="PanelContainer" parent="." unique_id=175884620]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=295584293]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Podium3" type="Sprite2D" parent="PanelContainer" unique_id=356195361]
+texture_filter = 1
+position = Vector2(-350, 550)
+scale = Vector2(3, 3)
+texture = ExtResource("2_4yd61")
+
+[node name="Sprite2D" type="Sprite2D" parent="PanelContainer/Podium3" unique_id=1903911686]
+position = Vector2(0, -240)
+scale = Vector2(0.035, 0.035)
+texture = ExtResource("3_w6ffo")
+
+[node name="Player3" type="Label" parent="PanelContainer/Podium3" unique_id=1324743476]
+texture_filter = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -54.5
+offset_top = -250.0
+offset_right = -9.5
+offset_bottom = -213.0
+grow_horizontal = 2
+size_flags_horizontal = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -40)
+text = "Player
+"
+label_settings = SubResource("LabelSettings_g4v7s")
+
+[node name="Score3" type="Label" parent="PanelContainer/Podium3" unique_id=1502907915]
+texture_filter = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -54.5
+offset_top = -250.0
+offset_right = -9.5
+offset_bottom = -213.0
+grow_horizontal = 2
+size_flags_horizontal = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -60)
+text = "Score
+"
+label_settings = SubResource("LabelSettings_g4v7s")
+
+[node name="Podium1" type="Sprite2D" parent="PanelContainer" unique_id=421047567]
+texture_filter = 1
+position = Vector2(0, 350)
+scale = Vector2(3, 3)
+texture = ExtResource("2_4yd61")
+
+[node name="Sprite2D" type="Sprite2D" parent="PanelContainer/Podium1" unique_id=844335892]
+position = Vector2(0, -240)
+scale = Vector2(0.035, 0.035)
+texture = ExtResource("3_w6ffo")
+
+[node name="Player1" type="Label" parent="PanelContainer/Podium1" unique_id=1281517617]
+texture_filter = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -54.5
+offset_top = -250.0
+offset_right = -9.5
+offset_bottom = -213.0
+grow_horizontal = 2
+size_flags_horizontal = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -40)
+text = "Player
+"
+label_settings = SubResource("LabelSettings_g4v7s")
+
+[node name="Score1" type="Label" parent="PanelContainer/Podium1" unique_id=1763386930]
+texture_filter = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -54.5
+offset_top = -250.0
+offset_right = -9.5
+offset_bottom = -213.0
+grow_horizontal = 2
+size_flags_horizontal = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -60)
+text = "Score
+"
+label_settings = SubResource("LabelSettings_g4v7s")
+
+[node name="Podium2" type="Sprite2D" parent="PanelContainer" unique_id=1478941727]
+texture_filter = 1
+position = Vector2(350, 450)
+scale = Vector2(3, 3)
+texture = ExtResource("2_4yd61")
+
+[node name="Sprite2D" type="Sprite2D" parent="PanelContainer/Podium2" unique_id=776730583]
+position = Vector2(0, -240)
+scale = Vector2(0.035, 0.035)
+texture = ExtResource("3_w6ffo")
+
+[node name="Player2" type="Label" parent="PanelContainer/Podium2" unique_id=410445664]
+texture_filter = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -54.5
+offset_top = -250.0
+offset_right = -9.5
+offset_bottom = -213.0
+grow_horizontal = 2
+size_flags_horizontal = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -40)
+text = "Player
+"
+label_settings = SubResource("LabelSettings_g4v7s")
+
+[node name="Score2" type="Label" parent="PanelContainer/Podium2" unique_id=318413596]
+texture_filter = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -54.5
+offset_top = -250.0
+offset_right = -9.5
+offset_bottom = -213.0
+grow_horizontal = 2
+size_flags_horizontal = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -60)
+text = "Score
+"
+label_settings = SubResource("LabelSettings_g4v7s")
