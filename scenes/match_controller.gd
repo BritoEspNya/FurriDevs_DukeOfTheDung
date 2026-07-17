@@ -21,6 +21,7 @@ enum MatchState {
 @onready var shop_timer: Timer = $"../Timers/ShopTimer"
 #@onready var timer_label: Label = $"../UI/TimerLabel"
 @onready var results_timer: Timer = $"../Timers/ResultsTimer"
+@onready var audio_stream_player: AudioStreamPlayer = $"../AudioStreamPlayer"
 
 
 var current_state: MatchState = MatchState.GAME_STARTING
@@ -65,6 +66,9 @@ func _connect_player_death_signals() -> void:
 func start_match() -> void:
 	change_state(MatchState.GAME_STARTING)
 	match_timer.start()
+	audio_stream_player.play()
+	var tween: Tween = create_tween()
+	tween.tween_property(audio_stream_player, "volume_db", -15.0, 2.0)
 	start_round()
 
 func start_round() -> void:
@@ -93,6 +97,7 @@ func exit_shop() -> void:
 	start_round()
 
 func end_match() -> void:
+	audio_stream_player.stop()
 	shop_timer.stop()
 	round_timer.stop()
 	
