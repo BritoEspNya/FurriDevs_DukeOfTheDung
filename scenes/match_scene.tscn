@@ -27,9 +27,6 @@ y_sort_enabled = true
 [node name="Map" parent="World" unique_id=778570579 instance=ExtResource("2_jr368")]
 y_sort_enabled = true
 
-[node name="Players" type="Node2D" parent="." unique_id=121598]
-y_sort_enabled = true
-
 [node name="Balls" type="Node2D" parent="." unique_id=1140088959]
 y_sort_enabled = true
 
@@ -72,7 +69,7 @@ one_shot = true
 
 [node name="ShopTimer" type="Timer" parent="Timers" unique_id=1704158372]
 process_mode = 2
-wait_time = 20.0
+wait_time = 15.0
 one_shot = true
 
 [node name="MatchTimer" type="Timer" parent="Timers" unique_id=1978069221]

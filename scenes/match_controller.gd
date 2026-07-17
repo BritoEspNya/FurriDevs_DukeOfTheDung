@@ -18,7 +18,7 @@ enum MatchState {
 @onready var match_timer: Timer = $"../Timers/MatchTimer"
 @onready var end_screen: Control = $"../UI/EndScreen"
 @onready var shop_timer: Timer = $"../Timers/ShopTimer"
-@onready var timer_label: Label = $"../UI/TimerLabel"
+#@onready var timer_label: Label = $"../UI/TimerLabel"
 @onready var results_timer: Timer = $"../Timers/ResultsTimer"
 
 
@@ -75,14 +75,19 @@ func start_round() -> void:
 func enter_shop() -> void:
 	change_state(MatchState.GAME_SHOP)
 	#_set_gameplay_enabled(false)
-	shop_screen.show()
+	# Ocultamos HUD de los players
+	#hide_hud_from_players()
+	#shop_screen.show()
+	if multiplayer.is_server():
+		set_shop_interface_enabled.rpc(true)
 	#if shop_screen.has_method("refresh_shop"):
 	#	shop_screen.refresh_shop()
 	shop_timer.start()
 	get_tree().paused = true
 
 func exit_shop() -> void:
-	shop_screen.hide()
+	if multiplayer.is_server():
+		set_shop_interface_enabled.rpc(false)
 	get_tree().paused = false
 	start_round()
 
@@ -113,6 +118,21 @@ func change_state(new_state: MatchState) -> void:
 	current_state = new_state
 	state_changed.emit(new_state)
 
+@rpc("any_peer", "call_local", "reliable")
+func set_shop_interface_enabled(enabled: bool) -> void:
+	for player in players:
+		if not is_instance_valid(player):
+			continue
+
+		if not player.is_multiplayer_authority():
+			continue
+
+		player.enter_shop(not enabled)
+
+	if enabled:
+		shop_screen.show()
+	else:
+		shop_screen.hide()
 
 func _set_gameplay_enabled(enabled: bool) -> void:
 	for player in players:
