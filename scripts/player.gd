@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 signal respawned
 signal died
+signal weapon_equipped(weapon_index: int, weapon_icon: Texture2D)
 
 @export var walk_speed: float = 200
 @export var flight_speed: float = 600
@@ -255,6 +256,12 @@ func equip_weapon_ph(weapon_idx: int) -> void:
 	#current_weapon.position = weapon_spawn_point.position
 	#current_weapon.rotation = weapon_spawn_point.rotation
 	weapon_spawn_point.add_child(current_weapon, true)
+	Debug.log("SEÑAL EMITIDA DE CAMBIO DE ARMA, IDX= "+str(current_weapon_idx))
+	sync_weapon_hud.rpc()
+	
+@rpc("any_peer", "call_local", "reliable")
+func sync_weapon_hud() -> void:
+	weapon_equipped.emit(current_weapon_idx,current_weapon.get_hud_icon())
 
 @rpc("authority", "call_remote", "unreliable_ordered")
 func send_position(pos: Vector2) -> void:
@@ -325,6 +332,9 @@ func get_dung() -> int:
 	
 func set_timer_label(ltext: String) -> void:
 	hud.set_timer_label(ltext)
+
+func enter_shop(enable: bool) -> void:
+	hud.shop_ui(not enable)
 
 func increase_max_healt(value:int) -> void:
 	var max_healt_increase: int = int(health_component.max_health*0.10)

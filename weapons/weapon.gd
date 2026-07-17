@@ -1,11 +1,14 @@
 class_name Weapon 
 extends Node2D
 
+@onready var sprite_2d: Sprite2D = $Sprite2D
+
 @export var attack_scene: PackedScene
 @export var attack_cooldown: float = 0.3
 #@export var projectile_damage: float
 @export_category("Damage")
 @export_range(0.0, 1000.0, 1, "or_greater")
+
 var base_damage: float = 10.0
 var buff_damage: float = 0.0
 var base_muultiplier: float = 1.0
@@ -29,6 +32,16 @@ func get_attack_spawn_marker() -> Marker2D:
 	
 func get_attack_damage() -> float:
 	return (base_damage*base_muultiplier)+buff_damage
+
+func get_hud_icon() -> Texture2D:
+	# For now it will be the item sprite itself
+	if sprite_2d:
+		Debug.log("TODO BIEN TODO PERFECTO")
+		return sprite_2d.texture
+	else:
+		Debug.log("QUE HA PASAO CARGAMOS OTRA TEXTURA")
+		var tmp_text = preload("uid://ovqgee4mynf5") # COLOCAR PUÑOS
+		return tmp_text
 
 func add_attack_damage(buff: float) -> void:
 	buff_damage = buff
