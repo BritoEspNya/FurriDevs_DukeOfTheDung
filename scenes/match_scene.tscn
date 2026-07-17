@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://ba07fntbvwu7m" path="res://scenes/match_controller.gd" id="6_k0j1d"]
 [ext_resource type="Script" uid="uid://dndd6xwc8o8m4" path="res://scenes/end_screen.gd" id="7_on7a6"]
 [ext_resource type="PackedScene" uid="uid://dl1kwo0w1vrh3" path="res://scenes/end_screen_2.tscn" id="8_on7a6"]
+[ext_resource type="AudioStream" uid="uid://blsnn3pnm7tv4" path="res://music/freesound_community-medieval-music-by-sjal-on-hunehals-borg-18936.mp3" id="12_ykk6a"]
 
 [node name="MatchScene" type="Node2D" unique_id=1397281341]
 y_sort_enabled = true
@@ -77,11 +78,11 @@ wait_time = 15.0
 one_shot = true
 
 [node name="MatchTimer" type="Timer" parent="Timers" unique_id=1978069221]
-wait_time = 120.541
+wait_time = 29.0
 one_shot = true
 
 [node name="ResultsTimer" type="Timer" parent="Timers" unique_id=762352874]
-wait_time = 30.0
+wait_time = 15.0
 one_shot = true
 
 [node name="MatchController" type="Node" parent="." unique_id=1530699601]
@@ -91,3 +92,7 @@ script = ExtResource("6_k0j1d")
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=9923813]
 _spawnable_scenes = PackedStringArray("uid://dwnxodiquq63m", "uid://q0keb73ua61k")
 spawn_path = NodePath(".")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=542509274]
+stream = ExtResource("12_ykk6a")
+volume_db = -80.0
