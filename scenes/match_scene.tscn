@@ -77,7 +77,7 @@ wait_time = 15.0
 one_shot = true
 
 [node name="MatchTimer" type="Timer" parent="Timers" unique_id=1978069221]
-wait_time = 5.0
+wait_time = 220.0
 one_shot = true
 
 [node name="ResultsTimer" type="Timer" parent="Timers" unique_id=762352874]
