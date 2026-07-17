@@ -87,6 +87,7 @@ func _ready() -> void:
 	health_bar.max_value = health_component.max_health
 	respawn_timer.timeout.connect(_on_respawn_timeout)
 	health_bar.value = health_component.health
+	#
 	
 	
 	
@@ -119,8 +120,10 @@ func _physics_process(delta: float) -> void:
 			pivot.rotation = lerp_angle(pivot.rotation, angle, rotation_speed * delta)
 		# Weapon movement and fire
 		if is_multiplayer_authority():
-			weapon_pivot.rotation = global_position.direction_to(get_global_mouse_position()).angle()
-			#Debug.log("Cambio de rotación:", weapon_pivot.rotation)
+			var aim_direction := global_position.direction_to(get_global_mouse_position())
+			weapon_pivot.rotation = aim_direction.angle()
+			if current_weapon:
+				current_weapon.set_sprite_flipped(aim_direction.x < 0.0)
 			if input_synchronizer.attack_input and not input_synchronizer.flight_input:
 				#fire()
 				#if not weapon_scenes:
@@ -184,6 +187,7 @@ func setup(data: Statics.PlayerData) -> void:
 		sync_timer.start()
 	if multiplayer.is_server():
 		equip_weapon_ph(current_weapon_idx)
+		#current_weapon.set_sprite_flipped(false)
 		#current_weapon = weapon_scenes[current_weapon_idx].instantiate()
 		#current_weapon.position = weapon_spawn_point.position
 		#current_weapon.rotation = weapon_spawn_point.rotation

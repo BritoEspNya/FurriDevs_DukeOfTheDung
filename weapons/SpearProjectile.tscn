@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://fja3u8rkhq8s"]
 
 [ext_resource type="Script" uid="uid://betdjv44g2qtq" path="res://weapons/projectile.gd" id="1_enfed"]
-[ext_resource type="Texture2D" uid="uid://brmdvyfdggcrh" path="res://assets/shop assets/spear.png" id="2_dh47r"]
+[ext_resource type="Texture2D" uid="uid://crm7lip5xtelb" path="res://assets/shop assets/spear_new.png" id="2_cus6t"]
 [ext_resource type="Script" uid="uid://bdhvqyy2d5ivq" path="res://components/hitbox_component.gd" id="3_6r1td"]
 [ext_resource type="AudioStream" uid="uid://kx5ch243ljji" path="res://assets/weapon_asset/gun_shot_2.wav" id="4_cus6t"]
 
@@ -18,7 +18,7 @@ properties/1/spawn = true
 properties/1/replication_mode = 0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cus6t"]
-size = Vector2(11, 8)
+size = Vector2(12.166668, 10.333334)
 
 [node name="SpearProjectile" type="Area2D" unique_id=1349324402 node_paths=PackedStringArray("hitbox_component")]
 scale = Vector2(3, 3)
@@ -34,7 +34,7 @@ shape = SubResource("CapsuleShape2D_xuifw")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=653511704]
 texture_filter = 1
 rotation = 0.7853982
-texture = ExtResource("2_dh47r")
+texture = ExtResource("2_cus6t")
 
 [node name="ProjectileSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=304005535]
 replication_config = SubResource("SceneReplicationConfig_ns54y")
@@ -46,8 +46,9 @@ script = ExtResource("3_6r1td")
 metadata/_custom_type_script = "uid://bdhvqyy2d5ivq"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=1753507216]
-position = Vector2(6.8333335, 1.1920929e-07)
+position = Vector2(13.333334, 0)
 shape = SubResource("RectangleShape2D_cus6t")
 
 [node name="AttackSound" type="AudioStreamPlayer2D" parent="." unique_id=2129899137]
 stream = ExtResource("4_cus6t")
+volume_db = -5.0

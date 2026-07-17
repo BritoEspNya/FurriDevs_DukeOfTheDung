@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://gtg3u6tjy2y1"]
 
 [ext_resource type="Script" uid="uid://betdjv44g2qtq" path="res://weapons/projectile.gd" id="1_tur4f"]
-[ext_resource type="Texture2D" uid="uid://dtejltu8y4i0n" path="res://assets/shop assets/arrow.png" id="2_tur4f"]
+[ext_resource type="Texture2D" uid="uid://uhtpd3u6cby" path="res://assets/shop assets/arrow_new.png" id="2_vgx2y"]
 [ext_resource type="Script" uid="uid://bdhvqyy2d5ivq" path="res://components/hitbox_component.gd" id="3_cv515"]
 [ext_resource type="AudioStream" uid="uid://f40dxrpuemq5" path="res://assets/weapon_asset/bow_shot.ogg" id="4_vgx2y"]
 
@@ -36,7 +36,7 @@ shape = SubResource("CapsuleShape2D_xuifw")
 texture_filter = 1
 position = Vector2(-1, 0)
 rotation = 0.7853982
-texture = ExtResource("2_tur4f")
+texture = ExtResource("2_vgx2y")
 
 [node name="ProjectileSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=304005535]
 replication_config = SubResource("SceneReplicationConfig_ns54y")

@@ -2,7 +2,7 @@ class_name Weapon
 extends Node2D
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
-
+#var sprite_base_rotation: float
 @export var attack_scene: PackedScene
 @export var attack_cooldown: float = 0.3
 #@export var projectile_damage: float
@@ -26,6 +26,7 @@ func _ready() -> void:
 			owner_player.attack_spawner.add_spawnable_scene(attack_scene.resource_path)
 			return
 		node = node.get_parent()
+	#sprite_base_rotation = sprite_2d.rotation
 	
 func get_attack_spawn_marker() -> Marker2D:
 	return $AttackSpawnMarker
@@ -48,6 +49,19 @@ func add_attack_damage(buff: float) -> void:
 	
 func add_mult_base_damage(mult: float) -> void:
 	base_muultiplier += mult
+
+func set_sprite_flipped(should_flip: bool) -> void:
+	if not sprite_2d:
+		#Melee, do not rotate
+		return
+	scale.y = -1.0 if should_flip else 1.0
+	#sprite_2d.rotation = (
+		#-sprite_base_rotation
+		#if should_flip
+		#else sprite_base_rotation
+	#)
+
+
 
 func setup_weapon(player: Player) -> void:
 	owner_player = player
