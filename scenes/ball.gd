@@ -53,6 +53,7 @@ func _physics_process(delta: float) -> void:
 		if was_attached:
 			if last_charge > 0:
 				linear_velocity = linear_velocity * last_charge
+				last_charge = 0
 				was_attached = false
 			else:
 				linear_velocity = linear_velocity.limit_length(max_speed*2)
