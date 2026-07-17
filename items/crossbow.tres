@@ -1,13 +1,13 @@
-[gd_resource type="Resource" script_class="EquippableWeaponItemData" format=3 uid="uid://34p1i82q4iwu"]
+[gd_resource type="Resource" script_class="EquippableWeaponItemData" format=3 uid="uid://bq7pcc2o44vtc"]
 
-[ext_resource type="Texture2D" uid="uid://bngwxrkrr5hdl" path="res://assets/shop assets/crossbow_32p.png" id="1_rhwe4"]
-[ext_resource type="Script" uid="uid://c8hgprtvavpmk" path="res://items/equippable_weapon_item_data.gd" id="2_rhwe4"]
-[ext_resource type="PackedScene" uid="uid://btmrd6nvlryln" path="res://weapons/crossbow.tscn" id="3_5vf3e"]
+[ext_resource type="Texture2D" uid="uid://bngwxrkrr5hdl" path="res://assets/shop assets/crossbow_32p.png" id="1_lelsn"]
+[ext_resource type="Script" uid="uid://c8hgprtvavpmk" path="res://items/equippable_weapon_item_data.gd" id="2_q0o1q"]
+[ext_resource type="PackedScene" uid="uid://btmrd6nvlryln" path="res://weapons/crossbow.tscn" id="3_helj4"]
 
 [resource]
-script = ExtResource("2_rhwe4")
-weapon_scene = ExtResource("3_5vf3e")
+script = ExtResource("2_q0o1q")
+weapon_scene = ExtResource("3_helj4")
 display_name = "Crossbow"
 description = "Shoot first. Roll dung later. Deals 10 damage."
-image = ExtResource("1_rhwe4")
+image = ExtResource("1_lelsn")
 metadata/_custom_type_script = "uid://dbyecwbfuftuy"

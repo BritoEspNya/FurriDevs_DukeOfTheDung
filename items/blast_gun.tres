@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EquippableWeaponItemData" format=3 uid="uid://34p1i82q4iwu"]
+
+[ext_resource type="Texture2D" uid="uid://bavrnhi7n5ufr" path="res://assets/weapon_asset/blast_gun.png" id="1_rhwe4"]
+[ext_resource type="Script" uid="uid://c8hgprtvavpmk" path="res://items/equippable_weapon_item_data.gd" id="2_rhwe4"]
+[ext_resource type="PackedScene" uid="uid://cf82kww2byeq3" path="res://weapons/blast_gun.tscn" id="3_5vf3e"]
+
+[resource]
+script = ExtResource("2_rhwe4")
+weapon_scene = ExtResource("3_5vf3e")
+display_name = "Blast Gun"
+description = "Lower damage. Crazy speed. Deal 4 damage each 0.1s. Buy it now!"
+image = ExtResource("1_rhwe4")
+price = 30
+metadata/_custom_type_script = "uid://dbyecwbfuftuy"

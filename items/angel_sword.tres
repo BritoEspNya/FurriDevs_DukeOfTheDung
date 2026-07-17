@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EquippableWeaponItemData" format=3 uid="uid://fxwyoo0tjx63"]
+
+[ext_resource type="Texture2D" uid="uid://c8g6cbmt8h5db" path="res://assets/player asset/olimpus_sword.png" id="1_w50xh"]
+[ext_resource type="Script" uid="uid://c8hgprtvavpmk" path="res://items/equippable_weapon_item_data.gd" id="2_mgae5"]
+[ext_resource type="PackedScene" uid="uid://e7puldywsjfu" path="res://weapons/angel_sword.tscn" id="3_mgae5"]
+
+[resource]
+script = ExtResource("2_mgae5")
+weapon_scene = ExtResource("3_mgae5")
+display_name = "Angel Sword"
+description = "The power of the Father of Gods in your hand. Deals 25 damage on a huge area."
+image = ExtResource("1_w50xh")
+price = 35
+metadata/_custom_type_script = "uid://dbyecwbfuftuy"
