@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bsocoo55qa2vl" path="res://ui/credits.gd" id="2_hvxmk"]
 [ext_resource type="Texture2D" uid="uid://dhr828dm3kbv3" path="res://assets/UI Assets/origbig.png" id="3_1bagf"]
 [ext_resource type="Script" uid="uid://d3n87yt617shu" path="res://ui/richlabelmovement.gd" id="3_74u3g"]
+[ext_resource type="AudioStream" uid="uid://bsp34jajgivhv" path="res://music/Sketchbook 2025-11-26.ogg" id="5_icdkc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_74u3g"]
 bg_color = Color(0, 0, 0, 0)
@@ -130,3 +131,7 @@ by Tallbeard Studios
 "
 scroll_active = false
 script = ExtResource("3_74u3g")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="2" unique_id=24829569]
+stream = ExtResource("5_icdkc")
+autoplay = true
