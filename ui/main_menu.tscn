@@ -83,7 +83,7 @@ text = "Credits"
 [node name="Controls" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer2" unique_id=511744142]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Controls
+text = "How to play
 "
 
 [node name="Quit" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer2" unique_id=1867731348]

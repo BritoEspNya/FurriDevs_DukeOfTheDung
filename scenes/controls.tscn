@@ -401,7 +401,7 @@ text = "く"
 [node name="Label" type="Label" parent="MenuPanel/VBoxContainer/MarginContainer/TittleContainer/HBoxContainer" unique_id=1684341681]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Keyboard Controls"
+text = "How to play!"
 label_settings = SubResource("LabelSettings_g4v7s")
 horizontal_alignment = 1
 
