@@ -6,6 +6,7 @@ extends Control
 @onready var item_card_1: ItemCard = %ItemCard1
 @onready var item_card_2: ItemCard = %ItemCard2
 @onready var item_card_3: ItemCard = %ItemCard3
+@onready var reroll_button: Button = %RerollButton
 
 
 func _ready() -> void:
@@ -13,6 +14,7 @@ func _ready() -> void:
 	item_card_1.bought.connect(_on_bought.bind(item_card_1))
 	item_card_2.bought.connect(_on_bought.bind(item_card_2))
 	item_card_3.bought.connect(_on_bought.bind(item_card_3))
+	reroll_button.pressed.connect(generate_cards_reroll)
 
 func generate_cards() -> void:
 	var player = Game.get_current_player()
@@ -33,6 +35,28 @@ func generate_cards() -> void:
 		
 		available_items.erase(random_item)
 
+func generate_cards_reroll() -> void:
+	var player_coins: int = Game.get_current_player_dung()
+	if player_coins >= 5:
+		Game.set_current_player_dung(player_coins-5)
+		var player = Game.get_current_player()
+		var weapon_inv = player.inventory_hud["weapon"]
+		if not item_card_scene:
+			return
+		
+		var available_items = item_data_array.duplicate()
+		
+		for weapon in weapon_inv:
+			available_items.erase(weapon)
+
+		for margin_container in item_card_container.get_children():
+			var item_card: ItemCard = margin_container.get_child(0)
+			
+			var random_item = available_items.pick_random()
+			item_card.item_data = random_item
+			
+			available_items.erase(random_item)
+		
 func _on_bought(item_card: ItemCard) -> void:
 	var available_items: Array[ItemData] = item_data_array.duplicate()
 	var item_cards: Array[ItemCard] = [item_card_1, item_card_2, item_card_3]

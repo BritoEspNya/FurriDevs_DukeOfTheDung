@@ -41,14 +41,14 @@ lock_rotation = true
 script = ExtResource("1_cxlvu")
 max_speed = 800.0
 
-[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=650100756]
+[node name="Shadow" type="Sprite2D" parent="." unique_id=650100756]
 self_modulate = Color(0.1254902, 0.1254902, 0.1254902, 0.1254902)
 texture_filter = 1
 position = Vector2(9.000001, 8.000003)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("5_eew57")
 
-[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=650100756]
+[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=807195178]
 self_modulate = Color(0.1254902, 0.1254902, 0.1254902, 0.1254902)
 texture_filter = 1
 position = Vector2(9.000001, 8.000003)
