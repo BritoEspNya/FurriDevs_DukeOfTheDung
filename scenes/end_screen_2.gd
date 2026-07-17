@@ -14,12 +14,14 @@ extends Control
 
 var podium_player_tags: Array[Label]
 var podium_score_tags: Array[Label]
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 func _ready() -> void:
 	podium_player_tags = [player_3, player_2, player_1]
 	podium_score_tags = [score_3, score_2, score_1]
 
 func show_results() -> void:
+	audio_stream_player.play()
 	var limite_pantalla_y: float = get_viewport_rect().size.y
 	
 	var pos_final_title: Vector2 = title.position
