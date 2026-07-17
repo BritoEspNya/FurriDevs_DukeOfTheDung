@@ -90,7 +90,7 @@ func _ready() -> void:
 	
 func _physics_process(delta: float) -> void:
 	var move_input: Vector2 = input_synchronizer.move_input
-	if input_synchronizer.mode_input:
+	if input_synchronizer.mode_input:			
 		# Flight mode
 		is_flying = input_synchronizer.flight_input 
 		if is_flying and stamina > 0:
@@ -104,25 +104,16 @@ func _physics_process(delta: float) -> void:
 					stamina_timer = 0.0
 					stamina = max(stamina - stamina_per_tick, 0)
 					hud.stamina_bar.value = stamina
-				
 		else:
 			_speed = walk_speed
 			target_max_speed = walk_speed
-			# Stamina recovery
-			if stamina < max_stamina:
-				stamina_timer += delta
-				if stamina_timer >= stamina_recover_interval:
-					stamina_timer = 0.0
-					stamina += stamina_per_tick
-					stamina = min(stamina, max_stamina)
-					hud.stamina_bar.value = stamina
 			
 		current_max_speed = lerp(current_max_speed, target_max_speed, deceleration_rate * delta)
 		# Normal Movement
 		velocity.x = move_toward(velocity.x, move_input.x * _speed, acceleration * delta)
 		velocity.y = move_toward(velocity.y, move_input.y * _speed, acceleration * delta)
 		if velocity.length() > 0:
-			var angle = velocity.angle() + PI / 2
+			var angle: float = velocity.angle() + PI / 2
 			pivot.rotation = lerp_angle(pivot.rotation, angle, rotation_speed * delta)
 		# Weapon movement and fire
 		if is_multiplayer_authority():
@@ -151,11 +142,20 @@ func _physics_process(delta: float) -> void:
 	else:
 		# Movement with ball attached
 		pivot.rotation += move_input.x * rotation_speed * delta
-		var forward_direction = Vector2.UP.rotated(pivot.rotation)
+		var forward_direction: Vector2 = Vector2.UP.rotated(pivot.rotation)
 		velocity = velocity.move_toward(forward_direction * walk_speed * move_input.y, acceleration * delta)
 	velocity = velocity.limit_length(current_max_speed)
 	ball_pivot.rotation = pivot.rotation
 	move_and_slide()
+	
+	# Stamina recovery
+	if stamina < max_stamina:
+		stamina_timer += delta
+		if stamina_timer >= stamina_recover_interval:
+			stamina_timer = 0.0
+			stamina += stamina_per_tick
+			stamina = min(stamina, max_stamina)
+			hud.stamina_bar.value = stamina
 	
 	if input_synchronizer.move_input:
 		if input_synchronizer.flight_input and stamina > 0:
@@ -198,14 +198,14 @@ func setup_weapon_spawner(weapon_scenes_array: Array[PackedScene]) -> void:
 func register_weapon_scene(weapon_scene: PackedScene) -> int:
 	if weapon_scene == null:
 		return -1
-	var scene_path := weapon_scene.resource_path
+	var scene_path: String = weapon_scene.resource_path
 	if scene_path.is_empty():
 		push_error("La escena del arma no tiene resource_path")
 		return -1
 	
 	# Verificamos que no exista el arma
 	for index: int in weapon_scenes.size():
-		var registered_scene := weapon_scenes[index]
+		var registered_scene: PackedScene = weapon_scenes[index]
 		if registered_scene == null:
 			continue
 		if registered_scene.resource_path == scene_path:
@@ -221,7 +221,7 @@ func register_weapon_scene(weapon_scene: PackedScene) -> int:
 
 @rpc("authority", "call_local", "reliable")
 func swap_weapon() -> void:
-	var n = weapon_scenes.size()
+	var n: int = weapon_scenes.size()
 	if n > 1:
 		current_weapon_idx = (current_weapon_idx+1) % n
 		Debug.log("SWAAAAP TO: " + str(current_weapon_idx))
@@ -236,7 +236,7 @@ func equip_weapon_ph(weapon_idx: int) -> void:
 		Debug.log(deb)
 		return
 
-	var weapon_scene := weapon_scenes[weapon_idx]
+	var weapon_scene: PackedScene = weapon_scenes[weapon_idx]
 	if not weapon_scene:
 		var deb: String = "Weapon scene is null at index: " + str(weapon_idx)
 		Debug.log(deb)
@@ -327,7 +327,7 @@ func set_timer_label(ltext: String) -> void:
 	hud.set_timer_label(ltext)
 
 func increase_max_healt(value:int) -> void:
-	var max_healt_increase = int(health_component.max_health*0.10)
+	var max_healt_increase: int = int(health_component.max_health*0.10)
 	health_component.max_health += max_healt_increase
 	health_component.health += max_healt_increase
 	hud.health_bar.max_value = health_component.max_health
