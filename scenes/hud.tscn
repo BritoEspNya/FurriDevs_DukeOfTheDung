@@ -133,7 +133,7 @@ texture_filter = 1
 scale = Vector2(2.5, 2.5)
 
 [node name="ShopDung" type="Node2D" parent="." unique_id=490992153]
-position = Vector2(344, 110)
+position = Vector2(221, 114)
 
 [node name="DungFrameShop" type="Sprite2D" parent="ShopDung" unique_id=1113641228]
 texture_filter = 1
