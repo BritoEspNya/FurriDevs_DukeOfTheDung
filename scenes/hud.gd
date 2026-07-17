@@ -6,7 +6,7 @@ extends CanvasLayer
 @onready var health_bar: ProgressBar = %HealthBar
 @onready var stamina_bar: ProgressBar = %StaminaBar
 @onready var timer_label: Label = $Timer/TimerLabel
-@onready var weapon_icon: Sprite2D = %WeaponIcon
+@onready var weapon_icon: TextureRect = %WeaponIcon
 @onready var life_hud: Node2D = $LifeHUD
 @onready var weapon_hud: Control = $WeaponHUD
 @onready var shop_dung: Node2D = $ShopDung
@@ -34,16 +34,17 @@ func _ready() -> void:
 func set_timer_label(text: String) -> void:
 	timer_label.text = text
 
-func _on_weapon_equipped(
-	_weapon_idx: int,
-	weapon_texture: Texture2D
-) -> void:
+func _on_weapon_equipped(_weapon_idx: int, weapon_texture: Texture2D) -> void:
 	if weapon_texture == null:
 		Debug.log("HUD received a null weapon texture")
 		return
 	var deb: String = "New texture is: " + str(weapon_texture)
 	Debug.log(deb)
 	weapon_icon.texture = weapon_texture
+	var lol = weapon_icon
+	# Normalize size icon
+	Debug.log("New icon is: "+str(lol))
+	#
 
 func _on_dung_changed(value:int) -> void:
 	dung.text = str(value)

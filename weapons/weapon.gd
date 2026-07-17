@@ -38,9 +38,9 @@ func get_hud_icon() -> Texture2D:
 	if sprite_2d:
 		Debug.log("TODO BIEN TODO PERFECTO")
 		return sprite_2d.texture
-	else:
-		Debug.log("QUE HA PASAO CARGAMOS OTRA TEXTURA")
-		var tmp_text = preload("uid://ovqgee4mynf5") # COLOCAR PUÑOS
+	else: # Melee weapon
+		Debug.log("QUE HA PASAO CARGAMOS TEXTURA MELEE")
+		var tmp_text: Texture2D = preload("uid://b5ni1frtfwvnx") #preload("uid://ovqgee4mynf5") # COLOCAR PUÑOS
 		return tmp_text
 
 func add_attack_damage(buff: float) -> void:

@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bne2j4colcawp" path="res://assets/player asset/game_ui.png" id="3_5ysmq"]
 [ext_resource type="Texture2D" uid="uid://cj7t0igrxh2r7" path="res://assets/UI Assets/long_horizontal_frame.png" id="4_6fi6k"]
 [ext_resource type="Texture2D" uid="uid://bmtccg7wb7hlt" path="res://assets/UI Assets/horizontal_frame.png" id="5_047uy"]
+[ext_resource type="Texture2D" uid="uid://b5ni1frtfwvnx" path="res://assets/shop assets/melee.png" id="6_5pdws"]
 [ext_resource type="Texture2D" uid="uid://b8jfkxyq2dkir" path="res://assets/map assets/little_resource.png" id="6_047uy"]
 
 [node name="HUD" type="CanvasLayer" unique_id=2000280290]
@@ -114,23 +115,32 @@ theme_override_font_sizes/font_size = 32
 text = "Round Timer"
 
 [node name="WeaponHUD" type="Control" parent="." unique_id=203205233]
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 3
 anchors_preset = 0
-offset_left = 130.0
-offset_top = 617.0
-offset_right = 170.0
-offset_bottom = 657.0
+offset_left = 114.0
+offset_top = 562.0
+offset_right = 178.0
+offset_bottom = 626.0
 
 [node name="Frame" type="Sprite2D" parent="WeaponHUD" unique_id=445387295]
 texture_filter = 1
-position = Vector2(1, 15)
+position = Vector2(25, 48)
 scale = Vector2(3.310328, 3.310328)
 texture = ExtResource("5_047uy")
 
-[node name="WeaponIcon" type="Sprite2D" parent="WeaponHUD" unique_id=2119008822]
+[node name="MarginContainer" type="MarginContainer" parent="WeaponHUD" unique_id=787168514]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="WeaponIcon" type="TextureRect" parent="WeaponHUD/MarginContainer" unique_id=1598913022]
 unique_name_in_owner = true
 texture_filter = 1
-scale = Vector2(2.5, 2.5)
+layout_mode = 2
+texture = ExtResource("6_5pdws")
+expand_mode = 1
 
 [node name="ShopDung" type="Node2D" parent="." unique_id=490992153]
 position = Vector2(221, 114)

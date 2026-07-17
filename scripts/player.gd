@@ -261,7 +261,8 @@ func equip_weapon_ph(weapon_idx: int) -> void:
 	
 @rpc("any_peer", "call_local", "reliable")
 func sync_weapon_hud() -> void:
-	weapon_equipped.emit(current_weapon_idx,current_weapon.get_hud_icon())
+	var icon: Texture2D = current_weapon.get_hud_icon()
+	weapon_equipped.emit(current_weapon_idx, icon)
 
 @rpc("authority", "call_remote", "unreliable_ordered")
 func send_position(pos: Vector2) -> void:
