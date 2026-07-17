@@ -52,7 +52,10 @@ func _physics_process(delta: float) -> void:
 	else:
 		if was_attached:
 			if last_charge > 0:
+				#Seteamos velocidad de la bola
+				#if is_multiplayer_authority(): 
 				linear_velocity = linear_velocity * last_charge
+				#var deb = "lol"
 				last_charge = 0
 				was_attached = false
 			else:

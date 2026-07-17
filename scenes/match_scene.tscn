@@ -28,6 +28,7 @@ y_sort_enabled = true
 
 [node name="Map" parent="World" unique_id=778570579 instance=ExtResource("2_jr368")]
 y_sort_enabled = true
+position = Vector2(-9, 18)
 
 [node name="Balls" type="Node2D" parent="." unique_id=1140088959]
 y_sort_enabled = true
@@ -69,7 +70,7 @@ script = ExtResource("7_on7a6")
 [node name="Timers" type="Node" parent="." unique_id=770002393]
 
 [node name="RoundTimer" type="Timer" parent="Timers" unique_id=954822435]
-wait_time = 15.0
+wait_time = 30.0
 one_shot = true
 
 [node name="ShopTimer" type="Timer" parent="Timers" unique_id=1704158372]
@@ -78,11 +79,11 @@ wait_time = 15.0
 one_shot = true
 
 [node name="MatchTimer" type="Timer" parent="Timers" unique_id=1978069221]
-wait_time = 29.0
+wait_time = 100.0
 one_shot = true
 
 [node name="ResultsTimer" type="Timer" parent="Timers" unique_id=762352874]
-wait_time = 15.0
+wait_time = 100.0
 one_shot = true
 
 [node name="MatchController" type="Node" parent="." unique_id=1530699601]
