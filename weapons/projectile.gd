@@ -5,7 +5,7 @@ extends Area2D
 @export var hitbox_component: HitboxComponent
 @onready var attack_sound: AudioStreamPlayer2D = $AttackSound
 
-var damage: float = 0.0
+var damage: float = 1
 
 func setup(projectile_damage: float, projectile_owner: Node2D) -> void:
 	damage = maxf(projectile_damage, 0.0)

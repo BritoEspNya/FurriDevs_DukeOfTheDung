@@ -52,3 +52,5 @@ shape = SubResource("RectangleShape2D_cus6t")
 
 [node name="AttackSound" type="AudioStreamPlayer2D" parent="." unique_id=849469430]
 stream = ExtResource("4_4cncq")
+volume_db = -10.0
+attenuation = 3.4822013

@@ -18,6 +18,8 @@ var _data: Statics.PlayerData
 var _speed: float = walk_speed
 var current_weapon: Weapon
 var is_flying: bool
+@export var current_level: int = 0
+var weapon_damage_multiplier: float = 1.0
 @export var max_stamina: int = 10
 @export var stamina: int = 10:
 	set(value):
@@ -130,6 +132,12 @@ func _physics_process(delta: float) -> void:
 					#pass
 				if current_weapon:
 					current_weapon.main_attack()
+			if Input.is_action_just_pressed("dev_level_up"):
+				var deb: String = "current buyer_id: " + str(get_id())
+				Debug.log(deb)
+				var level_item: ItemData = preload("uid://cwal2h6c7y8ww")
+				Game.request_buy_item.rpc(level_item.resource_path)
+				#self.equip_weapon_inv(spear_item)
 			if Input.is_action_just_pressed("dev_swap_weapon"):
 				swap_weapon.rpc()
 			if Input.is_action_just_pressed("debug_buy_spear"):
@@ -260,6 +268,7 @@ func equip_weapon_ph(weapon_idx: int) -> void:
 	#current_weapon.position = weapon_spawn_point.position
 	#current_weapon.rotation = weapon_spawn_point.rotation
 	weapon_spawn_point.add_child(current_weapon, true)
+	current_weapon.set_damage_multiplier(weapon_damage_multiplier)
 	Debug.log("SEÑAL EMITIDA DE CAMBIO DE ARMA, IDX= "+str(current_weapon_idx))
 	sync_weapon_hud.rpc()
 	
@@ -366,6 +375,16 @@ func increase_dash(value:int) -> void:
 	
 func increase_armor(value:int) -> void:
 	health_component.armor = value
+# Modifica el daño de todas las armas
+func level_up() -> void:
+	current_level += 1
+	Debug.log("LEVEL UP TO: "+str(current_level))
+	weapon_damage_multiplier = 1.0 + float(current_level) / 5.0
+	_apply_damage_multiplier_to_current_weapon()
+func _apply_damage_multiplier_to_current_weapon() -> void:
+	if not is_instance_valid(current_weapon):
+		return
+	current_weapon.set_damage_multiplier(weapon_damage_multiplier)
 
 func equip_weapon_inv(item) -> void:
 	Debug.log("equipando arma")

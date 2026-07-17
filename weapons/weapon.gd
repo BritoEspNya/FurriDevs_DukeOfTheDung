@@ -11,7 +11,7 @@ extends Node2D
 
 var base_damage: float = 10.0
 var buff_damage: float = 0.0
-var base_muultiplier: float = 1.0
+var base_multiplier: float = 1.0
 
 var attack_spawn_marker: Marker2D #= $AttackSpawnMarker
 var owner_player: Player
@@ -31,8 +31,6 @@ func _ready() -> void:
 func get_attack_spawn_marker() -> Marker2D:
 	return $AttackSpawnMarker
 	
-func get_attack_damage() -> float:
-	return (base_damage*base_muultiplier)+buff_damage
 
 func get_hud_icon() -> Texture2D:
 	# For now it will be the item sprite itself
@@ -43,24 +41,25 @@ func get_hud_icon() -> Texture2D:
 		Debug.log("QUE HA PASAO CARGAMOS TEXTURA MELEE")
 		var tmp_text: Texture2D = preload("uid://b5ni1frtfwvnx") #preload("uid://ovqgee4mynf5") # COLOCAR PUÑOS
 		return tmp_text
+func get_attack_damage() -> float:
+	return (base_damage*base_multiplier)+buff_damage
 
 func add_attack_damage(buff: float) -> void:
 	buff_damage = buff
+
+func set_damage_multiplier(value: float) -> void:
+	base_multiplier = maxf(value, 0.0)
 	
-func add_mult_base_damage(mult: float) -> void:
-	base_muultiplier += mult
+#@rpc("authority", "call_local", "reliable")
+#func add_mult_base_damage(mult: float) -> void:
+	#Debug.log("Se ha aumentado el daño del arma: "+str(self))
+	#base_multiplier += mult
 
 func set_sprite_flipped(should_flip: bool) -> void:
 	if not sprite_2d:
 		#Melee, do not rotate
 		return
 	scale.y = -1.0 if should_flip else 1.0
-	#sprite_2d.rotation = (
-		#-sprite_base_rotation
-		#if should_flip
-		#else sprite_base_rotation
-	#)
-
 
 
 func setup_weapon(player: Player) -> void:

@@ -9,7 +9,7 @@
 script = ExtResource("2_xl04r")
 attack_scene = ExtResource("3_rfri3")
 attack_cooldown = 0.1
-base_damage = 8.0
+base_damage = 5.0
 
 [node name="ProjectileSpawnMarker" parent="." index="0" unique_id=1371906066]
 position = Vector2(182, 0)
