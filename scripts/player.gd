@@ -25,7 +25,7 @@ var is_flying: bool
 		stamina = new_stamina
 		#stamina_changed.emit(stamina, max_stamina)
 var stamina_decrease_interval := 0.5  # cada 0.5s se descuenta 1
-var stamina_recover_interval := 0.2  # cada 0.2s se recupera 1
+var stamina_recover_interval := 0.8  # cada 0.8s se recupera 1
 var stamina_recover_delay := 1.0     # espera 1s tras dejar de correr
 var stamina_per_tick := 1
 var stamina_timer := 0.0
@@ -93,38 +93,30 @@ func _physics_process(delta: float) -> void:
 	if input_synchronizer.mode_input:
 		# Flight mode
 		is_flying = input_synchronizer.flight_input 
-		if is_flying:
+		if is_flying and stamina > 0:
 			_speed = flight_speed
 			target_max_speed = flight_speed
-			if move_input and stamina > 0:
+			if move_input:
 				stamina_timer += delta
 				stamina_recover_timer = 0.0
-				recovering_stamina = false
 
 				if stamina_timer >= stamina_decrease_interval:
 					stamina_timer = 0.0
 					stamina = max(stamina - stamina_per_tick, 0)
 					hud.stamina_bar.value = stamina
-					
-					if stamina <= 0:
-						is_flying = false  # ya no puede correr si no tiene stamina
-				else:
-					# Comenzar recuperación después de un retardo
-					stamina_recover_timer += delta
-					if stamina_recover_timer >= stamina_recover_delay:
-						recovering_stamina = true
 				
-				# Recuperación progresiva de stamina
-				if recovering_stamina and stamina < max_stamina:
-					stamina_timer += delta
-					if stamina_timer >= stamina_recover_interval:
-						stamina_timer = 0.0
-						stamina += stamina_per_tick
-						stamina = min(stamina, max_stamina)
-						hud.stamina_bar.value = stamina
 		else:
 			_speed = walk_speed
 			target_max_speed = walk_speed
+			# Stamina recovery
+			if stamina < max_stamina:
+				stamina_timer += delta
+				if stamina_timer >= stamina_recover_interval:
+					stamina_timer = 0.0
+					stamina += stamina_per_tick
+					stamina = min(stamina, max_stamina)
+					hud.stamina_bar.value = stamina
+			
 		current_max_speed = lerp(current_max_speed, target_max_speed, deceleration_rate * delta)
 		# Normal Movement
 		velocity.x = move_toward(velocity.x, move_input.x * _speed, acceleration * delta)
@@ -166,7 +158,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 	if input_synchronizer.move_input:
-		if input_synchronizer.flight_input:
+		if input_synchronizer.flight_input and stamina > 0:
 			if input_synchronizer.mode_input:
 				playback.travel("fly")
 		else:
