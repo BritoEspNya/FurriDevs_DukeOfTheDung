@@ -8,7 +8,6 @@ extends Control
 @onready var quit: Button = %Quit
 @onready var controls: Button = %Controls
 
-
 func _ready() -> void:
 	if Game.multiplayer_test:
 		get_tree().change_scene_to_file("res://lobby/lobby_test.tscn")
