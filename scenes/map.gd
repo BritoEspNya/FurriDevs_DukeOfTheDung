@@ -20,7 +20,31 @@ func _ready():
 
 func get_valid_tiles():
 	var cells = world.get_used_cells()
+
+	if cells.is_empty():
+		return
+
+	var min_x = cells[0].x
+	var max_x = cells[0].x
+	var min_y = cells[0].y
+	var max_y = cells[0].y
+
 	for cell in cells:
+		min_x = min(min_x, cell.x)
+		max_x = max(max_x, cell.x)
+		min_y = min(min_y, cell.y)
+		max_y = max(max_y, cell.y)
+
+	for cell in cells:
+		if cell.x <= min_x + 1:
+			continue
+		if cell.x >= max_x - 1:
+			continue
+		if cell.y <= min_y + 1:
+			continue
+		if cell.y >= max_y - 1:
+			continue
+
 		possible_positions.append(cell)
 		
 func pick_weighted_resource() -> int:

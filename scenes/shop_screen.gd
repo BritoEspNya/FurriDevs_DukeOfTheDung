@@ -15,11 +15,16 @@ func _ready() -> void:
 	item_card_3.bought.connect(_on_bought.bind(item_card_3))
 
 func generate_cards() -> void:
+	var player = Game.get_current_player()
+	var weapon_inv = player.inventory_hud["weapon"]
 	if not item_card_scene:
 		return
 	
 	var available_items = item_data_array.duplicate()
 	
+	for weapon in weapon_inv:
+		available_items.erase(weapon)
+
 	for margin_container in item_card_container.get_children():
 		var item_card: ItemCard = margin_container.get_child(0)
 		
@@ -33,6 +38,12 @@ func _on_bought(item_card: ItemCard) -> void:
 	var item_cards: Array[ItemCard] = [item_card_1, item_card_2, item_card_3]
 	# No repetir el ítem recién comprado.
 	available_items.erase(item_card.item_data)
+	var player = Game.get_current_player()
+	var weapon_inv = player.inventory_hud["weapon"]
+
+	for weapon in weapon_inv:
+		available_items.erase(weapon)
+		
 	# No usar ítems que ya muestran las otras cartas.
 	for card: ItemCard in item_cards:
 		if card == item_card:
