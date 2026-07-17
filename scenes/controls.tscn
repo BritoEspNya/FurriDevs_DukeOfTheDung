@@ -177,11 +177,11 @@ _data = {
 [sub_resource type="LabelSettings" id="LabelSettings_yf5fn"]
 font_size = 60
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ckvwl"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_g2equ"]
 atlas = ExtResource("4_a8sje")
-region = Rect2(128, 128, 16, 16)
+region = Rect2(0, 272, 16, 16)
 
-[sub_resource type="Animation" id="Animation_tbcdj"]
+[sub_resource type="Animation" id="Animation_cmspm"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -193,10 +193,10 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Rect2(128, 128, 16, 16)]
+"values": [Rect2(0, 272, 16, 16)]
 }
 
-[sub_resource type="Animation" id="Animation_ej4tf"]
+[sub_resource type="Animation" id="Animation_ikfo1"]
 resource_name = "idle"
 loop_mode = 1
 tracks/0/type = "value"
@@ -209,54 +209,13 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [Rect2(128, 128, 16, 16), Rect2(144, 128, 16, 16)]
+"values": [Rect2(0, 272, 16, 16), Rect2(16, 272, 16, 16)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_0hilk"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dwom6"]
 _data = {
-&"RESET": SubResource("Animation_tbcdj"),
-&"idle": SubResource("Animation_ej4tf")
-}
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nlqja"]
-atlas = ExtResource("4_a8sje")
-region = Rect2(0, 64, 16, 16)
-
-[sub_resource type="Animation" id="Animation_wr8iv"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:texture:region")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Rect2(0, 64, 16, 16)]
-}
-
-[sub_resource type="Animation" id="Animation_0hilk"]
-resource_name = "idle"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:texture:region")
-tracks/0/interp = 0
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [Rect2(0, 64, 16, 16), Rect2(16, 64, 16, 16)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_wr8iv"]
-_data = {
-&"RESET": SubResource("Animation_wr8iv"),
-&"idle": SubResource("Animation_0hilk")
+&"RESET": SubResource("Animation_cmspm"),
+&"idle": SubResource("Animation_ikfo1")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0epgs"]
@@ -300,11 +259,11 @@ _data = {
 &"idle": SubResource("Animation_vrdqu")
 }
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_g2equ"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_nlqja"]
 atlas = ExtResource("4_a8sje")
-region = Rect2(0, 272, 16, 16)
+region = Rect2(0, 64, 16, 16)
 
-[sub_resource type="Animation" id="Animation_cmspm"]
+[sub_resource type="Animation" id="Animation_wr8iv"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -316,10 +275,10 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Rect2(0, 272, 16, 16)]
+"values": [Rect2(0, 64, 16, 16)]
 }
 
-[sub_resource type="Animation" id="Animation_ikfo1"]
+[sub_resource type="Animation" id="Animation_0hilk"]
 resource_name = "idle"
 loop_mode = 1
 tracks/0/type = "value"
@@ -332,14 +291,62 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [Rect2(0, 272, 16, 16), Rect2(16, 272, 16, 16)]
+"values": [Rect2(0, 64, 16, 16), Rect2(16, 64, 16, 16)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_dwom6"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wr8iv"]
 _data = {
-&"RESET": SubResource("Animation_cmspm"),
-&"idle": SubResource("Animation_ikfo1")
+&"RESET": SubResource("Animation_wr8iv"),
+&"idle": SubResource("Animation_0hilk")
 }
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ckvwl"]
+atlas = ExtResource("4_a8sje")
+region = Rect2(128, 128, 16, 16)
+
+[sub_resource type="Animation" id="Animation_tbcdj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(128, 128, 16, 16)]
+}
+
+[sub_resource type="Animation" id="Animation_ej4tf"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture:region")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Rect2(128, 128, 16, 16), Rect2(144, 128, 16, 16)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0hilk"]
+_data = {
+&"RESET": SubResource("Animation_tbcdj"),
+&"idle": SubResource("Animation_ej4tf")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_57qmd"]
+font_size = 60
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jlst0"]
+atlas = ExtResource("4_a8sje")
+region = Rect2(32, 64, 16, 16)
 
 [node name="Tutorial" type="Control" unique_id=1749064742]
 custom_minimum_size = Vector2(1280, 720)
@@ -494,135 +501,20 @@ size_flags_horizontal = 4
 text = "Movement"
 label_settings = SubResource("LabelSettings_yf5fn")
 
-[node name="MarginContainer2" type="MarginContainer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer" unique_id=1733765133]
+[node name="MarginContainer2" type="MarginContainer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer" unique_id=1772137911]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="Panel2" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer/MarginContainer2" unique_id=1234645485 instance=ExtResource("3_k6bol")]
+[node name="Panel2" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer/MarginContainer2" unique_id=1703585275 instance=ExtResource("3_k6bol")]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer/MarginContainer2/Panel2" unique_id=1340701480]
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer/MarginContainer2/Panel2" unique_id=1612261699]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer/MarginContainer2/Panel2/HBoxContainer" unique_id=1537687914]
-texture_filter = 1
-custom_minimum_size = Vector2(70, 70)
-layout_mode = 2
-size_flags_horizontal = 3
-texture = SubResource("AtlasTexture_ckvwl")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer/MarginContainer2/Panel2/HBoxContainer/TextureRect" unique_id=29709849]
-libraries/ = SubResource("AnimationLibrary_0hilk")
-autoplay = &"idle"
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer/MarginContainer2/Panel2/HBoxContainer" unique_id=2146082739]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-
-[node name="Label" type="Label" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer/MarginContainer2/Panel2/HBoxContainer/VBoxContainer2" unique_id=1117862489]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Flight (HOLD)"
-label_settings = SubResource("LabelSettings_yf5fn")
-
-[node name="MarginContainer3" type="MarginContainer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer" unique_id=1495547434]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="Panel3" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer/MarginContainer3" unique_id=57720639 instance=ExtResource("3_k6bol")]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer/MarginContainer3/Panel3" unique_id=1726008287]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer/MarginContainer3/Panel3/HBoxContainer" unique_id=1713664480]
-texture_filter = 1
-custom_minimum_size = Vector2(70, 70)
-layout_mode = 2
-size_flags_horizontal = 3
-texture = SubResource("AtlasTexture_nlqja")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer/MarginContainer3/Panel3/HBoxContainer/TextureRect" unique_id=1330492561]
-libraries/ = SubResource("AnimationLibrary_wr8iv")
-autoplay = &"idle"
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer/MarginContainer3/Panel3/HBoxContainer" unique_id=1653542767]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-
-[node name="Label" type="Label" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer/MarginContainer3/Panel3/HBoxContainer/VBoxContainer2" unique_id=1286305272]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Grab"
-label_settings = SubResource("LabelSettings_yf5fn")
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer" unique_id=782782746]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="MarginContainer" type="MarginContainer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer2" unique_id=951462814]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="Panel" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer2/MarginContainer" unique_id=1855548767 instance=ExtResource("3_k6bol")]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer2/MarginContainer/Panel" unique_id=1583270112]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer2/MarginContainer/Panel/HBoxContainer" unique_id=164264593]
-texture_filter = 1
-custom_minimum_size = Vector2(70, 70)
-layout_mode = 2
-size_flags_horizontal = 3
-texture = SubResource("AtlasTexture_0epgs")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer2/MarginContainer/Panel/HBoxContainer/TextureRect" unique_id=811311297]
-libraries/ = SubResource("AnimationLibrary_cmspm")
-autoplay = &"idle"
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer2/MarginContainer/Panel/HBoxContainer" unique_id=1667881345]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-
-[node name="Label" type="Label" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer2/MarginContainer/Panel/HBoxContainer/VBoxContainer2" unique_id=837630514]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Attack"
-label_settings = SubResource("LabelSettings_yf5fn")
-
-[node name="MarginContainer2" type="MarginContainer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer2" unique_id=1487956698]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="Panel2" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer2/MarginContainer2" unique_id=695666421 instance=ExtResource("3_k6bol")]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer2/MarginContainer2/Panel2" unique_id=2116509766]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer2/MarginContainer2/Panel2/HBoxContainer" unique_id=1539441784]
+[node name="TextureRect" type="TextureRect" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer/MarginContainer2/Panel2/HBoxContainer" unique_id=106017635]
 texture_filter = 1
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
@@ -631,17 +523,201 @@ texture = SubResource("AtlasTexture_g2equ")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer2/MarginContainer2/Panel2/HBoxContainer/TextureRect" unique_id=596892112]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer/MarginContainer2/Panel2/HBoxContainer/TextureRect" unique_id=1074179033]
 libraries/ = SubResource("AnimationLibrary_dwom6")
 autoplay = &"idle"
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer2/MarginContainer2/Panel2/HBoxContainer" unique_id=1641015651]
+[node name="VBoxContainer2" type="VBoxContainer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer/MarginContainer2/Panel2/HBoxContainer" unique_id=1808417786]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 
-[node name="Label" type="Label" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer2/MarginContainer2/Panel2/HBoxContainer/VBoxContainer2" unique_id=1953463283]
+[node name="Label" type="Label" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer/MarginContainer2/Panel2/HBoxContainer/VBoxContainer2" unique_id=1094493528]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Swap weapon"
+label_settings = SubResource("LabelSettings_yf5fn")
+
+[node name="MarginContainer3" type="MarginContainer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer" unique_id=1914284491]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Panel" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer/MarginContainer3" unique_id=399394563 instance=ExtResource("3_k6bol")]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer/MarginContainer3/Panel" unique_id=1390367287]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer/MarginContainer3/Panel/HBoxContainer" unique_id=1480670472]
+texture_filter = 1
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = SubResource("AtlasTexture_0epgs")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer/MarginContainer3/Panel/HBoxContainer/TextureRect" unique_id=1662375447]
+libraries/ = SubResource("AnimationLibrary_cmspm")
+autoplay = &"idle"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer/MarginContainer3/Panel/HBoxContainer" unique_id=837705821]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer/MarginContainer3/Panel/HBoxContainer/VBoxContainer2" unique_id=1851740077]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Attack"
+label_settings = SubResource("LabelSettings_yf5fn")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer" unique_id=782782746]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer4" type="MarginContainer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer2" unique_id=782825796]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Panel3" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer2/MarginContainer4" unique_id=1185092407 instance=ExtResource("3_k6bol")]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer2/MarginContainer4/Panel3" unique_id=1567637632]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer2/MarginContainer4/Panel3/HBoxContainer" unique_id=1904391706]
+texture_filter = 1
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = SubResource("AtlasTexture_nlqja")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer2/MarginContainer4/Panel3/HBoxContainer/TextureRect" unique_id=710113797]
+libraries/ = SubResource("AnimationLibrary_wr8iv")
+autoplay = &"idle"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer2/MarginContainer4/Panel3/HBoxContainer" unique_id=616707351]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer2/MarginContainer4/Panel3/HBoxContainer/VBoxContainer2" unique_id=733512493]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Grab/Release Ball"
+label_settings = SubResource("LabelSettings_yf5fn")
+
+[node name="MarginContainer3" type="MarginContainer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer2" unique_id=1700971244]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Panel2" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer2/MarginContainer3" unique_id=952056345 instance=ExtResource("3_k6bol")]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer2/MarginContainer3/Panel2" unique_id=1624322265]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer2/MarginContainer3/Panel2/HBoxContainer" unique_id=27656137]
+texture_filter = 1
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = SubResource("AtlasTexture_ckvwl")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer2/MarginContainer3/Panel2/HBoxContainer/TextureRect" unique_id=1067955565]
+libraries/ = SubResource("AnimationLibrary_0hilk")
+autoplay = &"idle"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer2/MarginContainer3/Panel2/HBoxContainer" unique_id=498832131]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer2/MarginContainer3/Panel2/HBoxContainer/VBoxContainer2" unique_id=1243586065]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Flight (HOLD)"
+label_settings = SubResource("LabelSettings_yf5fn")
+
+[node name="MarginContainer5" type="MarginContainer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer2" unique_id=1052375988]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Panel2" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer2/MarginContainer5" unique_id=429432588 instance=ExtResource("3_k6bol")]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer2/MarginContainer5/Panel2" unique_id=1525188668]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer2/MarginContainer5/Panel2/HBoxContainer" unique_id=798499013]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer2/MarginContainer5/Panel2/HBoxContainer/HBoxContainer" unique_id=1886177211]
+layout_mode = 2
+text = "("
+label_settings = SubResource("LabelSettings_57qmd")
+
+[node name="TextureRect2" type="TextureRect" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer2/MarginContainer5/Panel2/HBoxContainer/HBoxContainer" unique_id=1401106121]
+texture_filter = 1
+custom_minimum_size = Vector2(70, 70)
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+texture = SubResource("AtlasTexture_jlst0")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label2" type="Label" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer2/MarginContainer5/Panel2/HBoxContainer/HBoxContainer" unique_id=1627363222]
+layout_mode = 2
+text = ")"
+label_settings = SubResource("LabelSettings_57qmd")
+
+[node name="TextureRect" type="TextureRect" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer2/MarginContainer5/Panel2/HBoxContainer/HBoxContainer" unique_id=1416122254]
+texture_filter = 1
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+size_flags_horizontal = 3
+offset_transform_enabled = true
+texture = SubResource("AtlasTexture_ckvwl")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer2/MarginContainer5/Panel2/HBoxContainer/HBoxContainer/TextureRect" unique_id=788081325]
+libraries/ = SubResource("AnimationLibrary_0hilk")
+autoplay = &"idle"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer2/MarginContainer5/Panel2/HBoxContainer" unique_id=831151333]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer2/MarginContainer5/Panel2/HBoxContainer/VBoxContainer2" unique_id=965410830]
+custom_maximum_size = Vector2(380, -1)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Launch Ball"
+label_settings = SubResource("LabelSettings_yf5fn")
+
+[node name="Label2" type="Label" parent="MenuPanel/VBoxContainer/ControlsContainer/HBoxContainer/VBoxContainer2/MarginContainer5/Panel2/HBoxContainer/VBoxContainer2" unique_id=1579159083]
+custom_maximum_size = Vector2(380, -1)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "(HOLD/RELEASE)"
 label_settings = SubResource("LabelSettings_yf5fn")
