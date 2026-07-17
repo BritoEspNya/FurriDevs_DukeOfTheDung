@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dj66nte78u87x"]
 
 [ext_resource type="PackedScene" uid="uid://cgsspji18smle" path="res://lobby/lobby_screen.tscn" id="1_m3vk0"]
-[ext_resource type="Script" uid="uid://bsocoo55qa2vl" path="res://ui/credits.gd" id="2_hvxmk"]
+[ext_resource type="Script" uid="uid://cuqvj8grm28qy" path="res://ui/credits.gd" id="2_hvxmk"]
 [ext_resource type="Texture2D" uid="uid://dhr828dm3kbv3" path="res://assets/UI Assets/origbig.png" id="3_1bagf"]
 [ext_resource type="Script" uid="uid://d3n87yt617shu" path="res://ui/richlabelmovement.gd" id="3_74u3g"]
 
@@ -101,6 +101,15 @@ by Clockwork Raven
 
 [b]Sketchbook 2025-11-26[/b]
 by Tallbeard Studios 
+
+[b]Free Gun Icons 32×32[/b]
+by Free Game Assets (GUI, Sprite, Tilesets)
+
+[b]Free Fantasy SFX Pack[/b]
+by TomMusic
+
+[b]Snake's SECOND Authentic Gun Sounds Pack[/b]
+by SnakeF8
 [/font_size]
 [/shake]
 
