@@ -5,8 +5,9 @@ signal respawned
 signal died
 signal weapon_equipped(weapon_index: int, weapon_icon: Texture2D)
 
-@export var walk_speed: float = 200
-@export var flight_speed: float = 600
+@export var walk_speed: float = 400
+@export var flight_speed: float = 1000
+@export var carry_speed: float = 200
 @export var acceleration: float = 400
 @export var rotation_speed: float = 5
 #@export var projectile_scene: PackedScene
@@ -91,9 +92,9 @@ func _ready() -> void:
 	
 func _physics_process(delta: float) -> void:
 	var move_input: Vector2 = input_synchronizer.move_input
+	is_flying = input_synchronizer.flight_input 
 	if input_synchronizer.mode_input:			
 		# Flight mode
-		is_flying = input_synchronizer.flight_input 
 		if is_flying and stamina > 0:
 			_speed = flight_speed
 			target_max_speed = flight_speed
@@ -141,10 +142,9 @@ func _physics_process(delta: float) -> void:
 						request_debug_add_dung.rpc_id(1, 50)
 			
 	else:
-		# Movement with ball attached
 		pivot.rotation += move_input.x * rotation_speed * delta
 		var forward_direction: Vector2 = Vector2.UP.rotated(pivot.rotation)
-		velocity = velocity.move_toward(forward_direction * walk_speed * move_input.y, acceleration * delta)
+		velocity = velocity.move_toward(forward_direction * carry_speed * move_input.y, acceleration * delta)
 	velocity = velocity.limit_length(current_max_speed)
 	ball_pivot.rotation = pivot.rotation
 	move_and_slide()

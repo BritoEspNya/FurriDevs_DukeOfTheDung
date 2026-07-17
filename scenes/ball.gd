@@ -23,7 +23,7 @@ var charge: int = 0
 var max_charge: int = 4
 var charge_per_tick: int = 1
 var charge_timer: float = 0.0
-var charge_recover_interval: float = 0.8
+var charge_recover_interval: float = 0.5
 var last_charge: int = 0
 var was_attached: bool = false
 
