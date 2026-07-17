@@ -1,4 +1,7 @@
+class_name BigResource
 extends Area2D
+
+@export var dung_quantity: int = 3
 
 func _ready() -> void:
 	if is_multiplayer_authority():
@@ -9,7 +12,7 @@ func _on_body_entered(body: Node2D) -> void:
 	if ball:
 		var player: Player = ball.attached_player
 		if player:
-			Game.set_player_dung(player.get_id(), Game.get_player_dung(player.get_id()) + 3)
+			Game.set_player_dung(player.get_id(), Game.get_player_dung(player.get_id()) + dung_quantity)
 			destroy.rpc()
 
 @rpc("call_local","reliable")

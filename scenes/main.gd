@@ -59,9 +59,12 @@ func _on_player_died(player: Player) -> void:
 	if not multiplayer.is_server():
 		return
 	var total_dung = player.get_dung()
+	var little_resource_quant: int = 1
+	var big_resource_quant: int = 3
+	
 	var dropped_dung: int = total_dung/3
-	var n_big_resources: int = dropped_dung / 5
-	var m_little_resources: int = (dropped_dung % 5) / 2
+	var n_big_resources: int = dropped_dung / big_resource_quant
+	var m_little_resources: int = (dropped_dung % big_resource_quant) / little_resource_quant
 	Game.set_player_dung(player.get_id(), total_dung - dropped_dung)
 	# resources = [little_resource, big_resource]
 	var deb_cnt: int = 0
