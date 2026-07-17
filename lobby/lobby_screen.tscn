@@ -2,6 +2,21 @@
 
 [ext_resource type="Theme" uid="uid://bwgdrcgopd0s1" path="res://lobby/lobby_theme.tres" id="1_0ce57"]
 [ext_resource type="Texture2D" uid="uid://grgn5dpw7lmn" path="res://assets/UI Assets/lobby_background.png" id="2_684nl"]
+[ext_resource type="Texture2D" uid="uid://rwoy3asd5vbu" path="res://assets/custom-box1.png" id="3_y8mbi"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_du0e2"]
+content_margin_left = 36.0
+content_margin_top = 25.0
+content_margin_right = 36.0
+content_margin_bottom = 36.0
+texture = ExtResource("3_y8mbi")
+texture_margin_left = 32.0
+texture_margin_top = 32.0
+texture_margin_right = 32.0
+texture_margin_bottom = 32.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(0, 0, 96, 83)
 
 [node name="LobbyScreen" type="Control" unique_id=480604172]
 layout_mode = 3
@@ -96,3 +111,4 @@ offset_bottom = 290.0
 grow_horizontal = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_du0e2")
