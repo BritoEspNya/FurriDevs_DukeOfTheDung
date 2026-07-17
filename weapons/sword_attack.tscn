@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://up4yfw01ar6f" path="res://assets/player asset/basic_attack_spritesheet.png" id="2_lvj6i"]
 [ext_resource type="Script" uid="uid://bdhvqyy2d5ivq" path="res://components/hitbox_component.gd" id="3_c648w"]
 [ext_resource type="Texture2D" uid="uid://csqid2hls1ty0" path="res://assets/player asset/sword_attack_spritesheet.png" id="3_lvj6i"]
+[ext_resource type="AudioStream" uid="uid://bjm673p4plhxk" path="res://assets/weapon_asset/sword_attack_2.wav" id="5_c648w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
 
@@ -275,3 +276,6 @@ metadata/_custom_type_script = "uid://bdhvqyy2d5ivq"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=974764076]
 position = Vector2(42.5, -4.46875)
 shape = SubResource("RectangleShape2D_byqvd")
+
+[node name="AttackSound" type="AudioStreamPlayer2D" parent="." unique_id=816445805]
+stream = ExtResource("5_c648w")

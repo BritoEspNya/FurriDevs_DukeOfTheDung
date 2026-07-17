@@ -6,8 +6,10 @@ func _ready() -> void:
 	attack_animation.rpc()
 	animation_player.animation_finished.connect(_on_attack_end)
 
+# Estaba en "any_peer"
 @rpc("authority", "call_local", "reliable")
 func attack_animation() -> void:
+	play_attack_sound()
 	animation_player.play("sword_attack")
 	
 func _on_attack_end(anim_name: StringName) -> void:

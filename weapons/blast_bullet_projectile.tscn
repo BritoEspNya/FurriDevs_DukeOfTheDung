@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://betdjv44g2qtq" path="res://weapons/projectile.gd" id="1_wb0oi"]
 [ext_resource type="Texture2D" uid="uid://78pqydsccq1l" path="res://assets/weapon_asset/blast_bullet.png" id="2_wb0oi"]
 [ext_resource type="Script" uid="uid://bdhvqyy2d5ivq" path="res://components/hitbox_component.gd" id="3_jxjsw"]
+[ext_resource type="AudioStream" uid="uid://drlt8wnxit6bw" path="res://assets/weapon_asset/gun_shot.wav" id="4_4cncq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xuifw"]
 radius = 3.0
@@ -48,3 +49,6 @@ metadata/_custom_type_script = "uid://bdhvqyy2d5ivq"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=1753507216]
 position = Vector2(2.3333335, 0.33333337)
 shape = SubResource("RectangleShape2D_cus6t")
+
+[node name="AttackSound" type="AudioStreamPlayer2D" parent="." unique_id=849469430]
+stream = ExtResource("4_4cncq")

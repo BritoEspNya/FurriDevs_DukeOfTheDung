@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://betdjv44g2qtq" path="res://weapons/projectile.gd" id="1_tur4f"]
 [ext_resource type="Texture2D" uid="uid://dtejltu8y4i0n" path="res://assets/shop assets/arrow.png" id="2_tur4f"]
 [ext_resource type="Script" uid="uid://bdhvqyy2d5ivq" path="res://components/hitbox_component.gd" id="3_cv515"]
+[ext_resource type="AudioStream" uid="uid://f40dxrpuemq5" path="res://assets/weapon_asset/bow_shot.ogg" id="4_vgx2y"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xuifw"]
 radius = 2.8284273
@@ -50,3 +51,6 @@ metadata/_custom_type_script = "uid://bdhvqyy2d5ivq"
 position = Vector2(6.333333, 0)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_f46mn")
+
+[node name="AttackSound" type="AudioStreamPlayer2D" parent="." unique_id=306163169]
+stream = ExtResource("4_vgx2y")

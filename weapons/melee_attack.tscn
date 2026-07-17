@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://up4yfw01ar6f" path="res://assets/player asset/basic_attack_spritesheet.png" id="1_1uu3n"]
 [ext_resource type="Script" uid="uid://cin5heiyplxfs" path="res://weapons/melee_attack.gd" id="1_e1m7m"]
 [ext_resource type="Script" uid="uid://bdhvqyy2d5ivq" path="res://components/hitbox_component.gd" id="2_e1m7m"]
+[ext_resource type="AudioStream" uid="uid://diivogrbad0sa" path="res://assets/weapon_asset/sword_attack_3.wav" id="4_r2hpx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4v7s"]
 
@@ -183,3 +184,6 @@ metadata/_custom_type_script = "uid://bdhvqyy2d5ivq"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=974764076]
 position = Vector2(17, 0)
 shape = SubResource("RectangleShape2D_byqvd")
+
+[node name="AttackSound" type="AudioStreamPlayer2D" parent="." unique_id=1974278567]
+stream = ExtResource("4_r2hpx")

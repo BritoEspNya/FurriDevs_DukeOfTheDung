@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dts1hemixrvx5" path="res://weapons/projectile_weapon.tscn" id="1_m3te7"]
 [ext_resource type="Script" uid="uid://dxk5rbvhtybhv" path="res://weapons/crossbow.gd" id="2_ua5uu"]
-[ext_resource type="PackedScene" uid="uid://fja3u8rkhq8s" path="res://weapons/SpearProjectile.tscn" id="3_ua5uu"]
+[ext_resource type="PackedScene" uid="uid://gtg3u6tjy2y1" path="res://weapons/arrow_projectile.tscn" id="3_ua5uu"]
 [ext_resource type="Texture2D" uid="uid://bngwxrkrr5hdl" path="res://assets/shop assets/crossbow_32p.png" id="4_ua5uu"]
 
 [node name="Crossbow" unique_id=71827757 instance=ExtResource("1_m3te7")]
