@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bh5x6lcqiuude" path="res://scenes/custom_block-panel.tscn" id="3_k6bol"]
 [ext_resource type="Texture2D" uid="uid://n2o50bkshvgu" path="res://assets/Controllers and Keyboard/kb_light_all.png" id="4_a8sje"]
 [ext_resource type="Texture2D" uid="uid://dryi72r0tyf5r" path="res://assets/Controllers and Keyboard/mouse.png" id="5_t622t"]
+[ext_resource type="AudioStream" uid="uid://bsp34jajgivhv" path="res://music/Sketchbook 2025-11-26.ogg" id="6_dloai"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_g4v7s"]
 font_size = 60
@@ -721,3 +722,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "(HOLD/RELEASE)"
 label_settings = SubResource("LabelSettings_yf5fn")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=2045416079]
+stream = ExtResource("6_dloai")
+autoplay = true
