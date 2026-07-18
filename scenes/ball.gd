@@ -75,32 +75,40 @@ func _physics_process(delta: float) -> void:
 		sprite_2d.set_instance_shader_parameter("texture_offset", current_offset)
 		
 	last_position = global_position
-	
+
 func _input(event: InputEvent) -> void:
-	var player: Player = Game.get_current_player().scene
-	if is_multiplayer_authority():
-		# Attach & Detach
-		if event.is_action_pressed("input_movement_mode"):
-			if _near_players.has(player):
-				if player == attached_player:
-					if !is_attached:
-						attach.rpc(player.get_path())
-					else:
-						detach.rpc(player.get_path())
-		# Ball Rush
-		if is_attached:
-			if event.is_action_pressed("input_space"):
-				texture_rect.show()
-				is_charging = true
-			
-			if event.is_action_released("input_space"):
-				player.input_synchronizer.mode_input = false
-				detach.rpc(player.get_path())
-				last_charge = charge
-				charge = 0
-				charge_bar.value = charge
-				texture_rect.hide()
-				is_charging = false
+	var current_local_player: Player = Game.get_current_player().scene
+
+	# 1. SALVAGUARDA: Si ya hay un jugador acoplado, SOLO ese jugador puede mandar inputs.
+	if is_attached and attached_player != current_local_player:
+		return
+
+	# 2. SALVAGUARDA PARA ACOPLARSE: Si no está acoplado, solo el jugador que intenta 
+	# acoplarse y que está cerca puede ejecutar la acción.
+	if event.is_action_pressed("input_movement_mode"):
+		if _near_players.has(current_local_player):
+			if !is_attached:
+				# Si nadie está acoplado, el jugador local que presionó la tecla se acopla
+				attach.rpc(current_local_player.get_path())
+			elif current_local_player == attached_player:
+				# Si ya está acoplado y es él mismo, se desacopla
+				detach.rpc(current_local_player.get_path())
+
+	# Ball Rush (Solo entra aquí si pasó el filtro del paso 1, es decir, es el attached_player)
+	if is_attached:
+		if event.is_action_pressed("input_space"):
+			texture_rect.show()
+			is_charging = true
+		
+		if event.is_action_released("input_space"):
+			# Usamos attached_player con seguridad porque sabemos que es igual a current_local_player
+			attached_player.input_synchronizer.mode_input = false
+			detach.rpc(attached_player.get_path())
+			last_charge = charge
+			charge = 0
+			charge_bar.value = charge
+			texture_rect.hide()
+			is_charging = false
 					
 @rpc("any_peer", "call_local", "reliable")
 func attach(player_path: NodePath) -> void:
