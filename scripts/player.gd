@@ -374,7 +374,8 @@ func increase_dash(value:int) -> void:
 	Debug.log(flight_speed)
 	
 func increase_armor(value:int) -> void:
-	walk_speed = (walk_speed - (20*value))
+	#walk_speed = (walk_speed - (20*value))
+	flight_speed = (flight_speed - (25*value))
 	health_component.armor = value
 # Modifica el daño de todas las armas
 func level_up() -> void:
