@@ -78,28 +78,29 @@ func _physics_process(delta: float) -> void:
 	
 func _input(event: InputEvent) -> void:
 	var player: Player = Game.get_current_player().scene
-	# Attach & Detach
-	if event.is_action_pressed("input_movement_mode"):
-		if _near_players.has(player):
-			if player == attached_player:
-				if !is_attached:
-					attach.rpc(player.get_path())
-				else:
-					detach.rpc(player.get_path())
-	# Ball Rush
-	if is_attached:
-		if event.is_action_pressed("input_space"):
-			texture_rect.show()
-			is_charging = true
-		
-		if event.is_action_released("input_space"):
-			player.input_synchronizer.mode_input = false
-			detach.rpc(player.get_path())
-			last_charge = charge
-			charge = 0
-			charge_bar.value = charge
-			texture_rect.hide()
-			is_charging = false
+	if is_multiplayer_authority():
+		# Attach & Detach
+		if event.is_action_pressed("input_movement_mode"):
+			if _near_players.has(player):
+				if player == attached_player:
+					if !is_attached:
+						attach.rpc(player.get_path())
+					else:
+						detach.rpc(player.get_path())
+		# Ball Rush
+		if is_attached:
+			if event.is_action_pressed("input_space"):
+				texture_rect.show()
+				is_charging = true
+			
+			if event.is_action_released("input_space"):
+				player.input_synchronizer.mode_input = false
+				detach.rpc(player.get_path())
+				last_charge = charge
+				charge = 0
+				charge_bar.value = charge
+				texture_rect.hide()
+				is_charging = false
 					
 @rpc("any_peer", "call_local", "reliable")
 func attach(player_path: NodePath) -> void:
